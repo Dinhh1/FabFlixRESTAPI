@@ -61,7 +61,6 @@ public class CustomersTable extends Table {
         try {
         	con = ConnectionManager.getConnection();
         	insertStatement = con.prepareStatement(sql);
-//            insertStatement = this.jdbcConnection.prepareStatement(sql);
             insertStatement.setString(1, f);
             insertStatement.setString(2, l);
             insertStatement.setString(3, cid);
@@ -189,23 +188,36 @@ public class CustomersTable extends Table {
         //TODO:: complete implementation of customer query
         return query;
     }
-
-    public boolean authenticateUser(Customer c) throws SQLException{
-    	boolean success = false;
+    
+    /**
+     * Authenticate the user against the db
+     *
+     * @param c The customer object, email and password must be populated
+     * @return the authenticated user, and db info
+     */
+    public Customer authenticateUser(Customer c) throws SQLException{
+    	c.getModelStatus().setStatusCode(ModelStatus.StatusCode.USER_NOT_AUTHENTICATED, true);
     	if (c == null || c.getEmail() == null || c.getEmail() == "" || c.getPassword() == null || c.getPassword() == "")
-    		return success;
+    		return c;
         String sql = "SELECT * FROM customers where email = ? and password = ?";
     	Connection con = ConnectionManager.getConnection();
     	PreparedStatement queryStatement = con.prepareStatement(sql);
 		queryStatement.setString(1, c.getEmail());
 		queryStatement.setString(2, c.getPassword());
 		ResultSet rs = queryStatement.executeQuery();
-		if (rs.next()) 
-			success = true;	
+		if (rs.next()) {
+			c.setId(rs.getInt("id"));
+			c.setFirstName(rs.getString("first_name"));
+			c.setLastName(rs.getString("last_name"));
+			c.setCreditCardId(rs.getString("cc_id"));
+			c.setAddress(rs.getString("address"));
+			c.setPassword("");
+			c.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+		}
 		queryStatement.close();
 		rs.close();
 		con.close();
-		return success;
+		return c;
     }
     
     public int getTableSize() {

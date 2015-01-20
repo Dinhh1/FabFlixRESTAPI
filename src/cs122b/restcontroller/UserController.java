@@ -23,17 +23,16 @@ public class UserController {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response login(@FormParam("username") final String username, @FormParam("password") final String pswd) {
-		String response = "LOGIN FAILED";
-		boolean success = false;
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	public Customer login(@FormParam("username") final String username, @FormParam("password") final String pswd) {
+		Customer c = new Customer(null, null, null, null, username, pswd);
 		try {
 			MovieDB db = new MovieDB();
-			success = db.Customers.authenticateUser(new Customer(null, null, null, null, username, pswd));
+			c = db.Customers.authenticateUser(new Customer(null, null, null, null, username, pswd));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response = success == false ? "LOGIN FAILED": "LOGIN SUCCESSFUL";
-		return Response.ok(response, MediaType.TEXT_PLAIN).build();
+		return c;
 	}
 	
 }
