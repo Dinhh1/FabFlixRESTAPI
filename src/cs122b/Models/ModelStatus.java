@@ -21,7 +21,13 @@ public class ModelStatus {
 	@XmlElement(name="code")
 	public int getStatusCode() {return this.status_code;}
 	public String getDescription() {return this.description;}
-
+	
+    /**
+     *  Sets the statuscode, and also stringify the status code if flag is set to true
+     *  
+     * @param s the status code
+     * @param flag - whether or not to stringify the statuscode in the description
+     */
 	public void setStatusCode(int s, boolean flag) {
 		this.status_code = s;
 		if (flag)
@@ -36,6 +42,12 @@ public class ModelStatus {
         public static final int NOT_FOUND = 404;
         public static final int USER_NOT_AUTHENTICATED = 2;
         
+        /**
+         *  Stringify the status code
+         *  
+         * @param code the status code
+         * @return String representing given code, emptry string if code is invalid
+         */
         public static String getStringForCode(int code) {
         	String s ="";
         	switch (code) {
