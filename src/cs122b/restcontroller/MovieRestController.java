@@ -49,10 +49,15 @@ public class MovieRestController {
 		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
 		try {
 			db = new MovieDB();
+			String name = params.getFirst("name");
+			int page =  Integer.parseInt(params.getFirst("page"));
+			int limit = Integer.parseInt(params.getFirst("limit"));
 			if (params.containsKey("name")) 
-				movies = db.Movies.getMoviesByName(params.getFirst("name"), 1, 20);				
+				movies = db.Movies.getMoviesByName(params.getFirst("name"), page, limit);	
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		} 
 		return movies;
 	}

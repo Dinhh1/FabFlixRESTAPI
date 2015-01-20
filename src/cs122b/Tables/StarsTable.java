@@ -53,6 +53,7 @@ public class StarsTable extends Table {
         }
         return query;
     }
+    
     /**
      * Add a star to the db
      *
