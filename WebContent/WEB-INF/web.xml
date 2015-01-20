@@ -26,10 +26,10 @@
   <description>
     Resource reference to a factory for java.sql.Connection
     instances that may be used for talking to a particular
-    database that is configured in the server.xml file.
+    database that is configured in the Context.xml file.
   </description>
   <res-ref-name>
-    jdbc/TestDB
+    jdbc/moviedb
   </res-ref-name>
   <res-type>
     javax.sql.DataSource
