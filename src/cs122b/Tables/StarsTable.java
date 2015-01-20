@@ -7,7 +7,9 @@ import cs122b.DB.*;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by dinhho on 1/14/15.
@@ -20,6 +22,37 @@ public class StarsTable extends Table {
     	super();
     }
 
+    
+    public ArrayList<Star> get(Movie m) {
+    	ArrayList<Star> query = new ArrayList<Star>();
+        ResultSet rs = null;
+        Connection con = null;
+        PreparedStatement pS = null;
+        String sql = "select * from stars where id in (select star_id from stars_in_movies where movie_id = ?);"; // retrive rows (x+1) through y
+        try {
+			con = ConnectionManager.getConnection();
+        	pS = con.prepareStatement(sql);
+            pS.setInt(1, m.getId());
+            rs = pS.executeQuery();
+            while (rs.next()) {
+            	Star s = new Star(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("dob"),
+                rs.getString("photo_url"));
+                s.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+                query.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                pS.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
     /**
      * Add a star to the db
      *

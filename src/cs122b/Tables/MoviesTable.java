@@ -205,6 +205,49 @@ public class MoviesTable extends Table {
         }
         return query;
     }
+    
+    /**
+     * Get a list of movies given a genre object that has an id
+     *  offset is calculated by (pageNum * sizeLmit) - sizeLmt;
+     *  
+     * @param g genre object, must have a valid genre id
+     * @param pageNum - the page number of the query, this is used to calculate offset
+     * @param sizeLmt - this limit the query to a certain size,
+     * @return a list of movies that matches that is in the genre
+     */
+    public ArrayList<Movie> getMoviesByGenre(Genre g, int pageNum, int sizeLmt) {
+        int offset = Table.calculateOffset(pageNum, sizeLmt);
+        ArrayList<Movie> query = new ArrayList<Movie>();
+        ResultSet rs = null;
+        Connection con = null;
+        PreparedStatement pS = null;
+        String sql = "select * from movies where id in (select movie_id from genres_in_movies where genre_id = ?) limit ?, ?"; // retrive rows (x+1) through y
+        try {
+			con = ConnectionManager.getConnection();
+        	pS = con.prepareStatement(sql);
+            pS.setInt(1, g.getId());
+            pS.setInt(2, offset);
+            pS.setInt(3, sizeLmt);
+            rs = pS.executeQuery();
+            while (rs.next()) {
+                Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6));
+                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+                query.add(m);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                pS.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
 
     /**
      * Get a list of movies directed by director name, this will be performed using a wild card search
