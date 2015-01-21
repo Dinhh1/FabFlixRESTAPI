@@ -112,6 +112,7 @@ public class CreditCardTable extends Table {
             rs = pS.executeQuery();
             while (rs.next()) {
                 CreditCard cc = new CreditCard(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4));
+                cc.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(cc);
             }
         } catch(SQLException e) {
