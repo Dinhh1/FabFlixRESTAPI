@@ -64,28 +64,28 @@ public class MovieRestController {
 		return movies;
 	}
 	
-//	@GET
-//	@Path("/query")
-//	@Produces({"application/javascript"})
-//	public JSONWithPadding getMovies(@Context UriInfo uriInfos) {
-//		ArrayList<Movie> movies = new ArrayList<Movie>();
-//		MovieDB db = null;
-//		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
-//		String callback = params.getFirst("callback");
-//		try {
-//			db = new MovieDB();
-//			String name = params.getFirst("name");
-//			int page =  Integer.parseInt(params.getFirst("page"));
-//			int limit = Integer.parseInt(params.getFirst("limit"));
-//			if (params.containsKey("name")) 
-//				movies = db.Movies.getMoviesByName(params.getFirst("name"), page, limit);	
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			
-//		}
-//		  return new JSONWithPadding(new GenericEntity<Collection<Movie>>(movies) {
-//		    }, callback);
-//	}
+	@GET
+	@Path("/jsonp/query")
+	@Produces({"application/javascript"})
+	public JSONWithPadding getMoviesJSONP(@Context UriInfo uriInfos) {
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		MovieDB db = null;
+		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
+		String callback = params.getFirst("callback");
+		try {
+			db = new MovieDB();
+			String name = params.getFirst("name");
+			int page =  Integer.parseInt(params.getFirst("page"));
+			int limit = Integer.parseInt(params.getFirst("limit"));
+			if (params.containsKey("name")) 
+				movies = db.Movies.getMoviesByName(params.getFirst("name"), page, limit);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		  return new JSONWithPadding(new GenericEntity<Collection<Movie>>(movies) {
+		    }, callback);
+	}
 	
 }
