@@ -68,24 +68,10 @@ public class MovieRestController {
 	@Path("/jsonp/query")
 	@Produces({"application/javascript"})
 	public JSONWithPadding getMoviesJSONP(@Context UriInfo uriInfos) {
-		ArrayList<Movie> movies = new ArrayList<Movie>();
-		MovieDB db = null;
+		ArrayList<Movie> movies = (ArrayList<Movie>)this.getMovies(uriInfos);
 		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
 		String callback = params.getFirst("callback");
-		try {
-			db = new MovieDB();
-			String name = params.getFirst("name");
-			int page =  Integer.parseInt(params.getFirst("page"));
-			int limit = Integer.parseInt(params.getFirst("limit"));
-			if (params.containsKey("name")) 
-				movies = db.Movies.getMoviesByName(params.getFirst("name"), page, limit);	
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-		  return new JSONWithPadding(new GenericEntity<Collection<Movie>>(movies) {
-		    }, callback);
+		return new JSONWithPadding(new GenericEntity<Collection<Movie>>(movies) {}, callback);
 	}
 	
 }

@@ -79,7 +79,6 @@ public class SalesTable extends Table {
             salesStatement.setInt(1, cid);
             success = salesStatement.executeUpdate();
             System.out.println(success + " Sales record deleted for customer_id = " + cid);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
