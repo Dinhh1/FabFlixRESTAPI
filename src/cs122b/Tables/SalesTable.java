@@ -47,14 +47,6 @@ public class SalesTable extends Table {
     
 
 
-    public int deleteEntry(BaseModel obj) {
-        Sale s = (Sale)obj;
-        if (s == null || s.getId() == MovieDB.DBConstant.INVALID_ID)
-            return -1;
-        return this.deleteEntry(s.getId());
-
-    }
-
     /**
      * Delete all the sales record pertaining to the given name
      *
@@ -127,4 +119,10 @@ public class SalesTable extends Table {
     public String getTableName() {
         return MovieDB.DBConstant.TBL_SALES;
     }
+
+	@Override
+	public int deleteEntry(BaseModel obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
