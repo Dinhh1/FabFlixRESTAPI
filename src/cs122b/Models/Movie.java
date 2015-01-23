@@ -62,12 +62,12 @@ public class Movie extends BaseModel {
     }
     
 	@XmlElement(name="genre")
-    ArrayList<Genre> getGenresOfMovie() {
+    public ArrayList<Genre> getGenresOfMovie() {
     	return this.genres_of_movie;
     }
     
 	@XmlElement(name="stars")
-    ArrayList<Star> getStarsOfMovie() {
+    public ArrayList<Star> getStarsOfMovie() {
     	return this.stars_in_movie;
     }
 

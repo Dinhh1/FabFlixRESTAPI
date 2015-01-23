@@ -181,24 +181,19 @@ public class MoviesTable extends Table {
         try {
 			con = ConnectionManager.getConnection();
         	pS = con.prepareStatement(sql);
-//            pS = this.jdbcConnection.prepareStatement(sql);
             pS.setString(1, movieName);
             pS.setInt(2, offset);
             pS.setInt(3, sizeLmt);
             rs = pS.executeQuery();
-            while (rs.next()) {
-                Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6));
-//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
-                // test code
-                // testing to get all genre belong to movies, and stars in that movie
-                MovieDB db = new MovieDB();
-                m.setGenresOfMovies(db.Genres.get(m));
-                m.setStarsInMovies(db.Stars.get(m));
-                // end test code
-                query.add(m);
-
-            }
+            // test code
+            // testing to get all genre belong to movies, and stars in that movie
+            query = this.queryParser(rs);
+            // end test code
+//            while (rs.next()) {
+//                Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+//                        rs.getString(6));
+//                query.add(m);
+//            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -357,7 +352,10 @@ public class MoviesTable extends Table {
         while (rs.next()) {
             Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                     rs.getString(6));
-//            m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+            // we're going to go ahead and get stars all the stars and the genre of a movie
+            MovieDB db = new MovieDB();
+            m.setGenresOfMovies(db.Genres.get(m));
+            m.setStarsInMovies(db.Stars.get(m));
             result.add(m);
         }
         rs.close();

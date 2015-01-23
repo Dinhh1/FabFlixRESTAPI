@@ -15,7 +15,7 @@ import javax.ws.rs.core.UriInfo;
 import com.sun.jersey.api.json.JSONWithPadding;
 
 import cs122b.DB.*;
-import cs122b.Models.Movie;
+import cs122b.Models.*;
 
 
 @Path("/movies")
