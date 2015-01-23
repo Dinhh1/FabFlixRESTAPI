@@ -196,7 +196,7 @@ public class CustomersTable extends Table {
      * @return the authenticated user, and db info
      */
     public Customer authenticateUser(Customer c) throws SQLException{
-    	c.getModelStatus().setStatusCode(ModelStatus.StatusCode.USER_NOT_AUTHENTICATED, true);
+//    	c.getModelStatus().setStatusCode(ModelStatus.StatusCode.USER_NOT_AUTHENTICATED, true);
     	if (c == null || c.getEmail() == null || c.getEmail() == "" || c.getPassword() == null || c.getPassword() == "")
     		return c;
         String sql = "SELECT * FROM customers where email = ? and password = ?";
@@ -212,7 +212,7 @@ public class CustomersTable extends Table {
 			c.setCreditCardId(rs.getString("cc_id"));
 			c.setAddress(rs.getString("address"));
 			c.setPassword("");
-			c.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//			c.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
 		}
 		queryStatement.close();
 		rs.close();

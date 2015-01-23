@@ -1,7 +1,10 @@
 package cs122b.Models;
 
+import java.util.ArrayList;
+
 import cs122b.DB.*;
 
+import javax.xml.bind.annotation.XmlElement;
 /**
  * Created by dinhho on 1/12/15.
  */
@@ -16,6 +19,10 @@ public class Movie extends BaseModel {
     private String banner_url = null;
     private String trailer_url = null;
 
+    // nullable properties
+    ArrayList<Star> stars_in_movie;
+    ArrayList<Genre> genres_of_movie;
+    
     public Movie() {
         super();
     }
@@ -53,6 +60,16 @@ public class Movie extends BaseModel {
     public String getTrailerURL() {
         return this.trailer_url;
     }
+    
+	@XmlElement(name="genre")
+    ArrayList<Genre> getGenresOfMovie() {
+    	return this.genres_of_movie;
+    }
+    
+	@XmlElement(name="stars")
+    ArrayList<Star> getStarsOfMovie() {
+    	return this.stars_in_movie;
+    }
 
     public void setId(int id) {
         this.isDirty = true;
@@ -82,6 +99,14 @@ public class Movie extends BaseModel {
     public void setTrailerURL(String turl) {
         this.isDirty = true;
         this.trailer_url = turl;
+    }
+    
+    public void setGenresOfMovies(ArrayList<Genre> g) {
+    	this.genres_of_movie = g;
+    }
+    
+    public void setStarsInMovies(ArrayList<Star> m) {
+    	this.stars_in_movie = m;
     }
 
     @Override

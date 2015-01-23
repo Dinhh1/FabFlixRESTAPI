@@ -5,6 +5,7 @@ import cs122b.Models.*;
 import cs122b.Utilities.ConnectionManager;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -17,10 +18,34 @@ public class SalesTable extends Table {
     public SalesTable() {
     	super();
     }
-
-    public int addEntry(BaseModel entry) {
-        return -1;
+    
+    /**
+     * add a sales entry to the database
+     *
+     * @param cid the customer's id
+     * @param mid movie's id
+     * @param sdate the date of the sales
+     * @return the number of rows affected by the query
+     */
+    public int addEntry(int cid, int mid, Date sdate) {
+    	//TODO:: NEEDS TO BE IMPLEMENTED
+    	return -1;
     }
+    
+    /**
+     * add a sales entry to the database
+     *
+     * @param entry the correctly populated sales entry to add to the db
+     * @return the number of rows affected by the query
+     */
+    public int addEntry(BaseModel entry) {
+        Sale s = (Sale)entry;
+        if (s == null)
+        	return -1;
+        return addEntry(s.getCustomerId(), s.getMovieId(), s.getSalesDate());
+    }
+    
+
 
     public int deleteEntry(BaseModel obj) {
         Sale s = (Sale)obj;

@@ -37,7 +37,7 @@ public class Star extends BaseModel{
 
     // get methods
     public int getId() {
-        return this.getId();
+        return this.id;
     }
 
     public String getFirstName() {

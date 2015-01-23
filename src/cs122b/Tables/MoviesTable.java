@@ -83,7 +83,7 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
         } catch (SQLException e) {
@@ -143,7 +143,7 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
         } catch(SQLException e) {
@@ -189,8 +189,15 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+                // test code
+                // testing to get all genre belong to movies, and stars in that movie
+                MovieDB db = new MovieDB();
+                m.setGenresOfMovies(db.Genres.get(m));
+                m.setStarsInMovies(db.Stars.get(m));
+                // end test code
                 query.add(m);
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -232,7 +239,7 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
         } catch (SQLException e) {
@@ -278,7 +285,7 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
         } catch (SQLException e) {
@@ -322,7 +329,7 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
         } catch (SQLException e) {
@@ -350,7 +357,7 @@ public class MoviesTable extends Table {
         while (rs.next()) {
             Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                     rs.getString(6));
-            m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//            m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
             result.add(m);
         }
         rs.close();

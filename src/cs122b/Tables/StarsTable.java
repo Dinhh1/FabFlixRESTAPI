@@ -37,7 +37,7 @@ public class StarsTable extends Table {
             while (rs.next()) {
             	Star s = new Star(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("dob"),
                 rs.getString("photo_url"));
-                s.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+//                s.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(s);
             }
         } catch (SQLException e) {

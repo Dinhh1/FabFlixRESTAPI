@@ -10,10 +10,10 @@ import javax.xml.bind.annotation.XmlElement;
 public class BaseModel {
 
     protected boolean isDirty;
-    protected ModelStatus model_status;
+//    protected ModelStatus model_status;
     public BaseModel() {
         this.isDirty = false;
-        this.model_status = new ModelStatus();
+//        this.model_status = new ModelStatus();
     }
 
     /**
@@ -25,12 +25,12 @@ public class BaseModel {
         return this.isDirty;
     }
     
-	@XmlElement(name="Status")
-    public ModelStatus getModelStatus() {
-    	return this.model_status;
-    }
-    
-    public void setModelStatus(ModelStatus ms) {
-    	this.model_status = ms;
-    }
+//	@XmlElement(name="Status")
+//    public ModelStatus getModelStatus() {
+//    	return this.model_status;
+//    }
+//    
+//    public void setModelStatus(ModelStatus ms) {
+//    	this.model_status = ms;
+//    }
 }

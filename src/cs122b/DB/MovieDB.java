@@ -15,7 +15,7 @@ public class MovieDB {
     public CreditCardTable CreditCards;
     public StarsTable Stars;
     public SalesTable Sales;
-
+    public GenreTable Genres;
 
     /**
      * Create an instance of our db class
@@ -28,6 +28,7 @@ public class MovieDB {
         this.CreditCards = new CreditCardTable();
         this.Stars = new StarsTable();
         this.Sales = new SalesTable();
+        this.Genres = new GenreTable();
     }
 
     /**
