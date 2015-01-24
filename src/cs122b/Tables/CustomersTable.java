@@ -213,6 +213,8 @@ public class CustomersTable extends Table {
 			c.setAddress(rs.getString("address"));
 			c.setPassword("");
 //			c.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
+		} else {
+			c = null;
 		}
 		queryStatement.close();
 		rs.close();

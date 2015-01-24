@@ -14,14 +14,12 @@
 	ArrayList<Movie> movies = db.Movies.getMoviesByName("B", 1, 100);
 	for (Movie m : movies) {
 		out.println("Stars in Movie: " + m.getTitle() + " = ");
-		for (Star s : m.getStarsOfMovie()) {
+		for (Star s : m.getStarsOfMovie()) 
 			out.print(s.getFirstName() + " " + s.getLastName() + ", ");
-		}
 		out.println("<br>");
 		out.println("Genre in Movie: " + m.getTitle() + " = ");
-		for (Genre g : m.getGenresOfMovie()) {
+		for (Genre g : m.getGenresOfMovie()) 
 			out.print(g.getName() + ", ");
-		}
 		out.println("<br>");
 	}
 %> 

@@ -4,7 +4,6 @@ package cs122b.Models;
  * Created by dinhho on 1/12/15.
  */
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElement;
 
 @XmlRootElement
 public class BaseModel {

@@ -187,7 +187,7 @@ public class MoviesTable extends Table {
             rs = pS.executeQuery();
             // test code
             // testing to get all genre belong to movies, and stars in that movie
-            query = this.queryParser(rs);
+            query = queryParser(rs);
             // end test code
 //            while (rs.next()) {
 //                Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),

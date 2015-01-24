@@ -1,7 +1,6 @@
 package cs122b.restcontroller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.*;
@@ -16,6 +15,7 @@ import com.sun.jersey.api.json.JSONWithPadding;
 
 import cs122b.DB.*;
 import cs122b.Models.*;
+import cs122b.Response.ResponseMovie;
 
 
 @Path("/movies")
@@ -29,26 +29,12 @@ public class MovieRestController {
 		super();
 	}
 	
-	// TODO: THIS METHOD IS A TEST METHOD
-	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Movie> getMovies() {
-		ArrayList<Movie> movies = new ArrayList<Movie>();
-		MovieDB db = null;
-		try {
-			db = new MovieDB();
-			movies = db.Movies.getMovieStarring("Christian", "Bale");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return movies;
-	}
-	
 	@GET
 	@Path("/query")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Movie> getMovies(@Context UriInfo uriInfos) {
+	public ResponseMovie getMovies(@Context UriInfo uriInfos) {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
+		ResponseMovie response = new ResponseMovie();
 		MovieDB db = null;
 		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
 		try {
@@ -57,21 +43,23 @@ public class MovieRestController {
 			int page =  Integer.parseInt(params.getFirst("page"));
 			int limit = Integer.parseInt(params.getFirst("limit"));
 			if (params.containsKey("name")) 
-				movies = db.Movies.getMoviesByName(params.getFirst("name"), page, limit);	
+				movies = db.Movies.getMoviesByName(name, page, limit);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return movies;
+		response.setData(movies);
+		response.setModelStatus(new ModelStatus(ModelStatus.StatusCode.OK, true));
+		return response;
 	}
 	
 	@GET
 	@Path("/jsonp/query")
 	@Produces({"application/javascript"})
 	public JSONWithPadding getMoviesJSONP(@Context UriInfo uriInfos) {
-		ArrayList<Movie> movies = (ArrayList<Movie>) getMovies(uriInfos);
+		ResponseMovie response = getMovies(uriInfos);
 		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
 		String callback = params.getFirst("callback");
-		return new JSONWithPadding(new GenericEntity<Collection<Movie>>(movies) {}, callback);
+		return new JSONWithPadding(new GenericEntity<ResponseMovie>(response) {}, callback);
 	}
 	
 }

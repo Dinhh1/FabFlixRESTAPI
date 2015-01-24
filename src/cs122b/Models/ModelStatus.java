@@ -18,6 +18,12 @@ public class ModelStatus {
 		this.description = d;
 	}
 	
+	public ModelStatus(int c, boolean flag) {
+		this.status_code = c;
+		if (flag)
+			this.description = StatusCode.getStringForCode(c);
+	}
+	
 	@XmlElement(name="code")
 	public int getStatusCode() {return this.status_code;}
 	public String getDescription() {return this.description;}
