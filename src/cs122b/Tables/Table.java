@@ -19,4 +19,11 @@ public abstract class Table {
     public static int calculateOffset(int pageNum, int size) {
         return (pageNum * size) - size;
     }
+    
+    public static class SortAttributes {
+        public static final String MOVIE_BY_YEAR = "year";
+        public static final String MOVIE_BY_TITLE = "title";
+        public static final String DESC_ORDER = "DESC";
+        public static final String ASC_ORDER = "ASC";
+    }
 }
