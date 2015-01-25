@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.ArrayList, cs122b.Tables.*"
+ %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -275,10 +278,10 @@
 <div class="col-md-6 col-sm-6 sign-in">
 	<h4 class="">sign in</h4>
 	<p class="">Hello, Welcome to your account.</p>
-	<form class="register-form outer-top-xs" role="form" action="sign-in.jsp" method="POST">
+	<form class="register-form outer-top-xs" role="form">
 		<div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="email" >
+		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="email">
 		</div>
 	  	<div class="form-group">
 		    <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
@@ -290,7 +293,25 @@
 		  	</label>
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-	</form>					
+	</form>
+	<%
+	//Simple Login handling for now
+	String email = request.getParameter("email");
+	String password = request.getParameter("password");
+	if (email != null || password != null) {
+		MovieDB db = new MovieDB();
+		Customer c = db.Customers.getCustomerByEmail(email);
+		if (c == null) {
+			out.println("Not a valid email!");
+		}
+		else if(c.getPassword().equals(password)) {
+			out.println("Login Successful!");
+		}
+		else {
+			out.println("Login Failed!");
+		}
+	}
+	%>					
 </div>
 <!-- Sign-in -->
 
@@ -317,7 +338,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
+                   Copyright Â© 2014
                     <a href="home.html">FabFlix. </a>
                     - All rights Reserved
                 </div>

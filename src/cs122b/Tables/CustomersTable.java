@@ -188,6 +188,39 @@ public class CustomersTable extends Table {
     }
     
     /**
+     * Query database to get a customer by their email
+     * 
+     * @param email email of customer
+     * @return customer object with given email returns null if email is not in database
+     */
+    public Customer getCustomerByEmail(String email) {
+    	Customer query = null;
+    	PreparedStatement ps = null;
+    	ResultSet rs = null;
+    	Connection con = null;
+    	try {
+    		String sql = "SELECT * FROM customers where email = ?";
+    		con = ConnectionManager.getConnection();
+    		ps = con.prepareStatement(sql);
+    		ps.setString(1, email);
+    		rs = ps.executeQuery();
+    		if (rs.next())
+    			query = new Customer(rs.getString("first_name"), rs.getString("last_name"), rs.getString("cc_id"), rs.getString("address"), rs.getString("email"), rs.getString("password"));
+    	} catch(SQLException e) {
+    		System.out.println(e.getMessage());
+    	} finally {
+    		try {
+    			ps.close();
+    			rs.close();
+    			con.close();
+    		} catch (SQLException e) {
+    			System.out.println(e.getMessage());
+    		}
+    	}
+    	return query;
+    }
+    
+    /**
      * Authenticate the user against the db
      *
      * @param c The customer object, email and password must be populated
