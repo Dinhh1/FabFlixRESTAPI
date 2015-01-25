@@ -21,9 +21,9 @@ public abstract class Table {
     }
     
     public static class SortAttributes {
-        public static final String MOVIE_BY_YEAR = "year";
-        public static final String MOVIE_BY_TITLE = "title";
-        public static final String DESC_ORDER = "DESC";
-        public static final String ASC_ORDER = "ASC";
+        public static final String M_DESC = "ORDER BY TITLE DESC";
+        public static final String M_ASC = "ORDER BY TITLE";
+        public static final String Y_DESC = "ORDER BY YEAR DESC";
+        public static final String Y_ASC = "ORDER BY YEAR";
     }
 }

@@ -109,7 +109,6 @@ public class CustomersTable extends Table {
         try {
         	con = ConnectionManager.getConnection();
         	pStatement = con.prepareStatement(sql);
-//            pStatement = this.jdbcConnection.prepareStatement(sql);
             pStatement.setString(1, f);
             pStatement.setString(2, l);
             success = pStatement.executeUpdate();
@@ -140,7 +139,6 @@ public class CustomersTable extends Table {
         try {
         	con = ConnectionManager.getConnection();
         	pStatement = con.prepareStatement(sql);
-//            pStatement = this.jdbcConnection.prepareStatement(sql);
             pStatement.setInt(1, cid);
             success = pStatement.executeUpdate();
         } catch (SQLException e) {
@@ -198,7 +196,7 @@ public class CustomersTable extends Table {
     public Customer authenticateUser(Customer c) throws SQLException{
 //    	c.getModelStatus().setStatusCode(ModelStatus.StatusCode.USER_NOT_AUTHENTICATED, true);
     	if (c == null || c.getEmail() == null || c.getEmail() == "" || c.getPassword() == null || c.getPassword() == "")
-    		return c;
+    		return null;
         String sql = "SELECT * FROM customers where email = ? and password = ?";
     	Connection con = ConnectionManager.getConnection();
     	PreparedStatement queryStatement = con.prepareStatement(sql);

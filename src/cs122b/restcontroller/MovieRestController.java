@@ -16,6 +16,7 @@ import com.sun.jersey.api.json.JSONWithPadding;
 import cs122b.DB.*;
 import cs122b.Models.*;
 import cs122b.Response.ResponseMovie;
+import cs122b.Tables.Table;
 
 
 @Path("/movies")
@@ -42,8 +43,7 @@ public class MovieRestController {
 			String name = params.getFirst("name");
 			int page =  Integer.parseInt(params.getFirst("page"));
 			int limit = Integer.parseInt(params.getFirst("limit"));
-			if (params.containsKey("name")) 
-				movies = db.Movies.getMoviesByName(name, page, limit);	
+			movies = db.Movies.getMoviesByName(name, page, limit, Table.SortAttributes.M_ASC);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
