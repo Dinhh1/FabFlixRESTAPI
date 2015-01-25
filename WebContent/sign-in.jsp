@@ -278,7 +278,7 @@
 <div class="col-md-6 col-sm-6 sign-in">
 	<h4 class="">sign in</h4>
 	<p class="">Hello, Welcome to your account.</p>
-	<form class="register-form outer-top-xs" role="form">
+	<form class="register-form outer-top-xs" role="form" action="login" method="POST">
 		<div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
 		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="email">
@@ -296,7 +296,7 @@
 	</form>
 	<%
 	//Simple Login handling for now
-	String email = request.getParameter("email");
+/* 	String email = request.getParameter("email");
 	String password = request.getParameter("password");
 	if (email != null || password != null) {
 		MovieDB db = new MovieDB();
@@ -310,7 +310,7 @@
 		else {
 			out.println("Login Failed!");
 		}
-	}
+	} */
 	%>					
 </div>
 <!-- Sign-in -->
