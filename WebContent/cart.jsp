@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*"
+ %>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -59,7 +63,42 @@
 	
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
-
+<%
+HashMap<Integer, Movie> cart = null;
+try {
+	synchronized(session) {
+		cart = (HashMap<Integer, Movie>)session.getAttribute("cart");
+		if (cart == null) {
+			cart = new HashMap<Integer, Movie>();
+			session.setAttribute("cart", cart);
+		}
+	}
+	if (request.getParameter("action") != null) {
+		System.out.println("here");
+		String action = request.getParameter("action");
+		if (action.equals("add")) {
+			int movieId = Integer.parseInt(request.getParameter("mid"));
+			System.out.println(" inside here");
+			synchronized(cart) {
+				MovieDB db = new MovieDB();
+				Movie m = db.Movies.get(movieId);
+				if (m != null) {
+					cart.put(m.getId(), m);
+				}
+			}
+			System.out.println("Cart count: " + cart.size());
+		} else if (action.equals("del")) {
+			int movieId = Integer.parseInt(request.getParameter("mid"));
+			synchronized(cart) {
+				cart.remove(movieId);
+			}
+		}
+	}
+} catch (Exception e) {
+	System.out.println("Something went wrong");
+	response.sendRedirect("404.html"); // redirect them to somewhere else
+}
+%>
 	<!-- ============================================== TOP MENU ============================================== -->
 <div class="top-bar animate-dropdown">
 	<div class="container">
@@ -360,7 +399,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
+                   Copyright Â© 2014
                     <a href="home.html">FabFlix.</a>
                     - All rights Reserved
                 </div>
@@ -384,7 +423,7 @@
 		   $('.show-theme-options').delay(2000).trigger('click');
 		});
 	</script>
-	<!-- For demo purposes – can be removed on production : End -->
+	<!-- For demo purposes â can be removed on production : End -->
 
 	
 

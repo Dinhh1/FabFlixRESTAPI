@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.ArrayList"
+    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*"
  %>
     
 <!--

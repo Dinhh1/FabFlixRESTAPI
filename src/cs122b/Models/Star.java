@@ -64,10 +64,6 @@ public class Star extends BaseModel{
     }
     
     public ArrayList<Movie> getMovies() {
-    	if (this.movies == null)  {
-    		MovieDB db = new MovieDB();
-    		this.movies = db.Movies.getMovieStarring(this.getId());
-    	}
     	return this.movies;
     }
 

@@ -64,19 +64,12 @@ public class Movie extends BaseModel {
     
 	@XmlElement(name="genre")
     public ArrayList<Genre> getGenresOfMovie() {
-		if (this.genres_of_movie == null) {
-			MovieDB db = new MovieDB();
-			this.genres_of_movie = db.Genres.get(this);
-		}
     	return this.genres_of_movie;
     }
     
 	@XmlElement(name="stars")
     public ArrayList<Star> getStarsOfMovie() {
-		if (this.stars_in_movie == null) {
-			MovieDB db = new MovieDB();
-			this.stars_in_movie = db.Stars.get(this);
-		}
+
     	return this.stars_in_movie;
     }
 

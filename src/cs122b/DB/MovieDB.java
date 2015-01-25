@@ -16,7 +16,6 @@ public class MovieDB {
     public StarsTable Stars;
     public SalesTable Sales;
     public GenreTable Genres;
-
     /**
      * Create an instance of our db class
      *
