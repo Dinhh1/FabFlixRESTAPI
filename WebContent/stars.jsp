@@ -79,8 +79,7 @@
 		<div class="header-top-inner">
 			<div class="cnt-account">
 				<ul class="list-unstyled">
-					<li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
-					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+					<li><a href="cart.jsp"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
 					<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
 				</ul>
@@ -95,7 +94,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 					<!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
-	<a href="home.html">
+	<a href="index.jsp">
 		<img src="assets/images/logo.png" alt="">
 	</a>
 </div><!-- /.logo -->
@@ -116,65 +115,9 @@
         </div>
     </form>
 </div><!-- /.search-area -->
-<!-- ============================================================= SEARCH AREA : END ============================================================= -->				</div><!-- /.top-search-holder -->
+</div><!-- /.top-search-holder -->
 
-				<div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
-					<!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
-	<div class="dropdown dropdown-cart">
-		<a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
-			<div class="items-cart-inner">
-				<div class="total-price-basket">
-					<span class="lbl">cart -</span>
-					<span class="total-price">
-						<span class="sign">$</span>
-						<span class="value">600.00</span>
-					</span>
-				</div>
-				<div class="basket">
-					<i class="glyphicon glyphicon-shopping-cart"></i>
-				</div>
-				<div class="basket-item-count"><span class="count">2</span></div>
-			
-		    </div>
-		</a>
-		<ul class="dropdown-menu">
-			<li>
-				<div class="cart-item product-summary">
-					<div class="row">
-						<div class="col-xs-4">
-							<div class="image">
-								<a href="detail.html"><img src="assets/images/cart.jpg" alt=""></a>
-							</div>
-						</div>
-						<div class="col-xs-7">
-							
-							<h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-							<div class="price">$600.00</div>
-						</div>
-						<div class="col-xs-1 action">
-							<a href="#"><i class="fa fa-trash"></i></a>
-						</div>
-					</div>
-				</div><!-- /.cart-item -->
-				<div class="clearfix"></div>
-			<hr>
-		
-			<div class="clearfix cart-total">
-				<div class="pull-right">
-					
-						<span class="text">Sub Total :</span><span class='price'>$600.00</span>
-						
-				</div>
-				<div class="clearfix"></div>
-					
-				<a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>	
-			</div><!-- /.cart-total-->
-					
-				
-		</li>
-		</ul><!-- /.dropdown-menu-->
-	</div><!-- /.dropdown-cart -->
 
 <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->				</div><!-- /.top-cart-row -->
 			</div><!-- /.row -->
@@ -324,16 +267,19 @@
 							}
 							%>
 							</div>
-
-							<div class="price-container info-container m-t-20">
-								<div class="row">
-									
-
-									
-
-								</div><!-- /.row -->
-							</div><!-- /.price-container -->
-						
+							<div class="description-container m-t-20">
+							Movies: 
+							<% if (star != null && star.getMovies() != null && star.getMovies().size() > 0) {
+								String comma = "";
+								for (Movie m : star.getMovies()) {
+									out.print(comma + "<a href='movies.jsp?id=" + m.getId()+ "'>" + m.getTitle() + "</a>");
+									comma = ", ";
+								}
+							} else {
+								out.print("N/A");
+							}
+							%>
+							</div>
 						</div><!-- /.product-info -->
 					</div><!-- /.col-sm-7 -->
 				</div><!-- /.row -->

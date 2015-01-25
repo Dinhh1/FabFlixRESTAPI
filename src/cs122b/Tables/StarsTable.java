@@ -36,6 +36,8 @@ public class StarsTable extends Table {
             if (rs.next()) {
             	query = new Star(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("dob"),
                 rs.getString("photo_url"));
+            	MovieDB db = new MovieDB();
+            	query.setMovies(db.Movies.getMovieStarring(query.getId()));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

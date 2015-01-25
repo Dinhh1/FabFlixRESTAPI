@@ -5,6 +5,8 @@ import cs122b.DB.*;
 import java.sql.Date;
 
 
+import java.util.ArrayList;
+
 /**
  * Created by dinhho on 1/12/15.
  */
@@ -17,6 +19,7 @@ public class Star extends BaseModel{
     private String last_name;
     private Date dob;
     private String photo_url;
+    private ArrayList<Movie> movies;
     public Star() {
         super();
         this.id = MovieDB.DBConstant.INVALID_ID;
@@ -59,6 +62,14 @@ public class Star extends BaseModel{
     public String getPhotoUrl() {
         return this.photo_url;
     }
+    
+    public ArrayList<Movie> getMovies() {
+    	if (this.movies == null)  {
+    		MovieDB db = new MovieDB();
+    		this.movies = db.Movies.getMovieStarring(this.getId());
+    	}
+    	return this.movies;
+    }
 
     public void setId(int id) {
         this.isDirty = true;
@@ -86,6 +97,9 @@ public class Star extends BaseModel{
         this.photo_url = purl;
     }
 
+    public void setMovies(ArrayList<Movie> m) {
+    	this.movies = m;
+    }
 
 
 }
