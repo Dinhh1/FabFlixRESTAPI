@@ -269,7 +269,7 @@
 								if (m.getStarsOfMovie() != null && m.getStarsOfMovie().size() > 0) {
 									String comma = "";
 									for (Star s : m.getStarsOfMovie()) {
-										out.print(comma + "<a href='stars.jsp?id=" + s.getId()+ "'>" + s.getFullName() + "</a>");
+										out.print(comma + "<a href='stars?id=" + s.getId()+ "'>" + s.getFullName() + "</a>");
 										comma = ", ";
 									}
 								} else {
@@ -303,7 +303,7 @@
 								<div class="row">
 									<div class="col-sm-7">
 									<% if (m != null) {
-									out.print("<a href='cart.jsp?mid=" + m.getId() + "&action=add' class='btn btn-primary'><i class='fa fa-shopping-cart inner-right-vs'></i> ADD TO CART</a>"); }
+									out.print("<a href='cart?mid=" + m.getId() + "&action=add' class='btn btn-primary'><i class='fa fa-shopping-cart inner-right-vs'></i> ADD TO CART</a>"); }
 									%>
 									</div>									
 								</div><!-- /.row -->

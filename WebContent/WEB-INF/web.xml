@@ -24,9 +24,17 @@
     <servlet-name>MoviesServlet</servlet-name>
     <url-pattern>/movies</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>StarsServlet</servlet-name>
     <servlet-class>cs122b.Servlets.Stars</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Cart</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>StarsServlet</servlet-name>

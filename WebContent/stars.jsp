@@ -74,7 +74,7 @@
 		<div class="header-top-inner">
 			<div class="cnt-account">
 				<ul class="list-unstyled">
-					<li><a href="cart.jsp"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+					<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
 					<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
 				</ul>
@@ -89,7 +89,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 					<!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
-	<a href="index.jsp">
+	<a href="index">
 		<img src="assets/images/logo.png" alt="">
 	</a>
 </div><!-- /.logo -->
@@ -260,7 +260,7 @@
 							<% if (star != null && star.getMovies() != null && star.getMovies().size() > 0) {
 								String comma = "";
 								for (Movie m : star.getMovies()) {
-									out.print(comma + "<a href='movies.jsp?id=" + m.getId()+ "'>" + m.getTitle() + "</a>");
+									out.print(comma + "<a href='movies?id=" + m.getId()+ "'>" + m.getTitle() + "</a>");
 									comma = ", ";
 								}
 							} else {

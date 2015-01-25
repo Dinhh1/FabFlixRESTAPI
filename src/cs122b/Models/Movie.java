@@ -3,7 +3,6 @@ package cs122b.Models;
 import java.util.ArrayList;
 
 import cs122b.DB.*;
-import cs122b.Tables.*;
 
 import javax.xml.bind.annotation.XmlElement;
 /**
@@ -13,7 +12,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Movie extends BaseModel {
-    private int id = MovieDB.DBConstant.INVALID_ID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1028298383193850418L;
+	private int id = MovieDB.DBConstant.INVALID_ID;
     private String title = "";
     private int year = 2014;
     private String director = "";

@@ -14,7 +14,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Star extends BaseModel{
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2581648251877951521L;
+	private int id;
     private String first_name;
     private String last_name;
     private Date dob;

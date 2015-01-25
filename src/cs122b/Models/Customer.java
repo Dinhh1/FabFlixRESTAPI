@@ -9,7 +9,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Customer extends BaseModel{
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1297270061985330801L;
+	private int id;
     private String first_name;
     private String last_name;
     private String cc_id;

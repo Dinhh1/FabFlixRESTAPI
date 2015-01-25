@@ -64,40 +64,7 @@
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
 <%
-HashMap<Integer, Movie> cart = null;
-try {
-	synchronized(session) {
-		cart = (HashMap<Integer, Movie>)session.getAttribute("cart");
-		if (cart == null) {
-			cart = new HashMap<Integer, Movie>();
-			session.setAttribute("cart", cart);
-		}
-	}
-	if (request.getParameter("action") != null) {
-		System.out.println("here");
-		String action = request.getParameter("action");
-		if (action.equals("add")) {
-			int movieId = Integer.parseInt(request.getParameter("mid"));
-			System.out.println(" inside here");
-			synchronized(cart) {
-				MovieDB db = new MovieDB();
-				Movie m = db.Movies.get(movieId);
-				if (m != null) {
-					cart.put(m.getId(), m);
-				}
-			}
-			System.out.println("Cart count: " + cart.size());
-		} else if (action.equals("del")) {
-			int movieId = Integer.parseInt(request.getParameter("mid"));
-			synchronized(cart) {
-				cart.remove(movieId);
-			}
-		}
-	}
-} catch (Exception e) {
-	System.out.println("Something went wrong");
-	response.sendRedirect("404.html"); // redirect them to somewhere else
-}
+// java code here
 %>
 	<!-- ============================================== TOP MENU ============================================== -->
 <div class="top-bar animate-dropdown">

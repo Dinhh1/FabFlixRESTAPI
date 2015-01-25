@@ -10,7 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class CreditCard extends BaseModel{
-    private String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7931957574043876985L;
+	private String id;
     private String first_name;
     private String last_name;
     private Date expiration;

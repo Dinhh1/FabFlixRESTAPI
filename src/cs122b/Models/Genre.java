@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Genre extends BaseModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7770155209044294491L;
 	private int id;
 	private String name;
 	

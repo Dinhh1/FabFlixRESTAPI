@@ -8,7 +8,11 @@ import java.io.Serializable;
 @XmlRootElement
 public class BaseModel implements Serializable {
 
-    protected boolean isDirty;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9097878790450670831L;
+	protected boolean isDirty;
 //    protected ModelStatus model_status;
     public BaseModel() {
         this.isDirty = false;
