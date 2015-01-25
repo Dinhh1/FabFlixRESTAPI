@@ -7,13 +7,18 @@
 	<head>
 	<%
 	Star star = null;
-	if (request.getParameter("id") != null) {
-		int starId = Integer.parseInt(request.getParameter("id"));
-		MovieDB db = new MovieDB();
-		star = db.Stars.get(starId);
-		if (star == null) {
-			response.sendRedirect("404.html");
+	try {
+		if (request.getParameter("id") != null) {
+			int starId = Integer.parseInt(request.getParameter("id"));
+			MovieDB db = new MovieDB();
+			star = db.Stars.get(starId);
+			if (star == null) {
+				response.sendRedirect("404.html");
+			}
 		}
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+		response.sendRedirect("404.html");
 	}
 	%>
 		<!-- Meta -->
@@ -297,13 +302,12 @@
 
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
-	 
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright Â© 2014
-                    <a href="home.html">FabFlix</a>
+                   Copyright © 2014
+                    <a href="home.html">Unicase Shop.</a>
                     - All rights Reserved
                 </div>
             </div>
