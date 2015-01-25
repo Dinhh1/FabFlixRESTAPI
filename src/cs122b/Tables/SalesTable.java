@@ -28,8 +28,29 @@ public class SalesTable extends Table {
      * @return the number of rows affected by the query
      */
     public int addEntry(int cid, int mid, Date sdate) {
-    	//TODO:: NEEDS TO BE IMPLEMENTED
-    	return -1;
+    	int success = -1;
+    	String sql = "INSERT INTO sales (customer_id, movie_id, sale_date) VALUES (?, ?, ?)";
+    	PreparedStatement insertSalesStatement = null;
+    	Connection con = null;
+    	try {
+    		con = ConnectionManager.getConnection();
+    		insertSalesStatement = con.prepareStatement(sql);
+    		insertSalesStatement.setInt(1, cid);
+    		insertSalesStatement.setInt(2, mid);
+    		insertSalesStatement.setDate(3, sdate);
+    		success = insertSalesStatement.executeUpdate();
+    		System.out.println(success + "Sales record inserted for customer = " + cid);
+    	} catch (SQLException e) {
+    		System.out.println(e.getMessage());
+    	} finally {
+    		try {
+    			insertSalesStatement.close();
+    			con.close();
+    		} catch (SQLException e) {
+    			System.out.println(e.getMessage());
+    		}
+    	}
+    	return success;
     }
     
     /**
