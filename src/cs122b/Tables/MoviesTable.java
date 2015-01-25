@@ -170,14 +170,15 @@ public class MoviesTable extends Table {
      * @param sizeLmt - this limit the query to a certain size,
      * @return a list of movies that matches the name
      */
-    public ArrayList<Movie> getMoviesByName(String movieName, int pageNum, int sizeLmt) {
+    public ArrayList<Movie> getMoviesByName(String movieName, int pageNum, int sizeLmt, final String sortAttribute) {
         movieName = "%" + movieName + "%";
         int offset = Table.calculateOffset(pageNum, sizeLmt);
         ArrayList<Movie> query = new ArrayList<Movie>();
         ResultSet rs = null;
         Connection con = null;
         PreparedStatement pS = null;
-        String sql = "select * from movies where title like ? limit ?, ?"; // retrive rows (x+1) through y
+        String sql = "select * from movies where title like ? " + sortAttribute + " limit ?, ?";
+//        sql += sortAttribute + " limit ?, ?"; // retrive rows (x+1) through y
         try {
 			con = ConnectionManager.getConnection();
         	pS = con.prepareStatement(sql);
@@ -272,7 +273,6 @@ public class MoviesTable extends Table {
         try {
 			con = ConnectionManager.getConnection();
 			pS = con.prepareStatement(sql);
-//            pS = this.jdbcConnection.prepareStatement(sql);
             pS.setString(1, dname);
             pS.setInt(2, offset);
             pS.setInt(3, sizeLmt);
@@ -280,7 +280,6 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
         } catch (SQLException e) {
