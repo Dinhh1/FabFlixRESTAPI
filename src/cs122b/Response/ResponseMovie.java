@@ -15,7 +15,6 @@ public class ResponseMovie extends ResponseObject<Movie> {
 		return this.data;
 	}
 	
-	
 	@Override
 	public void setData(ArrayList<Movie> data) {
 		this.data = data;

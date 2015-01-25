@@ -22,21 +22,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//webfonts-->
 </head>
 <%
-String userName = request.getParameter("user_name");
-String pswd = request.getParameter("password");
-if (userName != null && userName.length() != 0 && pswd != null && pswd.length() != 0 ) {
-	MovieDB db = new MovieDB();
-	Customer c = db.Customers.authenticateUser(new Customer(null, null, null, null, userName, pswd));
-	if (c != null ) {
-		 %>
-		   <script> alert("Successfully Logged in");</script>
-		<%
-	} else {
-		 %>
-		   <script> alert("Failed to authenticate User");</script>
-		<%
-	}
-}
+/* try {
+	response.sendRedirect("index2.jsp/name=testname");
+} catch (Exception e) {
+	System.out.println(e.getMessage());
+} finally {
+	
+} */
 
 %> 
 <body>
@@ -55,7 +47,7 @@ if (userName != null && userName.length() != 0 && pswd != null && pswd.length() 
 			<div class="inset">
 				<!-----start-main---->
 				<form action="index.jsp" method="POST">
-			         <div>
+			         <div>	
 						<span><label>Username</label></span>
 						<span><input type="text" class="textbox" id="username" name="user_name"></span>
 					 </div>
@@ -69,7 +61,7 @@ if (userName != null && userName.length() != 0 && pswd != null && pswd.length() 
 						</div>
 						<span class="forget-pass">
 							<a href="#">Forgot Password?</a>
-						</span>
+						</spa	n>
 					</div>
 					</form>
 				</div>
