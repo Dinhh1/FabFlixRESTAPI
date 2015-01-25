@@ -259,13 +259,6 @@
 						<div class="product-info">
 							<h1 class="name"><% if (star != null) {out.print(star.getFullName());} %></h1>
 							<div class="description-container m-t-20">
-							Name: 
-							<% if (star != null) {
-								out.print(star.getFullName());
-							}
-							%>
-							</div>
-							<div class="description-container m-t-20">
 							Date of Birth: 
 							<% if (star != null) {
 								out.print(star.getDateOfBirth());
