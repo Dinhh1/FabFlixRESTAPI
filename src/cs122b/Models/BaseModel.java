@@ -4,9 +4,9 @@ package cs122b.Models;
  * Created by dinhho on 1/12/15.
  */
 import javax.xml.bind.annotation.XmlRootElement;
-
+import java.io.Serializable;
 @XmlRootElement
-public class BaseModel {
+public class BaseModel implements Serializable {
 
     protected boolean isDirty;
 //    protected ModelStatus model_status;
