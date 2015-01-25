@@ -352,20 +352,15 @@
 							}
 							%>
 							</div>
-							
 							<div class="price-container info-container m-t-20">
 								<div class="row">
-									
-
 									<div class="col-sm-6">
 										<div class="price-box">
 											<span class="price">$1.49</span>
 											</div>
 									</div>
-
 								</div><!-- /.row -->
 							</div><!-- /.price-container -->
-
 							<div class="quantity-container info-container">
 								<div class="row">
 									<div class="col-sm-7">
