@@ -5,13 +5,9 @@
 <html lang="en">
 	<head>
 	<%
-	int movieId = Integer.parseInt(request.getParameter("id"));
-	MovieDB db = new MovieDB();
-	Movie m = db.Movies.get(movieId);
+	Movie m = (Movie)request.getSession().getAttribute("movie");
 	if (m == null) {
 		response.sendRedirect("404.html");
-	} else {
-		
 	}
 	%> 
 		<!-- Meta -->

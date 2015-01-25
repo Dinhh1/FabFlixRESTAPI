@@ -16,6 +16,22 @@
 	</init-param>
 	<load-on-startup>1</load-on-startup>
   </servlet>
+  <servlet>
+    <servlet-name>MoviesServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Movies</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MoviesServlet</servlet-name>
+    <url-pattern>/movies</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>StarsServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Stars</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StarsServlet</servlet-name>
+    <url-pattern>/stars</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>FabFLIX REST API</servlet-name>
   	<url-pattern>/api/*</url-pattern>

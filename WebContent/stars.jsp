@@ -6,18 +6,8 @@
 <html lang="en">
 	<head>
 	<%
-	Star star = null;
-	try {
-		if (request.getParameter("id") != null) {
-			int starId = Integer.parseInt(request.getParameter("id"));
-			MovieDB db = new MovieDB();
-			star = db.Stars.get(starId);
-			if (star == null) {
-				response.sendRedirect("404.html");
-			}
-		}
-	} catch (Exception e) {
-		System.out.println(e.getMessage());
+	Star star = (Star)request.getSession().getAttribute("star");
+	if (star == null) {
 		response.sendRedirect("404.html");
 	}
 	%>
