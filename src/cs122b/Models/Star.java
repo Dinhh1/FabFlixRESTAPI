@@ -43,6 +43,10 @@ public class Star extends BaseModel{
     public String getFirstName() {
         return this.first_name;
     }
+    
+    public String getFullName() {
+    	return this.first_name + " " + this.last_name;
+    }
 
     public String getLastName() {
         return this.last_name;

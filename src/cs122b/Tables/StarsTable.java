@@ -22,6 +22,34 @@ public class StarsTable extends Table {
     	super();
     }
 
+    public Star get(int id) {
+    	Star query = null;
+    	ResultSet rs = null;
+        Connection con = null;
+        PreparedStatement pS = null;
+        String sql = "select * from stars where id = ?";
+        try {
+			con = ConnectionManager.getConnection();
+        	pS = con.prepareStatement(sql);
+            pS.setInt(1, id);
+            rs = pS.executeQuery();
+            if (rs.next()) {
+            	query = new Star(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("dob"),
+                rs.getString("photo_url"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                pS.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
     
     public ArrayList<Star> get(Movie m) {
     	ArrayList<Star> query = new ArrayList<Star>();
@@ -37,7 +65,6 @@ public class StarsTable extends Table {
             while (rs.next()) {
             	Star s = new Star(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("dob"),
                 rs.getString("photo_url"));
-//                s.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(s);
             }
         } catch (SQLException e) {

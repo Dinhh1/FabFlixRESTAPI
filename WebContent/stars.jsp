@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.ArrayList, cs122b.Tables.*"
  %>
+ 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 	<%
-	int movieId = Integer.parseInt(request.getParameter("id"));
-	MovieDB db = new MovieDB();
-	Movie m = db.Movies.get(movieId);
-	if (m == null) {
-		response.sendRedirect("404.html");
-	} else {
-		
+	Star star = null;
+	if (request.getParameter("id") != null) {
+		int starId = Integer.parseInt(request.getParameter("id"));
+		MovieDB db = new MovieDB();
+		star = db.Stars.get(starId);
+		if (star == null) {
+			response.sendRedirect("404.html");
+		}
 	}
-	%> 
+	%>
 		<!-- Meta -->
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +25,7 @@
 	    <meta name="keywords" content="MediaCenter, Template, eCommerce">
 	    <meta name="robots" content="all">
 
-	    <title>FabFlix: <% if (m != null) {out.print(m.getTitle());}%></title>
+	    <title>FabFlix</title>
 
 	    <!-- Bootstrap Core CSS -->
 	    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -66,6 +68,8 @@
 
 	</head>
     <body class="cnt-home">
+	
+		
 	
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
@@ -131,6 +135,7 @@
 					<i class="glyphicon glyphicon-shopping-cart"></i>
 				</div>
 				<div class="basket-item-count"><span class="count">2</span></div>
+			
 		    </div>
 		</a>
 		<ul class="dropdown-menu">
@@ -244,10 +249,23 @@
                                    
                         </ul>
                     </div><!-- /.col -->
+
                     </div>
+                
             </div>
         </div>
+        <div class="col-sm-4">
+        </div>
     </div><!-- /.row -->
+   
+        <!-- ============================================== WIDE PRODUCTS ============================================== -->
+       
+
+<!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+ 
+
+<!-- ============================================== NAVBAR : END ============================================== -->
+
 </header>
 
 <!-- ============================================== HEADER : END ============================================== -->
@@ -269,106 +287,76 @@
 				<div class="row  wow fadeInUp">
 					     <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
     <div class="product-item-holder size-big single-product-gallery small-gallery">
+
         <div id="owl-single-product">
             <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="Gallery" href=<%if (m != null) {out.print(m.getBannerURL());} %>>
-                    <img alt="" src=<% if (m != null) {out.print(m.getBannerURL());}%> height="100%" width="100%" onerror="this.src='assets/images/blank.gif'" />
+                <a data-lightbox="image-1" data-title="Gallery" href=<%if (star != null) {out.print(star.getPhotoUrl());} %>>
+                    <img class="img-responsive" alt="" src=<%if (star != null) {out.print(star.getPhotoUrl());} %> height="100%" width="100%" onerror="this.src='assets/images/blank.gif'" />
                 </a>
             </div><!-- /.single-product-gallery-item -->
+
         </div><!-- /.single-product-slider -->
+
+
         <div class="single-product-gallery-thumbs gallery-thumbs">
+
+          
+            
+
         </div><!-- /.gallery-thumbs -->
 
     </div><!-- /.single-product-gallery -->
 </div><!-- /.gallery-holder -->        			
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name"><%if (m != null) {out.print(m.getTitle());}%></h1>
+							<h1 class="name"><% if (star != null) {out.print(star.getFullName());} %></h1>
 							<div class="description-container m-t-20">
-							Year: <%if (m != null) {out.print(m.getYear());} %>
-							</div><!-- /.description-container -->
-							<div class="description-container m-t-20">
-							Director : <% if (m != null) {out.print(m.getDirector());} %>
-							</div>
-							<div class="description-container m-t-20">
-							Genre: 
-							<%
-							if (m != null) {
-								String comma = "";
-								if (m.getGenresOfMovie() != null && m.getGenresOfMovie().size() > 0) {
-									for (Genre g: m.getGenresOfMovie()) {
-										out.print(comma + g.getName());
-										comma = ", ";
-									}
-								} else {
-									out.print("N/A");
-								}
-							}	
-							%>
-							</div>
-							<div class="description-container m-t-20">
-							Stars: 
-							<% 
-							if (m != null)  {
-								if (m.getStarsOfMovie() != null && m.getStarsOfMovie().size() > 0) {
-									String comma = "";
-									for (Star s : m.getStarsOfMovie()) {
-										out.print(comma + "<a href='stars.jsp?id=" + s.getId()+ "'>" + s.getFirstName() + " " +
-									 s.getLastName() + "</a>");
-										comma = ", ";
-									}
-								} else {
-									out.print("N/A");
-								}
+							Name: 
+							<% if (star != null) {
+								out.print(star.getFullName());
 							}
 							%>
 							</div>
 							<div class="description-container m-t-20">
-							Trailer: 
-							<%
-							if (m != null) {
-								if (m.getTrailerURL() != null && m.getTrailerURL().length() > 0) {
-									out.print("<a href='" + m.getTrailerURL() + "'>" + "Click Here for Trailer</a>");
-								} else {
-									out.print("N/A");
-								}
+							Date of Birth: 
+							<% if (star != null) {
+								out.print(star.getDateOfBirth());
 							}
 							%>
 							</div>
+
 							<div class="price-container info-container m-t-20">
 								<div class="row">
-									<div class="col-sm-6">
-										<div class="price-box">
-											<span class="price">$1.49</span>
-											</div>
-									</div>
+									
+
+									
+
 								</div><!-- /.row -->
 							</div><!-- /.price-container -->
-							<div class="quantity-container info-container">
-								<div class="row">
-									<div class="col-sm-7">
-									<% if (m != null) {
-									out.print("<a href='cart.jsp?mid=" + m.getId() + "&action=add' class='btn btn-primary'><i class='fa fa-shopping-cart inner-right-vs'></i> ADD TO CART</a>"); }
-									%>
-									</div>									
-								</div><!-- /.row -->
-							</div><!-- /.quantity-container -->							
+						
 						</div><!-- /.product-info -->
 					</div><!-- /.col-sm-7 -->
 				</div><!-- /.row -->
+				<!-- ============================================== UPSELL PRODUCTS ============================================== -->
+
+<!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
+			
 			</div><!-- /.col -->
 			<div class="clearfix"></div>
 		</div><!-- /.row -->
-	</div><!-- /.container -->
+		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
+
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
 </div><!-- /.body-content -->
 
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
+	 
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
+                   Copyright Â© 2014
                     <a href="home.html">FabFlix</a>
                     - All rights Reserved
                 </div>
@@ -379,6 +367,27 @@
 <!-- ============================================================= FOOTER : END============================================================= -->
 
 
+	
+	<!-- For demo purposes â can be removed on production : End -->
+
+	<!-- JavaScripts placed at the end of the document so the pages load faster -->
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	
+	<script src="assets/js/bootstrap.min.js"></script>
+	
+	<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
+	
+	<script src="assets/js/echo.min.js"></script>
+	<script src="assets/js/jquery.easing-1.3.min.js"></script>
+	<script src="assets/js/bootstrap-slider.min.js"></script>
+    <script src="assets/js/jquery.rateit.min.js"></script>
+    <script type="text/javascript" src="assets/js/lightbox.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
+
+	<!-- For demo purposes â can be removed on production -->
 	
 	<script src="switchstylesheet/switchstylesheet.js"></script>
 	
@@ -395,7 +404,7 @@
 		   $('.show-theme-options').delay(2000).trigger('click');
 		});
 	</script>
-	<!-- For demo purposes – can be removed on production : End -->
+	<!-- For demo purposes â can be removed on production : End -->
 
 	
 
