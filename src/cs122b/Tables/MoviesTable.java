@@ -339,6 +339,38 @@ public class MoviesTable extends Table {
         }
         return query;
     }
+    
+    public Movie get(int id) {
+    	Movie query = null;
+        PreparedStatement pS = null;
+        ResultSet rs = null;
+        Connection con = null;
+        String sql = "select * from movies where id = ?";
+        try {
+			con = ConnectionManager.getConnection();
+			pS = con.prepareStatement(sql);
+            pS.setInt(1, id);
+            rs = pS.executeQuery();
+            if (rs.next()) {
+            	MovieDB db = new MovieDB();
+                query = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6));
+                query.setStarsInMovies(db.Stars.get(query));
+                query.setGenresOfMovies(db.Genres.get(query));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                pS.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
 
     /**
      * Helper function to parses query given a ResultSet of movies

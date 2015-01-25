@@ -17,7 +17,7 @@ public class GenreTable extends Table {
 
 	public GenreTable() {super();}
 	
-	ArrayList<Genre> get() {
+	public ArrayList<Genre> get() {
 		ArrayList<Genre> query = new ArrayList<Genre>();
         Statement pS = null;
         ResultSet rs = null;
@@ -46,7 +46,7 @@ public class GenreTable extends Table {
         return query;
 	}
 	
-	ArrayList<Genre> get(Movie m) {
+	public ArrayList<Genre> get(Movie m) {
 		ArrayList<Genre> query = new ArrayList<Genre>();
 		if (m == null || m.getId() == MovieDB.DBConstant.INVALID_ID)
 			return query;
@@ -78,7 +78,7 @@ public class GenreTable extends Table {
 		return query;
 	}
 	
-	Genre get(int id) {
+	public Genre get(int id) {
 		Genre g = null;
 		PreparedStatement pS = null;
         ResultSet rs = null;

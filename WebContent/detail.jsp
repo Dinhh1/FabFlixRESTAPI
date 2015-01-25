@@ -5,18 +5,13 @@
 <html lang="en">
 	<head>
 	<%
+	int movieId = Integer.parseInt(request.getParameter("id"));
 	MovieDB db = new MovieDB();
-	ArrayList<Movie> movies = db.Movies.getMoviesByName("B", 1, 100, Table.SortAttributes.M_ASC);
-	for (Movie m : movies) {
-		out.println("Stars in Movie: " + m.getTitle() + " = ");
-		for (Star s : m.getStarsOfMovie()) 
-			out.print(s.getFirstName() + " " + s.getLastName() + ", ");
-		out.println("<br>");
-		out.println("Genre in Movie: " + m.getTitle() + " = ");
-		for (Genre g : m.getGenresOfMovie()) 
-			out.print(g.getName() + ", ");
-		out.println("<br>");
+	Movie m = db.Movies.get(movieId);
+	if (m == null) {
+		System.out.println("Movie is null");
 	}
+	System.out.println(m.getTitle());
 	%> 
 		<!-- Meta -->
 		<meta charset="utf-8">
@@ -27,7 +22,7 @@
 	    <meta name="keywords" content="MediaCenter, Template, eCommerce">
 	    <meta name="robots" content="all">
 
-	    <title>FabFlix</title>
+	    <title>FabFlix: <%out.print(m.getTitle());%></title>
 
 	    <!-- Bootstrap Core CSS -->
 	    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -293,8 +288,8 @@
 
         <div id="owl-single-product">
             <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/single-product/1.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/single-product/1.jpg" />
+                <a data-lightbox="image-1" data-title="Gallery" href=<%out.print(m.getBannerURL()); %>>
+                    <img alt="" src=<%out.print(m.getBannerURL());%> height="100%" width="100%" />
                 </a>
             </div><!-- /.single-product-gallery-item -->
 
@@ -312,20 +307,59 @@
 </div><!-- /.gallery-holder -->        			
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name">Movie Title Here</h1>
-							
-
+							<h1 class="name"><%out.print(m.getTitle());%></h1>
 							<div class="description-container m-t-20">
-								Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Susp endisse posuere arcu diam, id accumsan eros pharetra ac. 
+							Year: <%out.print(m.getYear()); %>
 							</div><!-- /.description-container -->
-
+							<div class="description-container m-t-20">
+							Director : <%out.print(m.getDirector()); %>
+							</div>
+							<div class="description-container m-t-20">
+							Genre: 
+							<%
+							String comma = "";
+							if (m.getGenresOfMovie() != null && m.getGenresOfMovie().size() > 0) {
+								for (Genre g: m.getGenresOfMovie()) {
+									out.print(comma + g.getName());
+									comma = ", ";
+								}
+							} else {
+								out.print("N/A");
+							}
+							%>
+							</div>
+							<div class="description-container m-t-20">
+							Stars: 
+							<% if (m.getStarsOfMovie() != null && m.getStarsOfMovie().size() > 0) {
+								comma = "";
+								for (Star s : m.getStarsOfMovie()) {
+									out.print(comma + "<a href='stars.jsp?id=" + s.getId()+ "'>" + s.getFirstName() + " " +
+								 s.getLastName() + "</a>");
+									comma = ", ";
+								}
+							} else {
+								out.print("N/A");
+							}
+							%>
+							</div>
+							<div class="description-container m-t-20">
+							Trailer: 
+							<%
+							if (m.getTrailerURL() != null && m.getTrailerURL().length() > 0) {
+								out.print("<a href='" + m.getTrailerURL() + "'>" + "Click Here for Trailer</a>");
+							} else {
+								out.print("N/A");
+							}
+							%>
+							</div>
+							
 							<div class="price-container info-container m-t-20">
 								<div class="row">
 									
 
 									<div class="col-sm-6">
 										<div class="price-box">
-											<span class="price">$.49</span>
+											<span class="price">$1.49</span>
 											</div>
 									</div>
 
