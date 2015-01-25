@@ -229,7 +229,7 @@
         <div id="owl-single-product">
             <div class="single-product-gallery-item" id="slide1">
                 <a data-lightbox="image-1" data-title="Gallery" href=<%if (star != null) {out.print(star.getPhotoUrl());} %>>
-                    <img class="img-responsive" alt="" src=<%if (star != null) {out.print(star.getPhotoUrl());} %> height="100%" width="100%" onerror="this.src='assets/images/blank.gif'" />
+                    <img class="img-responsive" alt="" src=<%if (star != null) {out.print(star.getPhotoUrl());} %> height="100%" width="100%" onerror="this.src='assets/images/no_image.png'" />
                 </a>
             </div><!-- /.single-product-gallery-item -->
 
