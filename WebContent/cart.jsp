@@ -283,7 +283,9 @@
 				<tr>
 					<td>
 						<div class="cart-checkout-btn pull-right">
-							<button id='checkout' type="button" class="btn btn-primary">PROCCED TO CHEKOUT</button>
+						<form action="cart" method="POST">
+							<input type="submit" id='checkout' type="button" class="btn btn-primary" value="PROCCED TO CHEKOUT">
+						</form>
 						</div>
 					</td>
 				</tr>

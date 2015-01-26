@@ -19,8 +19,13 @@ public class Login extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/sign-in.jsp");
+		rd.forward(request, response);
+	}
+	
+	public void doPost(HttpServletRequest request, 
+			HttpServletResponse response) throws ServletException, IOException {
+		// i moved your  code down here, nick, logging in should be handdle in post with no info displayed in the query string
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		if (email != null || password != null) {
@@ -34,21 +39,14 @@ public class Login extends HttpServlet {
 			}
 			else if(c.getPassword().equals(password)) {
 				//out.println("Login Successful!");
-				session.setAttribute("user", email);
-				response.sendRedirect("sign-in.jsp");
-				/*RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
-				rd.forward(request, response);*/
+				c.setPassword(""); // set password to blank string so we dont store it.
+				session.setAttribute("user", c); // im going to store the full user object
+				response.sendRedirect("index");
 			}
 			else {
 				//out.println("Login Failed!");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/sign-in.jsp");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("login");
 				rd.forward(request, response);
 			}
-		}
-	}
-	
-	public void doPost(HttpServletRequest request, 
-			HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+		}	}
 }

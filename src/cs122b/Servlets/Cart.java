@@ -68,6 +68,23 @@ public class Cart extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("POST");
+		// the post method will handle proceed to check out and redirect as necessary
+		HttpSession session = request.getSession();
+		try {
+			synchronized(session) {
+				Customer c = (Customer) session.getAttribute("user");
+				if (c == null) {
+					// they need to login 
+					response.sendRedirect("login");
+				} else {
+					// we can proceed to checkout
+					response.sendRedirect("checkout");
+				}
+			}
+		} catch (Exception e) {
+	        e.printStackTrace();
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/404.html");
+			rd.forward(request, response);
+		}
 	}
 }
