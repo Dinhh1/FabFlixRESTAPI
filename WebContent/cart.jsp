@@ -282,14 +282,15 @@
 		<tbody>
 				<tr>
 					<td>
-						<div class="cart-checkout-btn pull-right">						
-							<button type="submit" class="btn btn-primary">PROCCED TO CHEKOUT</button>
+						<div class="cart-checkout-btn pull-right">
+							<button id='checkout' type="button" class="btn btn-primary">PROCCED TO CHEKOUT</button>
 						</div>
 					</td>
 				</tr>
 		</tbody><!-- /tbody -->
 	</table><!-- /table -->
-</div><!-- /.cart-shopping-total -->			</div><!-- /.shopping-cart -->
+</div><!-- /.cart-shopping-total -->		
+	</div>
 		</div> <!-- /.row -->
 </div><!-- /.container -->
 </div><!-- /.body-content -->
@@ -308,22 +309,10 @@
     </div>
 </footer>
 <!-- ============================================================= FOOTER : END============================================================= -->
-	<script src="switchstylesheet/switchstylesheet.js"></script>
 	
 	<script>
-		$(document).ready(function(){ 
-			$(".changecolor").switchstylesheet( { seperator:"color"} );
-			$('.show-theme-options').click(function(){
-				$(this).parent().toggleClass('open');
-				return false;
-			});
-		});
-
-		$(window).bind("load", function() {
-		   $('.show-theme-options').delay(2000).trigger('click');
-		});
+	
 	</script>
-	<!-- For demo purposes â can be removed on production : End -->
 
 	
 
