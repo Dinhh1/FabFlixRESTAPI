@@ -24,6 +24,14 @@
     <servlet-name>MoviesServlet</servlet-name>
     <url-pattern>/movies</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>StarsServlet</servlet-name>
     <servlet-class>cs122b.Servlets.Stars</servlet-class>
@@ -40,7 +48,7 @@
     <servlet-name>StarsServlet</servlet-name>
     <url-pattern>/stars</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>cs122b.Servlets.Logout</servlet-class>
   </servlet>

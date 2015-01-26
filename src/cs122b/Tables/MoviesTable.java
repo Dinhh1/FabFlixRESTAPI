@@ -159,6 +159,45 @@ public class MoviesTable extends Table {
         }
         return query;
     }
+    
+    /**
+     * Get a list of latest n movies 
+     *  
+     * @param n name of the movie
+     * @return a list of movies that matches the name
+     */
+    public ArrayList<Movie> getLatestMovies(int n) {
+        ArrayList<Movie> query = new ArrayList<Movie>();
+        ResultSet rs = null;
+        Connection con = null;
+        PreparedStatement pS = null;
+        String sql = "select * from movies order by year desc limit ?";
+//        sql += sortAttribute + " limit ?, ?"; // retrive rows (x+1) through y
+        try {
+			con = ConnectionManager.getConnection();
+        	pS = con.prepareStatement(sql);
+            pS.setInt(1, n);
+            rs = pS.executeQuery();
+            query = queryParser(rs);
+            // end test code
+//            while (rs.next()) {
+//                Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+//                        rs.getString(6));
+//                query.add(m);
+//            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                pS.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
 
     /**
      * Get a list of movies staring a movie name, this will be performed using a wild card search
