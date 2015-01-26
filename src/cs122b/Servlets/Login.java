@@ -26,6 +26,7 @@ public class Login extends HttpServlet {
 		if (email != null || password != null) {
 			MovieDB db = new MovieDB();
 			Customer c = db.Customers.getCustomerByEmail(email);
+			HttpSession session = request.getSession();
 			if (c == null) {
 				//out.println("Not a valid email!");
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/404.html");
@@ -33,8 +34,10 @@ public class Login extends HttpServlet {
 			}
 			else if(c.getPassword().equals(password)) {
 				//out.println("Login Successful!");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
-				rd.forward(request, response);
+				session.setAttribute("user", email);
+				response.sendRedirect("sign-in.jsp");
+				/*RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);*/
 			}
 			else {
 				//out.println("Login Failed!");
