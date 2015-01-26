@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
 			else if(c.getPassword().equals(password)) {
 				//out.println("Login Successful!");
 				c.setPassword(""); // set password to blank string so we dont store it.
-				session.setAttribute("current_user", c); // im going to store the full user object
+				session.setAttribute("user", c); // im going to store the full user object
 				response.sendRedirect("index.jsp");
 			}
 			else {

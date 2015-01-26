@@ -76,7 +76,15 @@
 				<ul class="list-unstyled">
 					<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
-					<li><a href="login"><i class="icon fa fa-sign-in"></i>Login</a></li>
+					<li><a id='login' href="#" onclick="checkLogin()"><i class="icon fa fa-sign-in" ></i>
+					 <%
+					 if (session.getAttribute("user") == null) {
+						 out.print("Login");
+					 } else {
+						 out.print("Logout");
+					 }
+					%></a>
+				    </li>
 				</ul>
 			<div class="clearfix"></div>
 		</div><!-- /.header-top-inner -->
@@ -322,24 +330,16 @@
 
 	<!-- For demo purposes â can be removed on production -->
 	
-	<script src="switchstylesheet/switchstylesheet.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
-		$(document).ready(function(){ 
-			$(".changecolor").switchstylesheet( { seperator:"color"} );
-			$('.show-theme-options').click(function(){
-				$(this).parent().toggleClass('open');
-				return false;
-			});
-		});
-
-		$(window).bind("load", function() {
-		   $('.show-theme-options').delay(2000).trigger('click');
-		});
+		function checkLogin() {
+			if ($('#login').text().trim() == "Login") {
+				$('#login').attr('href','login');
+			} else {
+				// bring them to a logout a page 
+				$('#login').attr('href','logout');
+			}
+		}
 	</script>
-	<!-- For demo purposes â can be removed on production : End -->
-
-	
-
 </body>
 </html>

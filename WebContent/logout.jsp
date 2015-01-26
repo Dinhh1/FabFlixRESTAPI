@@ -4,12 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	<%
-	Movie m = (Movie)request.getSession().getAttribute("movie");
-	if (m == null) {
-		response.sendRedirect("404.html");
-	}
-	%> 
+        <!-- Nick's Changes -->
 		<!-- Meta -->
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +14,7 @@
 	    <meta name="keywords" content="MediaCenter, Template, eCommerce">
 	    <meta name="robots" content="all">
 
-	    <title>FabFlix: <% if (m != null) {out.print(m.getTitle());}%></title>
+	    <title>FabFlix</title>
 
 	    <!-- Bootstrap Core CSS -->
 	    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -61,27 +56,20 @@
 		<![endif]-->
 
 	</head>
-    <body class="cnt-home">
-	
+<body class="cnt-home">	
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
-	<!-- ============================================== TOP MENU ============================================== -->
+<!-- ============================================== TOP MENU ============================================== -->
 <div class="top-bar animate-dropdown">
 	<div class="container">
 		<div class="header-top-inner">
 			<div class="cnt-account">
 				<ul class="list-unstyled">
-					<li><a href="cart.jsp"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
-					<li><a id='login' href="#" onclick="checkLogin()"><i class="icon fa fa-sign-in" ></i>
-					 <%
-					 if (session.getAttribute("user") == null) {
-						 out.print("Login");
-					 } else {
-						 out.print("Logout");
-					 }
-					%></a></li>
+					<li><a href="login"><i class="icon fa fa-sign-in"></i>Login</a></li>
 				</ul>
+			</div><!-- /.cnt-account -->
 			<div class="clearfix"></div>
 		</div><!-- /.header-top-inner -->
 	</div><!-- /.container -->
@@ -93,20 +81,17 @@
 				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 					<!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
-	<a href="index.jsp">
+	<a href="home.html">
 		<img src="assets/images/logo.png" alt="">
 	</a>
 </div><!-- /.logo -->
-<!-- ============================================================= LOGO : END ============================================================= -->				</div><!-- /.logo-holder -->
+<!-- ============================================================= LOGO : END ============================================================= -->				    </div><!-- /.logo-holder -->
+
 				<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
-					<div class="contact-row">
-</div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
 <div class="search-area">
     <form>
         <div class="control-group">
-
-
             <input class="search-field" placeholder="Search here..." />
 
             <a class="search-button" href="#" ></a>    
@@ -114,7 +99,9 @@
         </div>
     </form>
 </div><!-- /.search-area -->
-<!-- ============================================================= SEARCH AREA : END ============================================================= -->				</div><!-- /.top-search-holder -->
+<!-- ============================================================= SEARCH AREA : END ============================================================= -->			
+</div><!-- /.top-search-holder -->
+					<!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
 
 <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->				</div><!-- /.top-cart-row -->
@@ -141,15 +128,16 @@
 	<div class="nav-outer">
 		<ul class="nav navbar-nav">
 			<li class="active dropdown yamm-fw">
-				<a href="index.jsp" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+				<a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>   
+<!--			</li>
+			<li class="dropdown yamm">
 			</li>
 
 			<li class="dropdown">
-				
-				<a href="category.html">Advanced Search</a>
 			</li>
-
-			<li class="dropdown">
+			<li class="dropdown hidden-sm">
+			</li>-->
+			<li class="dropdown navbar-right">
 				<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Pages</a>
 				<ul class="dropdown-menu pages">
 					<li>
@@ -199,7 +187,6 @@
 					
 				</ul>
 			</li>
-
 			
 		</ul><!-- /.navbar-nav -->
 		<div class="clearfix"></div>				
@@ -212,126 +199,29 @@
     </div><!-- /.container-class -->
 
 </div><!-- /.header-nav -->
+<!-- ============================================== NAVBAR : END ============================================== -->
+
+</header>
 
 <!-- ============================================== HEADER : END ============================================== -->
-<div class="body-content outer-top-xs">
-	<div class='container'>
-		<div class='row single-product outer-bottom-sm '>
-			<div class='col-md-3 sidebar'>
-				<div class="sidebar-module-container">
-					<!-- ==============================================CATEGORY============================================== -->
-	<!-- ============================================== CATEGORY : END ============================================== -->					<!-- ============================================== HOT DEALS ============================================== -->
 
-<!-- ============================================== HOT DEALS: END ============================================== -->					<!-- ============================================== COLOR============================================== -->
 
-    
-<!-- ============================================== COLOR: END ============================================== -->
-				</div>
-			</div><!-- /.sidebar -->
-			<div class='col-md-9'>
-				<div class="row  wow fadeInUp">
-					     <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
-    <div class="product-item-holder size-big single-product-gallery small-gallery">
-        <div id="owl-single-product">
-            <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="Gallery" href=<%if (m != null) {out.print(m.getBannerURL());} %>>
-                    <img alt="" src=<% if (m != null) {out.print(m.getBannerURL());}%> height="100%" width="100% onerror="this.src='assets/images/no_image.png'" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-        </div><!-- /.single-product-slider -->
-        <div class="single-product-gallery-thumbs gallery-thumbs">
-        </div><!-- /.gallery-thumbs -->
+<div class="body-content outer-top-bd">
+	<div class="container">
+		<div class="sign-in-page inner-bottom-sm">
+			<div class="row">
+				<!-- Sign-in -->			
 
-    </div><!-- /.single-product-gallery -->
-</div><!-- /.gallery-holder -->        			
-					<div class='col-sm-6 col-md-7 product-info-block'>
-						<div class="product-info">
-							<h1 class="name"><%if (m != null) {out.print(m.getTitle());}%></h1>
-							<div class="description-container m-t-20">
-							Year: <%if (m != null) {out.print(m.getYear());} %>
-							</div><!-- /.description-container -->
-							<div class="description-container m-t-20">
-							Director : <% if (m != null) {out.print(m.getDirector());} %>
-							</div>
-							<div class="description-container m-t-20">
-							Genre: 
-							<%
-							if (m != null) {
-								String comma = "";
-								if (m.getGenresOfMovie() != null && m.getGenresOfMovie().size() > 0) {
-									for (Genre g: m.getGenresOfMovie()) {
-										out.print(comma + g.getName());
-										comma = ", ";
-									}
-								} else {
-									out.print("N/A");
-								}
-							}	
-							%>
-							</div>
-							<div class="description-container m-t-20">
-							Stars: 
-							<% 
-							if (m != null)  {
-								if (m.getStarsOfMovie() != null && m.getStarsOfMovie().size() > 0) {
-									String comma = "";
-									for (Star s : m.getStarsOfMovie()) {
-										out.print(comma + "<a href='stars?id=" + s.getId()+ "'>" + s.getFullName() + "</a>");
-										comma = ", ";
-									}
-								} else {
-									out.print("N/A");
-								}
-							}
-							%>
-							</div>
-							<div class="description-container m-t-20">
-							Trailer: 
-							<%
-							if (m != null) {
-								if (m.getTrailerURL() != null && m.getTrailerURL().length() > 0) {
-									out.print("<a href='" + m.getTrailerURL() + "'>" + "Click Here for Trailer</a>");
-								} else {
-									out.print("N/A");
-								}
-							}
-							%>
-							</div>
-							<div class="price-container info-container m-t-20">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="price-box">
-											<span class="price">$1.49</span>
-											</div>
-									</div>
-								</div><!-- /.row -->
-							</div><!-- /.price-container -->
-							<div class="quantity-container info-container">
-								<div class="row">
-									<div class="col-sm-7">
-									<% if (m != null) {
-									out.print("<a href='cart?mid=" + m.getId() + "&action=add' class='btn btn-primary'><i class='fa fa-shopping-cart inner-right-vs'></i> ADD TO CART</a>"); }
-									%>
-									</div>									
-								</div><!-- /.row -->
-							</div><!-- /.quantity-container -->							
-						</div><!-- /.product-info -->
-					</div><!-- /.col-sm-7 -->
-				</div><!-- /.row -->
-			</div><!-- /.col -->
-			<div class="clearfix"></div>
-		</div><!-- /.row -->
-	</div><!-- /.container -->
-</div><!-- /.body-content -->
-
+<!-- Sign-in -->
+<h1 class="">You've successfully Logged Out</h1>
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
-                    <a href="home.html">FabFlix</a>
+                   Copyright Â© 2014
+                    <a href="home.html">FabFlix. </a>
                     - All rights Reserved
                 </div>
             </div>
@@ -339,22 +229,21 @@
     </div>
 </footer>
 <!-- ============================================================= FOOTER : END============================================================= -->
-
-
+	<!-- JavaScripts placed at the end of the document so the pages load faster -->
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>
-		function checkLogin() {
-			if ($('#login').text().trim() == "Login") {
-				$('#login').attr('href','login');
-			} else {
-				// bring them to a logout a page 
-				$('#login').attr('href','logout');
-			}
-		}
-	</script>
-
+	<script src="assets/js/bootstrap.min.js"></script>
 	
-
+	<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
+	
+	<script src="assets/js/echo.min.js"></script>
+	<script src="assets/js/jquery.easing-1.3.min.js"></script>
+	<script src="assets/js/bootstrap-slider.min.js"></script>
+    <script src="assets/js/jquery.rateit.min.js"></script>
+    <script type="text/javascript" src="assets/js/lightbox.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
 </body>
 </html>

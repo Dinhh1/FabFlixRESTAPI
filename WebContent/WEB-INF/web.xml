@@ -40,6 +40,14 @@
     <servlet-name>StarsServlet</servlet-name>
     <url-pattern>/stars</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>FabFLIX REST API</servlet-name>
   	<url-pattern>/api/*</url-pattern>
