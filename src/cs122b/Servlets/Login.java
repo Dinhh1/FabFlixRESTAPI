@@ -40,13 +40,14 @@ public class Login extends HttpServlet {
 			else if(c.getPassword().equals(password)) {
 				//out.println("Login Successful!");
 				c.setPassword(""); // set password to blank string so we dont store it.
-				session.setAttribute("user", c); // im going to store the full user object
-				response.sendRedirect("index");
+				session.setAttribute("current_user", c); // im going to store the full user object
+				response.sendRedirect("index.jsp");
 			}
 			else {
 				//out.println("Login Failed!");
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("login");
 				rd.forward(request, response);
 			}
-		}	}
+		}
+	}
 }

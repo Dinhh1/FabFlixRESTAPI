@@ -277,8 +277,8 @@
 				<!-- Sign-in -->			
 <div class="col-md-6 col-sm-6 sign-in">
 	<h4 class="">sign in</h4>
-	<p class="">Hello, Welcome to your account. <% String email = (String)session.getAttribute("user"); if (email != null) { out.println(email); } %></p>
-	<form class="register-form outer-top-xs" role="form" action="login" method="POST">
+<%-- 	<p class="">Hello, Welcome to your account. <% String email = (Customer)session.getAttribute("user"); if (email != null) { out.println(email); } %></p>
+ --%>	<form class="register-form outer-top-xs" role="form" action="login" method="POST">
 		<div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
 		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="email">
