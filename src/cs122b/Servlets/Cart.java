@@ -1,7 +1,7 @@
 package cs122b.Servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,15 +30,14 @@ public class Cart extends HttpServlet {
 				cart = (HashMap<Integer, Movie>)session.getAttribute("cart");
 				if (cart == null) {
 					cart = new HashMap<Integer, Movie>();
+//					cart = new ArrayList<Movie>();
 					session.setAttribute("cart", cart);
 				}
 			}
 			if (request.getParameter("action") != null) {
-				System.out.println("here");
 				String action = request.getParameter("action");
 				if (action.equals("add")) {
 					int movieId = Integer.parseInt(request.getParameter("mid"));
-					System.out.println(" inside here");
 					synchronized(cart) {
 						MovieDB db = new MovieDB();
 						Movie m = db.Movies.get(movieId);
@@ -53,12 +52,12 @@ public class Cart extends HttpServlet {
 						cart.remove(movieId);
 					}
 				}
-				// at this point, we should have everything stored in our cart, 
-				// not we're using a hashmap so we cant have more than one unique movie, quanity for movies doesnt make any sense anyways.
-				// in our servlet we shoulld be able to get session.getAttribute("cart") and retrieve the hashmap
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/cart.jsp");
-				rd.forward(request, response);
-			}
+			} 
+			// at this point, we should have everything stored in our cart, 
+			// not we're using a hashmap so we cant have more than one unique movie, quanity for movies doesnt make any sense anyways.
+			// in our servlet we shoulld be able to get session.getAttribute("cart") and retrieve the hashmap
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/cart.jsp");
+			rd.forward(request, response);
 		} catch (Exception e) {
 	        e.printStackTrace();
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/404.html");
