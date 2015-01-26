@@ -14,6 +14,11 @@ import cs122b.Models.Movie;
 
 public class Logout extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1676999022297708583L;
+
 	public void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 		try {

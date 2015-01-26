@@ -30,7 +30,6 @@ public class Cart extends HttpServlet {
 				cart = (HashMap<Integer, Movie>)session.getAttribute("cart");
 				if (cart == null) {
 					cart = new HashMap<Integer, Movie>();
-//					cart = new ArrayList<Movie>();
 					session.setAttribute("cart", cart);
 				}
 			}
