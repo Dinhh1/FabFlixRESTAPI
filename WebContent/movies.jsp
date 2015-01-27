@@ -141,7 +141,7 @@
 	<div class="nav-outer">
 		<ul class="nav navbar-nav">
 			<li class="active dropdown yamm-fw">
-				<a href="index.jsp" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+				<a href="/FabFlixRESTAPI/" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
 			</li>
 
 			<li class="dropdown">

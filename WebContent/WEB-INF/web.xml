@@ -24,6 +24,14 @@
     <servlet-name>MoviesServlet</servlet-name>
     <url-pattern>/movies</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
    <servlet>
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>cs122b.Servlets.Home</servlet-class>

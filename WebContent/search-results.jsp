@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*, cs122b.Tables.*"
+ %>
+ 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -340,49 +344,53 @@
 					<div class="row">
 					
 <% 
-	String htmlSkeleton = "<div class='col-sm-6 col-md-4 wow fadeInUp'>";
-	htmlSkeleton += "<div class='products'>";
-	htmlSkeleton += "<div class='product'>";
-	htmlSkeleton += "<div class='product-image'>";
-	htmlSkeleton += "<div class='image'>";
-	htmlSkeleton += "<a href='__URL__'><img  src='__IMG__' alt=''></a>";
-	htmlSkeleton += "</div><!-- /.image -->";
-	htmlSkeleton += "</div><!-- /.product-image -->";
-	htmlSkeleton += "<div class='product-info text-left'>";
-	htmlSkeleton += "<h3 class='name'><a href='__URL__'>__TITLE__</a></h3>";
-	htmlSkeleton += "<div class='description'></div>";
-	htmlSkeleton += "<div class='product-price'>";	
-	htmlSkeleton += "<span class='price'>$1.49</span>";	
-	htmlSkeleton += "</div><!-- /.product-price -->";
-	htmlSkeleton += "</div><!-- /.product-info -->";
-	htmlSkeleton += "<div class='cart clearfix animate-effect'>";
-	htmlSkeleton += "<div class='action'>";
-	htmlSkeleton += "<ul class='list-unstyled'>";
-	htmlSkeleton += "<li class='add-cart-button btn-group'>";
-	htmlSkeleton += "<button class='btn btn-primary icon' data-toggle='dropdown' type='button'>";
-	htmlSkeleton += "<i class='fa fa-shopping-cart'></i>";	
-	htmlSkeleton += "</button>";
-	htmlSkeleton += "<button class='btn btn-primary' type='button'>Add to cart</button>";
-	htmlSkeleton += "</li>";
-	htmlSkeleton += "</ul>";
-	htmlSkeleton += "</div><!-- /.action -->";
-	htmlSkeleton += "</div><!-- /.cart -->";
-	htmlSkeleton += "</div><!-- /.product -->";
-	htmlSkeleton += "</div><!-- /.products -->";
-	htmlSkeleton += "</div><!-- /.item -->";
-	
-	for (Movie m : movies) 
-	{
-		String htmlRow = htmlSkeleton;
-
-		htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
-		htmlRow = htmlRow.replaceFirst("__IMG__", m.getBannerURL());
-		htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
-		htmlRow = htmlRow.replaceFirst("__TITLE__", m.getTitle());
-		htmlRow = htmlRow.replaceFirst("__ADD_URL__", "cart?mid=" + m.getId() + "&action=add");
+	ArrayList<Movie> movies = (ArrayList<Movie>)session.getAttribute("movie_query");
+	if (movies != null) {
+		String htmlSkeleton = "<div class='col-sm-6 col-md-4 wow fadeInUp'>";
+		htmlSkeleton += "<div class='products'>";
+		htmlSkeleton += "<div class='product'>";
+		htmlSkeleton += "<div class='product-image'>";
+		htmlSkeleton += "<div class='image'>";
+		htmlSkeleton += "<a href='__URL__'><img  src='__IMG__' alt=''></a>";
+		htmlSkeleton += "</div><!-- /.image -->";
+		htmlSkeleton += "</div><!-- /.product-image -->";
+		htmlSkeleton += "<div class='product-info text-left'>";
+		htmlSkeleton += "<h3 class='name'><a href='__URL__'>__TITLE__</a></h3>";
+		htmlSkeleton += "<div class='description'></div>";
+		htmlSkeleton += "<div class='product-price'>";	
+		htmlSkeleton += "<span class='price'>$1.49</span>";	
+		htmlSkeleton += "</div><!-- /.product-price -->";
+		htmlSkeleton += "</div><!-- /.product-info -->";
+		htmlSkeleton += "<div class='cart clearfix animate-effect'>";
+		htmlSkeleton += "<div class='action'>";
+		htmlSkeleton += "<ul class='list-unstyled'>";
+		htmlSkeleton += "<li class='add-cart-button btn-group'>";
+		htmlSkeleton += "<button class='btn btn-primary icon' data-toggle='dropdown' type='button'>";
+		htmlSkeleton += "<i class='fa fa-shopping-cart'></i>";	
+		htmlSkeleton += "</button>";
+		htmlSkeleton += "<button class='btn btn-primary' type='button'>Add to cart</button>";
+		htmlSkeleton += "</li>";
+		htmlSkeleton += "</ul>";
+		htmlSkeleton += "</div><!-- /.action -->";
+		htmlSkeleton += "</div><!-- /.cart -->";
+		htmlSkeleton += "</div><!-- /.product -->";
+		htmlSkeleton += "</div><!-- /.products -->";
+		htmlSkeleton += "</div><!-- /.item -->";
 		
-		out.println(htmlRow);
+		for (Movie m : movies) 
+		{
+			String htmlRow = htmlSkeleton;
+			htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
+			htmlRow = htmlRow.replaceFirst("__IMG__", m.getBannerURL());
+			htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
+			htmlRow = htmlRow.replaceFirst("__TITLE__", m.getTitle());
+			htmlRow = htmlRow.replaceFirst("__ADD_URL__", "cart?mid=" + m.getId() + "&action=add");
+			out.println(htmlRow);
+		}
+	} else {
+		System.out.println("error in movie query");
 	}
+	
 %>									
 																	
 					</div><!-- /.row -->
@@ -415,7 +423,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
+                   Copyright Â© 2014
                     <a href="home.html">FabFlix.</a>
                     - All rights Reserved
                 </div>
@@ -442,7 +450,7 @@
     <script src="assets/js/wow.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 
-	<!-- For demo purposes – can be removed on production -->
+	<!-- For demo purposes â can be removed on production -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
@@ -455,7 +463,7 @@
 			}
 		}
 	</script>
-	<!-- For demo purposes – can be removed on production : End -->
+	<!-- For demo purposes â can be removed on production : End -->
 
 	
 
