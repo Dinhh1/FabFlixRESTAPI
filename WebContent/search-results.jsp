@@ -365,10 +365,7 @@
 		htmlSkeleton += "<div class='action'>";
 		htmlSkeleton += "<ul class='list-unstyled'>";
 		htmlSkeleton += "<li class='add-cart-button btn-group'>";
-		htmlSkeleton += "<button class='btn btn-primary icon' data-toggle='dropdown' type='button'>";
-		htmlSkeleton += "<i class='fa fa-shopping-cart'></i>";	
-		htmlSkeleton += "</button>";
-		htmlSkeleton += "<button class='btn btn-primary' type='button'>Add to cart</button>";
+		htmlSkeleton += "<div class='action'><a href='__ADD_URL__' class='lnk btn btn-primary'>Add to Cart</a></div>";
 		htmlSkeleton += "</li>";
 		htmlSkeleton += "</ul>";
 		htmlSkeleton += "</div><!-- /.action -->";
