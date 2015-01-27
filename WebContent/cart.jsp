@@ -238,7 +238,7 @@
 					<td colspan="7">
 						<div class="shopping-cart-btn">
 							<span class="">
-								<a href="index" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+								<a href="index.jsp" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
 							</span>
 						</div><!-- /.shopping-cart-btn -->
 					</td>
