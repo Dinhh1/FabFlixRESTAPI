@@ -288,7 +288,7 @@
 						<span class="lbl">Sort by</span>
 						<div class="fld inline">
 							<div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-								<button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
+								<button id="sort_button" data-toggle="dropdown" type="button" class="btn dropdown-toggle">
 									Title: A to Z<span class="caret"></span>
 								</button>
 	
@@ -451,20 +451,37 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
+	    $(document).ready(function () {
+	    	initValues();
+	    });
+	    
+	    function initValues() {
+	    	var orderString = getSortingOrderFromURL(document.URL);
+	    	switch (orderString) {
+	    	  case "t_asc":
+	    		  $("#sort_button").html("Title: A to Z");
+	    	    break;
+	    	  case "t_desc":
+	    		  $("#sort_button").html("Title: Z to A");
+	    		  break;
+	    	  case "y_asc":
+	    		  $("#sort_button").html("Year: Earliest");
+	    	  	break;
+	    	  default:
+	    		  $("#sort_button").html("Year: Latest");
+	    		  break;
+	    	}	 
+	    }
+	    
+	
+	    
 		function reorder(tag) {
 			var urlTag = tag.innerHTML;
 			var url = document.URL;
 			url = url.replace("#","");
 			var indexOfName = url.search('/Fab');
 			var urlString = url.slice(indexOfName, url.length);
-			var indexOfOrder = urlString.search("order=");
-			var offset = indexOfOrder + 6;
-			var stringToReplace = "";
-			for (var i = offset; i < urlString.length; i++) {
-				if (urlString[i] === "&")
-					break;
-				stringToReplace += urlString[i];
-			}
+			var stringToReplace = getSortingOrderFromURL(urlString);
 			if (urlTag === "Title: A to Z") {
 				urlString = urlString.replace(stringToReplace, "t_asc");
 			} else if (urlTag === "Title: Z to A") {
@@ -477,9 +494,19 @@
  			tag.href = urlString;
  		}
 		
-		"http://localhost:8080/FabFlixRESTAPI/browse?by=genre&arg=Animation&order=t_asc&page=1&lmt=6"
+		function getSortingOrderFromURL(urlString) {
+			var indexOfOrder = urlString.search("order=");
+			var offset = indexOfOrder + 6;
+			var stringToReplace = "";
+			for (var i = offset; i < urlString.length; i++) {
+				if (urlString[i] === "&")
+					break;
+				stringToReplace += urlString[i];
+			}
+			return stringToReplace;
+		}
+		
 		function checkLogin() {
-
 			if ($('#login').text().trim() == "Login") {
 				$('#login').attr('href','login');
 			} else {
@@ -487,6 +514,8 @@
 				$('#login').attr('href','logout');
 			}
 		}
+		
+		
 	</script>
 	<!-- For demo purposes â can be removed on production : End -->
 
