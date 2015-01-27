@@ -341,42 +341,50 @@
 					
 <% 
 	String htmlSkeleton = "<div class='col-sm-6 col-md-4 wow fadeInUp'>";
+	htmlSkeleton += "<div class='products'>";
+	htmlSkeleton += "<div class='product'>";
+	htmlSkeleton += "<div class='product-image'>";
+	htmlSkeleton += "<div class='image'>";
+	htmlSkeleton += "<a href='__URL__'><img  src='__IMG__' alt=''></a>";
+	htmlSkeleton += "</div><!-- /.image -->";
+	htmlSkeleton += "</div><!-- /.product-image -->";
+	htmlSkeleton += "<div class='product-info text-left'>";
+	htmlSkeleton += "<h3 class='name'><a href='__URL__'>__TITLE__</a></h3>";
+	htmlSkeleton += "<div class='description'></div>";
+	htmlSkeleton += "<div class='product-price'>";	
+	htmlSkeleton += "<span class='price'>$1.49</span>";	
+	htmlSkeleton += "</div><!-- /.product-price -->";
+	htmlSkeleton += "</div><!-- /.product-info -->";
+	htmlSkeleton += "<div class='cart clearfix animate-effect'>";
+	htmlSkeleton += "<div class='action'>";
+	htmlSkeleton += "<ul class='list-unstyled'>";
+	htmlSkeleton += "<li class='add-cart-button btn-group'>";
+	htmlSkeleton += "<button class='btn btn-primary icon' data-toggle='dropdown' type='button'>";
+	htmlSkeleton += "<i class='fa fa-shopping-cart'></i>";	
+	htmlSkeleton += "</button>";
+	htmlSkeleton += "<button class='btn btn-primary' type='button'>Add to cart</button>";
+	htmlSkeleton += "</li>";
+	htmlSkeleton += "</ul>";
+	htmlSkeleton += "</div><!-- /.action -->";
+	htmlSkeleton += "</div><!-- /.cart -->";
+	htmlSkeleton += "</div><!-- /.product -->";
+	htmlSkeleton += "</div><!-- /.products -->";
+	htmlSkeleton += "</div><!-- /.item -->";
+	
+	for (Movie m : movies) 
+	{
+		String htmlRow = htmlSkeleton;
+
+		htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
+		htmlRow = htmlRow.replaceFirst("__IMG__", m.getBannerURL());
+		htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
+		htmlRow = htmlRow.replaceFirst("__TITLE__", m.getTitle());
+		htmlRow = htmlRow.replaceFirst("__ADD_URL__", "cart?mid=" + m.getId() + "&action=add");
+		
+		out.println(htmlRow);
+	}
 %>									
-						
-							<div class="products">				
-								<div class="product">		
-									<div class="product-image">
-										<div class="image">
-											<a href="detail.html"><img  src="assets/images/blank.gif" data-echo="assets/images/products/c1.jpg" alt=""></a>
-										</div><!-- /.image -->			                       		   
-									</div><!-- /.product-image -->
-									<div class="product-info text-left">
-										<h3 class="name"><a href="detail.html">Sony Ericson Vaga</a></h3>
-										<div class="description"></div>
-										<div class="product-price">	
-											<span class="price">
-												$650.99				
-											</span>			
-										</div><!-- /.product-price -->
-			
-									</div><!-- /.product-info -->
-									<div class="cart clearfix animate-effect">
-										<div class="action">
-											<ul class="list-unstyled">
-												<li class="add-cart-button btn-group">
-													<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-														<i class="fa fa-shopping-cart"></i>													
-													</button>
-													<button class="btn btn-primary" type="button">Add to cart</button>
-													
-												</li>
-											</ul>
-										</div><!-- /.action -->
-									</div><!-- /.cart -->
-								</div><!-- /.product -->
-							</div><!-- /.products -->
-						</div><!-- /.item -->
-						
+																	
 					</div><!-- /.row -->
 				</div><!-- /.category-product -->		
 			</div><!-- /.tab-pane -->
