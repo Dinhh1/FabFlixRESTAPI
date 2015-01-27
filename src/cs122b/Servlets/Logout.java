@@ -23,6 +23,7 @@ public class Logout extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.getSession().invalidate();
+			HttpSession session = request.getSession(true); // create a new session after invalidation of the first one
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/logout.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
