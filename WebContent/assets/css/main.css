@@ -4281,6 +4281,13 @@ a {
 }
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
+
+/* Custom */
+.product .product-image .image img {
+    width: 200px;
+    height: 300px;
+}
+/* Custom */
 .blog-page .blog-post h1 {
   font-family: 'FjallaOneRegular';
   font-size: 25px;

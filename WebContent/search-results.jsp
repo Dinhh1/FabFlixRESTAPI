@@ -351,7 +351,7 @@
 		htmlSkeleton += "<div class='product'>";
 		htmlSkeleton += "<div class='product-image'>";
 		htmlSkeleton += "<div class='image'>";
-		htmlSkeleton += "<a href='__URL__'><img  src='__IMG__' alt=''></a>";
+		htmlSkeleton += "<a href='__URL__'><img src='__IMG__' alt=''></a>";
 		htmlSkeleton += "</div><!-- /.image -->";
 		htmlSkeleton += "</div><!-- /.product-image -->";
 		htmlSkeleton += "<div class='product-info text-left'>";
