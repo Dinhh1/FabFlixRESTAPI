@@ -293,10 +293,10 @@
 								</button>
 	
 								<ul role="menu" class="dropdown-menu">
-									<li role="presentation"><a href="#">Title: A to Z</a></li>
-									<li role="presentation"><a href="#">Title: Z to A</a></li>
-									<li role="presentation"><a href="#">Year: Earliest</a></li>
-									<li role="presentation"><a href="#">Year: Latest</a></li>
+									<li role="presentation"><a href="#" onclick='reorder(this)'>Title: A to Z</a></li>
+									<li role="presentation"><a href="#" onclick='reorder(this)'>Title: Z to A</a></li>
+									<li role="presentation"><a href="#" onclick='reorder(this)'>Year: Earliest</a></li>
+									<li role="presentation"><a href="#" onclick='reorder(this)'>Year: Latest</a></li>
 								</ul>
 							</div>
 						</div><!-- /.fld -->
@@ -451,7 +451,35 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
+		function reorder(tag) {
+			var urlTag = tag.innerHTML;
+			var url = document.URL;
+			url = url.replace("#","");
+			var indexOfName = url.search('/Fab');
+			var urlString = url.slice(indexOfName, url.length);
+			var indexOfOrder = urlString.search("order=");
+			var offset = indexOfOrder + 6;
+			var stringToReplace = "";
+			for (var i = offset; i < urlString.length; i++) {
+				if (urlString[i] === "&")
+					break;
+				stringToReplace += urlString[i];
+			}
+			if (urlTag === "Title: A to Z") {
+				urlString = urlString.replace(stringToReplace, "t_asc");
+			} else if (urlTag === "Title: Z to A") {
+				urlString = urlString.replace(stringToReplace, "t_desc");
+			} else if (urlTag === "Year: Earliest") {
+				urlString = urlString.replace(stringToReplace, "y_asc");
+			} else if (urlTag === "Year: Latest") {
+				urlString = urlString.replace(stringToReplace, "y_desc");
+			}
+ 			tag.href = urlString;
+ 		}
+		
+		"http://localhost:8080/FabFlixRESTAPI/browse?by=genre&arg=Animation&order=t_asc&page=1&lmt=6"
 		function checkLogin() {
+
 			if ($('#login').text().trim() == "Login") {
 				$('#login').attr('href','login');
 			} else {
