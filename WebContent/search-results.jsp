@@ -456,7 +456,7 @@
 	    });
 	    
 	    function initValues() {
-			var orderString = findValueOfParameterFromURL(urlString, "order=");
+	    	var orderString = getSortingOrderFromURL(document.URL);
 	    	switch (orderString) {
 	    	  case "t_asc":
 	    		  $("#sort_button").html("Title: A to Z");
@@ -481,7 +481,7 @@
 			url = url.replace("#","");
 			var indexOfName = url.search('/Fab');
 			var urlString = url.slice(indexOfName, url.length);
-			var stringToReplace = findValueOfParameterFromURL(urlString, "order=");
+			var stringToReplace = getSortingOrderFromURL(urlString);
 			if (urlTag === "Title: A to Z") {
 				urlString = urlString.replace(stringToReplace, "t_asc");
 			} else if (urlTag === "Title: Z to A") {
@@ -494,10 +494,8 @@
  			tag.href = urlString;
  		}
 		
-		function findValueOfParameterFromURL(urlString, value) {
-			var indexOfOrder = urlString.search(value);
-			if (indexOfOrder = -1)
-				return "";
+		function getSortingOrderFromURL(urlString) {
+			var indexOfOrder = urlString.search("order=");
 			var offset = indexOfOrder + 6;
 			var stringToReplace = "";
 			for (var i = offset; i < urlString.length; i++) {
@@ -507,8 +505,6 @@
 			}
 			return stringToReplace;
 		}
-		
-
 		
 		function checkLogin() {
 			if ($('#login').text().trim() == "Login") {
