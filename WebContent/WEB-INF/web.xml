@@ -32,6 +32,14 @@
     <servlet-name>SearchServlet</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>BrowseServlet</servlet-name>
+    <servlet-class>cs122b.Servlets.Browse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BrowseServlet</servlet-name>
+    <url-pattern>/browse</url-pattern>
+  </servlet-mapping>
    <servlet>
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>cs122b.Servlets.Home</servlet-class>

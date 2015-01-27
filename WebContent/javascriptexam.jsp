@@ -11,7 +11,7 @@
 	<h3>hello world</h3><br>
 <%
 	MovieDB db = new MovieDB();
-	ArrayList<Movie> movies = db.Movies.getMoviesByName("B", 1, 100, Table.SortAttributes.M_ASC);
+	ArrayList<Movie> movies = db.Movies.getMoviesByName("B", 1, 100, Table.SortAttributes.T_ASC);
 	for (Movie m : movies) {
 		out.println("Stars in Movie: " + m.getTitle() + " = ");
 		for (Star s : m.getStarsOfMovie()) 

@@ -24,15 +24,19 @@ public class Search extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
 		try {
 			MovieDB db = new MovieDB();
-			ArrayList<Movie> query = db.Movies.getMoviesByName("b", 1, 20, Table.SortAttributes.M_ASC);
-			if (query != null) {
+			ArrayList<Movie> query = db.Movies.getMoviesByName("b", 1, 20, Table.SortAttributes.T_ASC);
+			if (query != null && query.size() > 0) {
 				HttpSession session = request.getSession();
 				synchronized(session) {
 					session.setAttribute("movie_query", query);
 				}
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/search-results.jsp");
+				rd.forward(request, response);
+			} else {
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/nosearch.html");
+				rd.forward(request, response);
 			}
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/search-results.jsp");
-			rd.forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/404.html");

@@ -99,6 +99,7 @@ public class MoviesTable extends Table {
         }
         return query;
     }
+    
 
     /**
      * Get a list of movies staring a given star id
@@ -210,7 +211,7 @@ public class MoviesTable extends Table {
      * @return a list of movies that matches the name
      */
     public ArrayList<Movie> getMoviesByName(String movieName, int pageNum, int sizeLmt, final String sortAttribute) {
-        movieName = "%" + movieName + "%";
+        movieName += "%";
         int offset = Table.calculateOffset(pageNum, sizeLmt);
         ArrayList<Movie> query = new ArrayList<Movie>();
         ResultSet rs = null;
@@ -274,9 +275,50 @@ public class MoviesTable extends Table {
             while (rs.next()) {
                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
                         rs.getString(6));
-//                m.getModelStatus().setStatusCode(ModelStatus.StatusCode.OK, true);
                 query.add(m);
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                pS.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
+    
+    /**
+     * Get a list of movies staring a given star id
+     *
+     * @param starId the star id of the star in the movie
+     * @return a list of movies starring starId
+     *         - if starId is invalid, return an empty list
+     */
+    public ArrayList<Movie> getMovieByGenre(String genre, int page, int size, final String sort) {
+        ArrayList<Movie> query = new ArrayList<Movie>();
+        int offset = Table.calculateOffset(page, size);
+        PreparedStatement pS = null;
+        ResultSet rs = null;
+        Connection con = null;
+        if (genre == null)
+        	genre = "";
+        genre = "%" + genre + "%";
+        String sql = "select * from movies where id in ";
+        sql += "(select movie_id from genres_in_movies where genre_id in ";
+        sql += "(select id from genres where name like ?)) ";
+        sql += sort + " limit ?, ?";
+        try {
+			con = ConnectionManager.getConnection();
+			pS = con.prepareStatement(sql);
+            pS.setString(1, genre);
+            pS.setInt(2, offset);
+            pS.setInt(3, size);
+            rs = pS.executeQuery();
+            query = this.queryParser(rs);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {

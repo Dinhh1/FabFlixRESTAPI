@@ -43,7 +43,7 @@ public class MovieRestController {
 			String name = params.getFirst("name");
 			int page =  Integer.parseInt(params.getFirst("page"));
 			int limit = Integer.parseInt(params.getFirst("limit"));
-			movies = db.Movies.getMoviesByName(name, page, limit, Table.SortAttributes.M_ASC);	
+			movies = db.Movies.getMoviesByName(name, page, limit, Table.SortAttributes.T_ASC);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
