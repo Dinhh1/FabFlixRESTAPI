@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*, cs122b.Tables.*"
- %>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -135,7 +131,6 @@
 				
 				<a href="category.html">Advanced Search</a>
 			</li>
-
 			
 		</ul><!-- /.navbar-nav -->
 		<div class="clearfix"></div>				
@@ -278,96 +273,132 @@
 </div><!-- /.side-menu -->
 <!-- ================================== TOP NAVIGATION : END ================================== -->
 			</div><!-- /.sidemenu-holder -->	
-			
-			<div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
-				<!-- ========================================== SECTION – HERO ========================================= -->
-			
-<div id="hero" class="homepage-slider3">
-	<div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
-		<div class="full-width-slider">	
-			<div class="item" style="background-image: url(assets/images/sliders/movie_theaters.png);">
-				<div class="container-fluid">
-					<div class="caption vertical-center text-center">
-						<div class="big-text fadeInDown-1">
-							Welcome to
-						</div>
-
-						<div class="big-text fadeInDown-1">
-							FabFlix
-						</div>
-					
-					</div><!-- /.caption -->
-				</div><!-- /.container-fluid -->
-			</div><!-- /.item -->
-		</div><!-- /.full-width-slider -->
-
-	</div><!-- /.owl-carousel -->
-</div>
-				
-			</div><!-- /.homebanner-holder -->
-			
-		</div><!-- /.row -->
 
 		<!-- ============================================== SCROLL TABS ============================================== -->
-		<div id="product-tabs-slider" class="scroll-tabs inner-bottom-vs  wow fadeInUp">
-			<div class="more-info-tab clearfix ">
-			   <h3 class="new-product-title pull-left">Recent Movies</h3>
-			</div>
-
-			<div class="tab-content outer-top-xs">
-				<div class="tab-pane in active" id="all">			
-					<div class="product-slider">
-						<div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
-
-<%
-	ArrayList<Movie> movies = (ArrayList<Movie>)session.getAttribute("latest_movies");
-	if (movies == null) {
-		response.sendRedirect("404.html");
-	} else {
-		String htmlSkeleton = "<div class='item item-carousel'>";
-		htmlSkeleton += "<div class='products'>";
-		htmlSkeleton += "<div class='product'>";
-		htmlSkeleton += "<div class='product-image'>";
-		htmlSkeleton += "<div class='image'>";
-		htmlSkeleton += "<a href='__URL__'><img  src='__IMG__' alt=''></a>";
-		htmlSkeleton += "</div><!-- /.image -->";
-		htmlSkeleton += "</div><!-- /.product-image -->";
-		htmlSkeleton += "<div class='product-info text-left'>";
-		htmlSkeleton += "<h3 class='name'><a href='__URL__'>__TITLE__</a></h3>";
-		htmlSkeleton += "<div class='description'></div>";
-		htmlSkeleton += "<div class='product-price'>";	
-		htmlSkeleton += "<span class='price'>";
-		htmlSkeleton +=	"$1.49";				
-		htmlSkeleton += "</span>";
-		htmlSkeleton += "</div><!-- /.product-price -->";
-		htmlSkeleton += "</div><!-- /.product-info -->";
-		htmlSkeleton += "<div class='action'><a href='__ADD_URL__' class='lnk btn btn-primary'>Add to Cart</a></div>";
-		htmlSkeleton += "</div><!-- /.product -->";
-		htmlSkeleton += "</div><!-- /.products -->";
-		htmlSkeleton += "</div><!-- /.item -->";
-		
-		for (Movie m : movies) 
-		{
-			String htmlRow = htmlSkeleton;
-
-			htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
-			htmlRow = htmlRow.replaceFirst("__IMG__", m.getBannerURL());
-			htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
-			htmlRow = htmlRow.replaceFirst("__TITLE__", m.getTitle());
-			htmlRow = htmlRow.replaceFirst("__ADD_URL__", "cart?mid=" + m.getId() + "&action=add");
-			
-			out.println(htmlRow);
-		}
-	}
-%> 
+		<div class='col-md-9'>
+	<div class="clearfix filters-container m-t-10">
+		<div class="row">
+			<div class="col col-sm-12 col-md-6">
+				<div class="col col-sm-3 col-md-6 no-padding">
+					<div class="lbl-cnt">
+						<span class="lbl">Sort by</span>
+						<div class="fld inline">
+							<div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+								<button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
+									Title: A to Z<span class="caret"></span>
+								</button>
 	
-								</div><!-- /.home-owl-carousel -->
-					</div><!-- /.product-slider -->
-				</div><!-- /.tab-pane -->
+								<ul role="menu" class="dropdown-menu">
+									<li role="presentation"><a href="#">Title: A to Z</a></li>
+									<li role="presentation"><a href="#">Title: Z to A</a></li>
+									<li role="presentation"><a href="#">Year: Earliest</a></li>
+									<li role="presentation"><a href="#">Year: Latest</a></li>
+								</ul>
+							</div>
+						</div><!-- /.fld -->
+					</div><!-- /.lbl-cnt -->
+				</div><!-- /.col -->
+				<div class="col col-sm-3 col-md-6 no-padding">
+					<div class="lbl-cnt">
+						<span class="lbl">Results Per Page</span>
+						<div class="fld inline">
+							<div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+								<button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
+									6 <span class="caret"></span>
+								</button>
+	
+								<ul role="menu" class="dropdown-menu">
+									<li role="presentation"><a href="#">6</a></li>
+									<li role="presentation"><a href="#">9</a></li>
+									<li role="presentation"><a href="#">18</a></li>
+									<li role="presentation"><a href="#">36</a></li>
+									<li role="presentation"><a href="#">72</a></li>
+								</ul>
+							</div>
+						</div><!-- /.fld -->
+					</div><!-- /.lbl-cnt -->
+				</div><!-- /.col -->
+			</div><!-- /.col -->
+			<div class="col col-sm-6 col-md-4 text-right">
+				<div class="pagination-container">
+					<ul class="list-inline list-unstyled">
+						<li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+						<li><a href="#">1</a></li>	
+						<li class="active"><a href="#">2</a></li>	
+						<li><a href="#">3</a></li>	
+						<li><a href="#">4</a></li>	
+						<li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+					</ul><!-- /.list-inline -->
+				</div><!-- /.pagination-container -->		
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.clearfix filters-container -->
+	<div class="search-result-container">
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane active " id="grid-container">
+				<div class="category-product  inner-top-vs">
+					<div class="row">
+					
+<% 
+	String htmlSkeleton = "<div class='col-sm-6 col-md-4 wow fadeInUp'>";
+%>									
+						
+							<div class="products">				
+								<div class="product">		
+									<div class="product-image">
+										<div class="image">
+											<a href="detail.html"><img  src="assets/images/blank.gif" data-echo="assets/images/products/c1.jpg" alt=""></a>
+										</div><!-- /.image -->			                       		   
+									</div><!-- /.product-image -->
+									<div class="product-info text-left">
+										<h3 class="name"><a href="detail.html">Sony Ericson Vaga</a></h3>
+										<div class="description"></div>
+										<div class="product-price">	
+											<span class="price">
+												$650.99				
+											</span>			
+										</div><!-- /.product-price -->
+			
+									</div><!-- /.product-info -->
+									<div class="cart clearfix animate-effect">
+										<div class="action">
+											<ul class="list-unstyled">
+												<li class="add-cart-button btn-group">
+													<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+														<i class="fa fa-shopping-cart"></i>													
+													</button>
+													<button class="btn btn-primary" type="button">Add to cart</button>
+													
+												</li>
+											</ul>
+										</div><!-- /.action -->
+									</div><!-- /.cart -->
+								</div><!-- /.product -->
+							</div><!-- /.products -->
+						</div><!-- /.item -->
+						
+					</div><!-- /.row -->
+				</div><!-- /.category-product -->		
+			</div><!-- /.tab-pane -->
+		</div><!-- /.tab-content -->
+		<div class="clearfix filters-container">
+			<div class="text-right">
+		         <div class="pagination-container">
+					<ul class="list-inline list-unstyled">
+						<li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+						<li><a href="#">1</a></li>	
+						<li class="active"><a href="#">2</a></li>	
+						<li><a href="#">3</a></li>	
+						<li><a href="#">4</a></li>	
+						<li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+					</ul><!-- /.list-inline -->
+				</div><!-- /.pagination-container -->						    
+			</div><!-- /.text-right -->			
+		</div><!-- /.filters-container -->
+	</div><!-- /.search-result-container -->
+</div><!-- /.col -->
 
-			</div><!-- /.tab-content -->
-		</div><!-- /.scroll-tabs -->
-	    <!-- ============================================== SCROLL TABS : END ============================================== -->
+</div><!-- /.row -->
 
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
