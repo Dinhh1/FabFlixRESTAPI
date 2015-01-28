@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,44 +34,6 @@ public class Checkout extends HttpServlet {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/404.html");
 			rd.forward(request, response);
 		}
-//		HttpSession session = request.getSession();
-//		HashMap<Integer, Movie> cart;
-//		String cc_id = request.getParameter("cc_num");
-//		//SimpleDateFormat date = new SimpleDateFormat();
-//		Date exp_date = Date.valueOf((request.getParameter("exp_date")));
-//		String first_name = request.getParameter("f_name");
-//		String last_name = request.getParameter("l_name");
-//		
-//		MovieDB db = new MovieDB();
-//		CreditCard cc = db.CreditCards.get(cc_id);
-//		Customer customer = null;
-//		try {
-//			customer = db.Customers.getCustomer(first_name, last_name, cc_id);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		if (cc != null && customer != null) {
-//			String date = java.util.Date.from(Instant.now()).toString();
-//			Date sqlDate = Date.valueOf(date);
-//			int customerID = customer.getId();
-//			cart = (HashMap<Integer, Movie>)session.getAttribute("cart");
-//			for (Map.Entry<Integer, Movie> entry : cart.entrySet()) {
-//				int success = db.Sales.addEntry(customerID, entry.getValue().getId(), sqlDate);
-//				if (success != 1) {
-//					RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/404.html");
-//					rd.forward(request, response);
-//					break;
-//				}
-//			}
-//			session.removeAttribute("cart");
-//			response.sendRedirect("checkout-complete.html");
-//		}
-//		else {
-//			RequestDispatcher rd = getServletContext().getRequestDispatcher("checkout.jsp");
-//			session.setAttribute("checkout-status", -1);
-//			rd.forward(request, response);
-//		}
-		
 	}
 	
 	public void doPost(HttpServletRequest request,
@@ -79,10 +42,11 @@ public class Checkout extends HttpServlet {
 		HashMap<Integer, Movie> cart;
 		String cc_id = request.getParameter("cc_num");
 		//SimpleDateFormat date = new SimpleDateFormat();
+		//System.out.println(request.getParameter("exp_date"));
 		Date exp_date = Date.valueOf((request.getParameter("exp_date")));
 		String first_name = request.getParameter("f_name");
 		String last_name = request.getParameter("l_name");
-		System.out.println(first_name);
+		//System.out.println(first_name);
 
 		MovieDB db = new MovieDB();
 		CreditCard cc = db.CreditCards.get(cc_id);
@@ -93,7 +57,10 @@ public class Checkout extends HttpServlet {
 			e.printStackTrace();
 		}
 		if (cc != null && customer != null) {
-			String date = java.util.Date.from(Instant.now()).toString();
+			int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+			int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+			int year = Calendar.getInstance().get(Calendar.YEAR);
+			String date = year + "-" + month + "-" + day;
 			Date sqlDate = Date.valueOf(date);
 			int customerID = customer.getId();
 			cart = (HashMap<Integer, Movie>)session.getAttribute("cart");
@@ -106,7 +73,9 @@ public class Checkout extends HttpServlet {
 				}
 			}
 			session.removeAttribute("cart");
-			response.sendRedirect("checkout-complete.html");
+			RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/checkout-complete.jsp");
+			rd.forward(request, response);
+			//response.sendRedirect("/checkout-complete.html");
 		}
 		else {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("checkout.jsp");

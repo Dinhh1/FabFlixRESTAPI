@@ -236,19 +236,19 @@
                     <form class="register-form" role="form" action="checkout" method="POST" >
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail">Credit Card Number<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="cc_num">
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword">Expiration Date (MM-DD-YYYY)<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword">
+                            <label class="info-title" for="exampleInputPassword">Expiration Date (YYYY-MM-DD)<span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword" name="exp_date">
                         </div>
                         <div class="form-group">
                             <label class="info-title" for="exampleInputPassword">First Name<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword">
+                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword" name="f_name">
                         </div>
                         <div class="form-group">
                             <label class="info-title" for="exampleInputPassword">Last Name<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword">
+                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword" name="l_name">
                         </div>
                         <input type="submit" class="btn-upper btn btn-primary checkout-page-button"></button>
                     </form>
