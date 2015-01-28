@@ -165,8 +165,7 @@
 				<!-- Sign-in -->			
 <div class="col-md-6 col-sm-6 sign-in">
 	<h4 class="">Advanced Search</h4>
-<%-- 	<p class="">Hello, Welcome to your account. <% String email = (Customer)session.getAttribute("user"); if (email != null) { out.println(email); } %></p>
- --%>	<form class="register-form outer-top-xs" id="advanced-search-form" role="form" action="" method="GET">
+	<form class="register-form outer-top-xs" id="advanced-search-form" role="form" action="search" method="GET">
 		<div class="form-group">
 		    <label class="info-title" for="title">Title</label>
 		    <input type="text" class="form-control unicase-form-control text-input" id="title" name="title">
@@ -189,7 +188,7 @@
 		</div>
 		<div class="radio outer-xs">
 		  	<label>
-		    	<input type="radio" name="fuzzySearch" id="fuzzySearch" value="option1">Fuzzy Search
+		    	<input type="radio" name="fuzzySearch" id="fuzzySearch" value="selected">Fuzzy Search
 		    	<span>
 		    		*will match spelling errors to some extent
 		    	</span>
@@ -197,13 +196,13 @@
 		</div>
 		<div class="radio outer-xs">
 		  	<label>
-		    	<input type="radio" name="matchSubstring" id="matchSubstring" value="option2">Match Substring
+		    	<input type="radio" name="matchSubstring" id="matchSubstring" value="selected">Match Substring
 		    	<span>
 		    		*will match portions of a larger string
 		    	</span>
 		  	</label>
 		</div>
-	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button" onclick='searchQuery()'>Search</button>
+	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Search</button>
 	</form>					
 </div>
 <!-- Sign-in -->			
@@ -242,21 +241,6 @@
     <script src="assets/js/bootstrap-select.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
-	
-	<script>		
-		function searchQuery() {
-			var title = document.getElementById("title").value;
-			var year = document.getElementById("year").value;
-			var director = document.getElementById("director").value;
-			var starFirstName = document.getElementById("starFirstName").value;
-			var starLastName = document.getElementById("starLastName").value;
-			var fuzzySearch = document.getElementById("fuzzySearch").value;
-			var matchSubstring = document.getElementById("matchSubstring").value;
-			
-			/* $('#advanced-search-form').attr("action", "browse?by=title&arg=" + title + "&order=t_asc&page=1&lmt=6"); */
-			document.getElementById('advanced-search-form').action = "browse?by=title&arg=" + title + "&order=t_asc&page=1&lmt=6";
-		}
-	</script>
 	
 </body>
 </html>

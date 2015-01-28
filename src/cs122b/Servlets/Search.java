@@ -23,8 +23,17 @@ public class Search extends HttpServlet {
 	public void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 		try {
+			ArrayList<Movie> query = null;
 			MovieDB db = new MovieDB();
-			ArrayList<Movie> query = db.Movies.getMoviesByName("b", 1, 20, Table.SortAttributes.T_ASC);
+			String title = request.getParameter("title");
+			String year = request.getParameter("year");
+			String director = request.getParameter("director");
+			String starFirstName = request.getParameter("starFirstName");
+			String starLastName = request.getParameter("starLastName");
+			String fuzzySearch = request.getParameter("fuzzySearch");
+			String matchSubstring = request.getParameter("matchSubstring");
+			
+//			ArrayList<Movie> query = db.Movies.get...;
 			if (query != null && query.size() > 0) {
 				HttpSession session = request.getSession();
 				synchronized(session) {
