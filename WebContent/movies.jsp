@@ -174,61 +174,6 @@
 
 									<li class="dropdown"><a href="category.html">Advanced
 											Search</a></li>
-
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-hover="dropdown" data-toggle="dropdown">Pages</a>
-										<ul class="dropdown-menu pages">
-											<li>
-												<div class="yamm-content">
-													<div class="row">
-
-														<div class='col-xs-12 col-sm-4 col-md-4'>
-															<ul class='links'>
-																<li><a href="home.html">Home I</a></li>
-																<li><a href="home2.html">Home II</a></li>
-																<li><a href="category.html">Category</a></li>
-																<li><a href="category-2.html">Category II</a></li>
-																<li><a href="detail.html">Detail</a></li>
-																<li><a href="detail2.html">Detail II</a></li>
-																<li><a href="shopping-cart.html">Shopping Cart
-																		Summary</a></li>
-
-															</ul>
-														</div>
-														<div class='col-xs-12 col-sm-4 col-md-4'>
-															<ul class='links'>
-																<li><a href="checkout.html">Checkout</a></li>
-																<li><a href="blog.html">Blog</a></li>
-																<li><a href="blog-details.html">Blog Detail</a></li>
-																<li><a href="contact.html">Contact</a></li>
-																<li><a href="homepage1.html">Homepage 1</a></li>
-																<li><a href="homepage2.html">Homepage 2</a></li>
-																<li><a href="home-furniture.html">Home
-																		Furniture</a></li>
-															</ul>
-														</div>
-														<div class='col-xs-12 col-sm-4 col-md-4'>
-															<ul class='links'>
-																<li><a href="sign-in.html">Sign In</a></li>
-																<li><a href="my-wishlist.html">Wishlist</a></li>
-																<li><a href="terms-conditions.html">Terms and
-																		Condition</a></li>
-																<li><a href="track-orders.html">Track Orders</a></li>
-																<li><a href="product-comparison.html">Product-Comparison</a></li>
-																<li><a href="faq.html">FAQ</a></li>
-																<li><a href="404.html">404</a></li>
-															</ul>
-
-														</div>
-
-													</div>
-												</div>
-											</li>
-
-
-										</ul></li>
-
-
 								</ul>
 								<!-- /.navbar-nav -->
 								<div class="clearfix"></div>
