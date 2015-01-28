@@ -44,7 +44,6 @@
 		<link href="assets/css/dark-green.css" rel="alternate stylesheet" title="Darkgreen color">
 		<!-- Demo Purpose Only. Should be removed in production : END -->
 
-		
 		<!-- Icons/Glyphs -->
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
@@ -104,10 +103,13 @@
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
 <div class="search-area">
-    <form role="form" action="browse" method="GET">
+    <form action="browse" method="GET">
         <div class="control-group">
-            <input id="search_box" class="search-field" placeholder="Search here..." name="arg"/>
-            <input name="by" value="search" hidden/>
+            <input type="hidden" name="by" value="search" />
+            <input id="search_box" type="text" class="search-field" placeholder="Search here..." name="arg"/>
+    		<input type="hidden" name="order" value="t_asc" />
+    		<input type="hidden" name="page" value="1" />
+    		<input type="hidden" name="lmt" value="6" />
             <a class="search-button" href="#" onclick="searchMovies(this)"></a>    
         </div>
     </form>
@@ -343,18 +345,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
 	    $(document).ready(function () {		
-	    	initSearchButton();
 	    });
 	    
-	    function initSearchButton() {
-	    	$('#search_box').keypress(function(e){
-			      if(e.keyCode==13) {
-			    	  var query = $("#search_box").val();
-			    	  var query = query.replace(/\s/g, '%');
-			    	  urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
-			    	  }
-				});
-	    }
 	    
 		function checkLogin() {
 			if ($('#login').text().trim() == "Login") {
@@ -371,7 +363,6 @@
 			urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
 			tag.href = urlString;
 		}
-		
 	</script>
 
 	

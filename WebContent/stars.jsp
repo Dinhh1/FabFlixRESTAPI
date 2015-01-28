@@ -107,18 +107,17 @@
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
 <div class="search-area">
-    <form>
+    <form action="browse" method="GET">
         <div class="control-group">
-
-
-            <input class="search-field" placeholder="Search here..." />
-
-            <a class="search-button" href="#" ></a>    
-
+            <input type="hidden" name="by" value="search" />
+            <input id="search_box" type="text" class="search-field" placeholder="Search here..." name="arg"/>
+    		<input type="hidden" name="order" value="t_asc" />
+    		<input type="hidden" name="page" value="1" />
+    		<input type="hidden" name="lmt" value="6" />
+            <a class="search-button" href="#" onclick="searchMovies(this)"></a>    
         </div>
     </form>
 </div><!-- /.search-area -->
-</div><!-- /.top-search-holder -->
 
 
 
@@ -332,6 +331,9 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
+	    $(document).ready(function () {		
+	    });
+	    
 		function checkLogin() {
 			if ($('#login').text().trim() == "Login") {
 				$('#login').attr('href','login');
@@ -339,6 +341,13 @@
 				// bring them to a logout a page 
 				$('#login').attr('href','logout');
 			}
+		}
+		
+		function searchMovies(tag) {
+			var query = $("#search_box").val();
+			var query = query.replace(/\s/g, '%');
+			urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
+			tag.href = urlString;
 		}
 	</script>
 </body>

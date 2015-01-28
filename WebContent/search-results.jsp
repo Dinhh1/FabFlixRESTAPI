@@ -93,13 +93,14 @@
 				<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
 <!-- ============================================================= SEARCH AREA ============================================================= -->
 <div class="search-area">
-    <form>
+    <form action="browse" method="GET">
         <div class="control-group">
-
-            <input class="search-field" placeholder="Search movies here..." />
-
-            <a class="search-button" href="#" ></a>    
-
+            <input type="hidden" name="by" value="search" />
+            <input id="search_box" type="text" class="search-field" placeholder="Search here..." name="arg"/>
+    		<input type="hidden" name="order" value="t_asc" />
+    		<input type="hidden" name="page" value="1" />
+    		<input type="hidden" name="lmt" value="6" />
+            <a class="search-button" href="#" onclick="searchMovies(this)"></a>    
         </div>
     </form>
 </div><!-- /.search-area -->
@@ -522,7 +523,6 @@
 			return stringToReplace;
 		}
 		
-		
 		function nextPressed(tag) {
 			var urlTag = tag.innerHTML;
 			var url = document.URL;
@@ -570,7 +570,12 @@
 			}
 		}
 		
-		
+		function searchMovies(tag) {
+			var query = $("#search_box").val();
+			var query = query.replace(/\s/g, '%');
+			urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
+			tag.href = urlString;
+		}
 	</script>
 	<!-- For demo purposes â can be removed on production : End -->
 
