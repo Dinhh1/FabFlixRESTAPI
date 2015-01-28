@@ -39,14 +39,13 @@ public class Checkout extends HttpServlet {
 	public void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		session.setAttribute("checkout-status", "");
+		
 		HashMap<Integer, Movie> cart;
 		String cc_id = request.getParameter("cc_num");
-		//SimpleDateFormat date = new SimpleDateFormat();
-		//System.out.println(request.getParameter("exp_date"));
 		Date exp_date = Date.valueOf((request.getParameter("exp_date")));
 		String first_name = request.getParameter("f_name");
 		String last_name = request.getParameter("l_name");
-		//System.out.println(first_name);
 
 		MovieDB db = new MovieDB();
 		CreditCard cc = db.CreditCards.get(cc_id);
@@ -78,8 +77,8 @@ public class Checkout extends HttpServlet {
 			//response.sendRedirect("/checkout-complete.html");
 		}
 		else {
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("checkout.jsp");
-			session.setAttribute("checkout-status", -1);
+			RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/checkout.jsp");
+			session.setAttribute("checkout-status", "Invalid Information!");
 			rd.forward(request, response);
 		}
 	}

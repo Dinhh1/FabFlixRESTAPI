@@ -224,14 +224,7 @@
 	    <div class="panel-body">
 			<div class="row">
                 <div class="row">
-                	<%-- <%
-                		Integer success = (Integer)session.getAttribute("checkout-status");
-                		if (success.equals(-1)) {
-                	%>
-                	<p class="info-title" style="color: red"> Incorrect Information! </p>
-                	<%
-                		}
-                	%> --%>
+                	<!--  <p class="info-title" style="color: red"> <%= (String)session.getAttribute("checkout-status") %> </p> -->
                     <p class="text title-tag-lin">Please fill out all customer information</p>
                     <form class="register-form" role="form" action="checkout" method="POST" >
                         <div class="form-group">
