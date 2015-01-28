@@ -107,7 +107,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 						<!-- ============================================================= LOGO ============================================================= -->
 						<div class="logo">
-							<a href="index.jsp"> <img src="assets/images/logo.png" alt="">
+							<a href="/FabFlixRESTAPI/"> <img src="assets/images/logo.png" alt="">
 
 							</a>
 						</div>
