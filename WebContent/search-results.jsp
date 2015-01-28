@@ -150,7 +150,10 @@
 <!-- ============================================== NAVBAR : END ============================================== -->
 
 </header>
+<%
+	ArrayList<Movie> movies = (ArrayList<Movie>)session.getAttribute("movie_query");
 
+%>
 <!-- ============================================== HEADER : END ============================================== -->
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
 	<div class="container">
@@ -307,16 +310,16 @@
 						<span class="lbl">Results Per Page</span>
 						<div class="fld inline">
 							<div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-								<button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
+								<button id="size_limit" data-toggle="dropdown" type="button" class="btn dropdown-toggle">
 									6 <span class="caret"></span>
 								</button>
 	
 								<ul role="menu" class="dropdown-menu">
-									<li role="presentation"><a href="#">6</a></li>
-									<li role="presentation"><a href="#">9</a></li>
-									<li role="presentation"><a href="#">18</a></li>
-									<li role="presentation"><a href="#">36</a></li>
-									<li role="presentation"><a href="#">72</a></li>
+									<li role="presentation"><a href="#" onclick='resultsPerPageChange(this)' >6</a></li>
+									<li role="presentation"><a href="#" onclick='resultsPerPageChange(this)' >9</a></li>
+									<li role="presentation"><a href="#" onclick='resultsPerPageChange(this)' >18</a></li>
+									<li role="presentation"><a href="#" onclick='resultsPerPageChange(this)' >36</a></li>
+									<li role="presentation"><a href="#" onclick='resultsPerPageChange(this)' >72</a></li>
 								</ul>
 							</div>
 						</div><!-- /.fld -->
@@ -326,12 +329,19 @@
 			<div class="col col-sm-6 col-md-4 text-right">
 				<div class="pagination-container">
 					<ul class="list-inline list-unstyled">
-						<li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-						<li><a href="#">1</a></li>	
-						<li class="active"><a href="#">2</a></li>	
-						<li><a href="#">3</a></li>	
-						<li><a href="#">4</a></li>	
-						<li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+						<li class="prev"><a href="#" onclick="prevPressed(this)"><i class="fa fa-angle-left"></i></a></li>
+						<li class="next"><a href="#" onclick= <%
+							String limit = request.getParameter("lmt");
+							int limInt = 0;
+							if (limit != null) {
+								limInt = Integer.parseInt(limit);
+							}
+							if (movies.size() < limInt) {
+								out.print("'return false;'");
+							} else {
+								out.print("'nextPressed(this)'");
+							}
+						%>><i class="fa fa-angle-right"></i></a></li>
 					</ul><!-- /.list-inline -->
 				</div><!-- /.pagination-container -->		
 			</div><!-- /.col -->
@@ -344,14 +354,13 @@
 					<div class="row">
 					
 <% 
-	ArrayList<Movie> movies = (ArrayList<Movie>)session.getAttribute("movie_query");
 	if (movies != null) {
 		String htmlSkeleton = "<div class='col-sm-6 col-md-4 wow fadeInUp'>";
 		htmlSkeleton += "<div class='products'>";
 		htmlSkeleton += "<div class='product'>";
 		htmlSkeleton += "<div class='product-image'>";
 		htmlSkeleton += "<div class='image'>";
-		htmlSkeleton += "<a href='__URL__'><img src='__IMG__' alt=''></a>";
+		htmlSkeleton += "<a href='__URL__'><img src='__IMG__' alt='' onerror=\"this.src='assets/images/no_image.png'\"></a>";
 		htmlSkeleton += "</div><!-- /.image -->";
 		htmlSkeleton += "</div><!-- /.product-image -->";
 		htmlSkeleton += "<div class='product-info text-left'>";
@@ -399,10 +408,6 @@
 		         <div class="pagination-container">
 					<ul class="list-inline list-unstyled">
 						<li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-						<li><a href="#">1</a></li>	
-						<li class="active"><a href="#">2</a></li>	
-						<li><a href="#">3</a></li>	
-						<li><a href="#">4</a></li>	
 						<li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
 					</ul><!-- /.list-inline -->
 				</div><!-- /.pagination-container -->						    
@@ -456,7 +461,7 @@
 	    });
 	    
 	    function initValues() {
-	    	var orderString = getSortingOrderFromURL(document.URL);
+	    	var orderString = getParameterFromURL(document.URL, "order=");
 	    	switch (orderString) {
 	    	  case "t_asc":
 	    		  $("#sort_button").html("Title: A to Z");
@@ -470,10 +475,10 @@
 	    	  default:
 	    		  $("#sort_button").html("Year: Latest");
 	    		  break;
-	    	}	 
+	    	}
+	    	var pageLimit = getParameterFromURL(document.URL, "lmt=");
+	    	$("#size_limit").html(pageLimit.replace("#",""));
 	    }
-	    
-	
 	    
 		function reorder(tag) {
 			var urlTag = tag.innerHTML;
@@ -481,7 +486,8 @@
 			url = url.replace("#","");
 			var indexOfName = url.search('/Fab');
 			var urlString = url.slice(indexOfName, url.length);
-			var stringToReplace = getSortingOrderFromURL(urlString);
+			/* var stringToReplace = getSortingOrderFromURL(urlString); */
+			var stringToReplace = getParameterFromURL(urlString, "order=");
 			if (urlTag === "Title: A to Z") {
 				urlString = urlString.replace(stringToReplace, "t_asc");
 			} else if (urlTag === "Title: Z to A") {
@@ -493,6 +499,55 @@
 			}
  			tag.href = urlString;
  		}
+		
+		function resultsPerPageChange(tag) {
+			var urlTag = tag.innerHTML;
+			var url = document.URL;
+			url = url.replace("#", "");
+			var urlString = url.slice(url.search("/Fab"), url.length);
+			var stringToReplace = getParameterFromURL(urlString, "lmt=");
+			urlString = urlString.replace(stringToReplace, urlTag);
+			tag.href = urlString;
+		}
+		
+		function getParameterFromURL(url, param) {
+			var stringToReplace = "";
+			var indexOfParm = url.search(param);
+			var offset = indexOfParm + param.length;
+			for (var i = offset; i < url.length; i++) {
+				if (url[i] === "&")
+					break;
+				stringToReplace += url[i];
+			}
+			return stringToReplace;
+		}
+		
+		
+		function nextPressed(tag) {
+			var urlTag = tag.innerHTML;
+			var url = document.URL;
+			url = url.replace("#", "");
+			var urlString = url.slice(url.search("/Fab"), url.length);
+			var stringToReplace = getParameterFromURL(urlString, "page=");
+			var nextPage = parseInt(stringToReplace);
+			nextPage = nextPage + 1;
+			urlString = urlString.replace(stringToReplace, nextPage);
+			tag.href = urlString;
+		}
+		
+		function prevPressed(tag) {
+			var urlTag = tag.innerHTML;
+			var url = document.URL;
+			url = url.replace("#", "");
+			var urlString = url.slice(url.search("/Fab"), url.length);
+			var stringToReplace = getParameterFromURL(urlString, "page=");
+			var nextPage = parseInt(stringToReplace);
+			if (nextPage == 1)
+				return;
+			nextPage = nextPage - 1;
+			urlString = urlString.replace(stringToReplace, nextPage);
+			tag.href = urlString;
+		}
 		
 		function getSortingOrderFromURL(urlString) {
 			var indexOfOrder = urlString.search("order=");
