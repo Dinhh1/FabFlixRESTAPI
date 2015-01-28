@@ -64,7 +64,7 @@
 						<ul class="list-unstyled">
 							<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My
 									Cart</a></li>
-							<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
 							<li><a id='login' href="#" onclick="checkLogin()"><i
 									class="icon fa fa-sign-in"></i> <%
  	if (session.getAttribute("user") == null) {

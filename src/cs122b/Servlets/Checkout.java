@@ -27,9 +27,14 @@ public class Checkout extends HttpServlet {
 	public void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.getSession().setAttribute("checkout-status", "");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/checkout.jsp");
-			rd.forward(request, response);
+			if (request.getSession().getAttribute("user") != null) {
+				request.getSession().setAttribute("checkout-status", "");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/checkout.jsp");
+				rd.forward(request, response);
+			} else {
+				response.sendRedirect("login");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/checkout.jsp");
