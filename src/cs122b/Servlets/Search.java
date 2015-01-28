@@ -55,7 +55,6 @@ public class Search extends HttpServlet {
 					sql += "and director like '%" + director + "%' ";
 				isFirst = false;
 			}
-//			if ((starsFirstName != null || starsLastName != null) && (starsFirstName.length() > 0 || starsLastName.length() > 0)) {
 			if (this.stringIsNullOrEmpty(starsFirstName) != true || this.stringIsNullOrEmpty(starsLastName) != true) {
 				if (isFirst) {
 					sql += "id in (select sm.movie_id from stars_in_movies as sm where sm.star_id in (select s.id from stars as s where ";
@@ -71,19 +70,7 @@ public class Search extends HttpServlet {
 					sql += "s.last_name like '%" + starsLastName + "%')) ";
 				}
 			}
-			ArrayList<Movie> query = db.Movies.getMoviesWithQueryString(sql, page, size, Table.ConvertOrderParameterToSQL(request.getParameter("order")));
-			
-//			HashMap<String, String> params = new HashMap<String, String>();
-//			params.put("title", request.getParameter("title"));
-//			params.put("year", request.getParameter("year"));
-//			params.put("director", request.getParameter("director"));
-//			params.put("starFirstName", request.getParameter("starFirstName"));
-//			params.put("starLastName", request.getParameter("starLastName"));
-//			params.put("page", request.getParameter("page"));
-//			params.put("lmt", request.getParameter("lmt"));
-//			params.put("order", request.getParameter("order"));
-//			System.out.println("we are getting search");
-//			ArrayList<Movie> query = db.Movies.getMoviesWithParms(params);
+			ArrayList<Movie> query = db.Movies.getMoviesWithQueryString(sql, page, size, Table.ConvertOrderParameterToSQL(request.getParameter("order")));	
 			if (query != null && query.size() > 0) {
 				HttpSession session = request.getSession();
 				synchronized(session) {
@@ -97,7 +84,7 @@ public class Search extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("/404.html");
+			response.sendRedirect("/nosearch.html");
 		}
 	}
 	
