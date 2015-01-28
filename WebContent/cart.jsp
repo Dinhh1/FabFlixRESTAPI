@@ -79,10 +79,10 @@
 				<div class="header-top-inner">
 					<div class="cnt-account">
 						<ul class="list-unstyled">
-							<li><a href="cart.jsp"><i
+							<li><a href="cart"><i
 									class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-							<li><a href="checkout.jsp"><i class="icon fa fa-key"></i>Checkout</a></li>
-							<li><a id='login' href="#" onclick="checkLogin()"><i
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
+							<li><a id='login' href="login" onclick="checkLogin()"><i
 									class="icon fa fa-sign-in"></i> <%
  	if (session.getAttribute("user") == null) {
  		out.print("Login");
@@ -121,13 +121,17 @@
 						<!-- /.contact-row -->
 						<!-- ============================================================= SEARCH AREA ============================================================= -->
 						<div class="search-area">
-							<form action="">
-								<div class="control-group">
-									<input class="search-field" placeholder="Search here..." /> <a
-										class="search-button" href="#"></a>
-
-								</div>
-							</form>
+								<form action="browse" method="GET">
+									<div class="control-group">
+										<input type="hidden" name="by" value="search" /> <input
+											id="search_box" type="text" class="search-field"
+											placeholder="Search here..." name="arg" /> <input
+											type="hidden" name="order" value="t_asc" /> <input
+											type="hidden" name="page" value="1" /> <input type="hidden"
+											name="lmt" value="6" /> <a class="search-button" href="#"
+											onclick="searchMovies(this)"></a>
+									</div>
+								</form>
 						</div>
 						<!-- /.search-area -->
 						<!-- ============================================================= SEARCH AREA : END ============================================================= -->
@@ -376,12 +380,31 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
 		type="text/javascript"></script>
 	<script type="text/javascript">
+	$(document).ready(function() {
+		checkLogin();
+	});
+
+	function checkLogin() {
+		if ($('#login').text().trim() == "Login") {
+			$('#login').attr('href', 'login');
+		} else {
+			// bring them to a logout a page 
+			$('#login').attr('href', 'logout');
+		}
+	}
 	function checkout(tag) {
 		if ($('#login').text().trim() == "Login") {
 			tag.href = "login";
 		} else {
 			tag.href = "checkout";
 		}
+	}
+	function searchMovies(tag) {
+		var query = $("#search_box").val();
+		var query = query.replace(/\s/g, '%');
+		urlString = "browse?by=search&arg=" + query
+				+ "&order=t_asc&page=1&lmt=6";
+		tag.href = urlString;
 	}
 	</script>
 
