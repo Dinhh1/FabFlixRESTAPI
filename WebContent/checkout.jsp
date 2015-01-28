@@ -224,7 +224,7 @@
 	    <div class="panel-body">
 			<div class="row">
                 <div class="row">
-                	<!--  <p class="info-title" style="color: red"> <%= (String)session.getAttribute("checkout-status") %> </p> -->
+                	<p class="info-title" style="color: red"> <% if ((String)session.getAttribute("checkout-status") != null) out.print(session.getAttribute("checkout-status")); %> </p> 
                     <p class="text title-tag-lin">Please fill out all customer information</p>
                     <form class="register-form" role="form" action="checkout" method="POST" >
                         <div class="form-group">

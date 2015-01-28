@@ -348,7 +348,6 @@
 	    	checkLogin();
 	    });
 	    
-	    
 		function checkLogin() {
 			if ($('#login').text().trim() == "Login") {
 				$('#login').attr('href','login');
