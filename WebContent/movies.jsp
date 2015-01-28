@@ -172,7 +172,7 @@
 										href="/FabFlixRESTAPI/" data-hover="dropdown"
 										class="dropdown-toggle" data-toggle="dropdown">Home</a></li>
 
-									<li class="dropdown"><a href="category.html">Advanced
+									<li class="dropdown"><a href="advance-search.jsp">Advanced
 											Search</a></li>
 								</ul>
 								<!-- /.navbar-nav -->

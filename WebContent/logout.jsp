@@ -173,8 +173,6 @@
 							<!-- /.nav-outer -->
 						</div>
 						<!-- /.navbar-collapse -->
-
-
 					</div>
 					<!-- /.nav-bg-class -->
 				</div>
