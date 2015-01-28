@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*, cs122b.Tables.*"
+ %>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -220,14 +224,22 @@
 	    <div class="panel-body">
 			<div class="row">
                 <div class="row">
+                	<%-- <%
+                		Integer success = (Integer)session.getAttribute("checkout-status");
+                		if (success.equals(-1)) {
+                	%>
+                	<p class="info-title" style="color: red"> Incorrect Information! </p>
+                	<%
+                		}
+                	%> --%>
                     <p class="text title-tag-lin">Please fill out all customer information</p>
-                    <form class="register-form" role="form">
+                    <form class="register-form" role="form" action="checkout" method="POST" >
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail">Credit Card Number<span>*</span></label>
                             <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword">Expiration Date<span>*</span></label>
+                            <label class="info-title" for="exampleInputPassword">Expiration Date (MM-DD-YYYY)<span>*</span></label>
                             <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword">
                         </div>
                         <div class="form-group">
@@ -238,7 +250,7 @@
                             <label class="info-title" for="exampleInputPassword">Last Name<span>*</span></label>
                             <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword">
                         </div>
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Checkout</button>
+                        <input type="submit" class="btn-upper btn btn-primary checkout-page-button"></button>
                     </form>
                 </div>		
 			</div>			
@@ -261,7 +273,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
+                   Copyright Â© 2014
                     <a href="home.html">FabFlix</a>
                     - All rights Reserved
                 </div>
@@ -288,7 +300,7 @@
     <script src="assets/js/wow.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 
-	<!-- For demo purposes – can be removed on production -->
+	<!-- For demo purposes â can be removed on production -->
 	
 	<script src="switchstylesheet/switchstylesheet.js"></script>
 	
@@ -305,7 +317,7 @@
 		   $('.show-theme-options').delay(2000).trigger('click');
 		});
 	</script>
-	<!-- For demo purposes – can be removed on production : End -->
+	<!-- For demo purposes â can be removed on production : End -->
 
 	
 

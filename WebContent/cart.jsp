@@ -73,7 +73,7 @@
 			<div class="cnt-account">
 				<ul class="list-unstyled">
 					<li><a href="cart.jsp"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-					<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
+					<li><a href="checkout.jsp"><i class="icon fa fa-key"></i>Checkout</a></li>
 					<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
 				</ul>
 			</div><!-- /.cnt-account -->
@@ -283,9 +283,10 @@
 				<tr>
 					<td>
 						<div class="cart-checkout-btn pull-right">
-						<form action="cart" method="POST">
-							<input type="submit" id='checkout' type="button" class="btn btn-primary" value="PROCCED TO CHEKOUT">
-						</form>
+<!-- 						<form action="checkout" method="POST"> -->
+<!-- 							<input type="submit" id='checkout' type="button" class="btn btn-primary" value="PROCCED TO CHEKOUT"> -->
+<!-- 						</form> -->
+							<a href="checkout" class="btn btn-primary">Proceed to Checkout!</a>
 						</div>
 					</td>
 				</tr>

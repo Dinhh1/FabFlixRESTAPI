@@ -100,4 +100,12 @@
   	<servlet-name>login</servlet-name>
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>checkout</servlet-name>
+  	<servlet-class>cs122b.Servlets.Checkout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>checkout</servlet-name>
+  	<url-pattern>/checkout</url-pattern>
+  </servlet-mapping>
 </web-app>

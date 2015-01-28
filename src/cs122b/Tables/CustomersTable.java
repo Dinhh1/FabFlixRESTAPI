@@ -253,6 +253,40 @@ public class CustomersTable extends Table {
 		return c;
     }
     
+    /**
+     * Query database to get customer based on firstName, lastName and cc_id for checkout
+     * 
+     * @param firstName Customer first_name
+     * @param lastName Customer last_name
+     * @param cc_id Customer creditcard id
+     * @return Customer object matching given parameter
+     * @throws SQLException
+     */
+    public Customer getCustomer(String firstName, String lastName, String cc_id) throws SQLException {
+        String sql = "SELECT * FROM customers where first_name = ? and last_name = ? and cc_id = ?";
+    	Connection con = ConnectionManager.getConnection();
+    	PreparedStatement queryStatement = con.prepareStatement(sql);
+		queryStatement.setString(1, firstName);
+		queryStatement.setString(2, lastName);
+		queryStatement.setString(3, cc_id);
+		ResultSet rs = queryStatement.executeQuery();
+		Customer c = new Customer();
+		if (rs.next()) {
+			c.setId(rs.getInt("id"));
+			c.setFirstName(rs.getString("first_name"));
+			c.setLastName(rs.getString("last_name"));
+			c.setCreditCardId(rs.getString("cc_id"));
+			c.setAddress(rs.getString("address"));
+			c.setPassword("");
+		} else {
+			c = null;
+		}
+		queryStatement.close();
+		rs.close();
+		con.close();
+		return c;
+    }
+    
     public int getTableSize() {
         return 0;
     }

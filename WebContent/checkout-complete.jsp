@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.ArrayList, cs122b.Tables.*"
+ %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,7 +14,7 @@
 	    <meta name="keywords" content="MediaCenter, Template, eCommerce">
 	    <meta name="robots" content="all">
 
-	    <title>Unicase</title>
+	    <title>FabFlix</title>
 
 	    <!-- Bootstrap Core CSS -->
 	    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -21,11 +24,21 @@
 	    <link rel="stylesheet" href="assets/css/green.css">
 	    <link rel="stylesheet" href="assets/css/owl.carousel.css">
 		<link rel="stylesheet" href="assets/css/owl.transitions.css">
-		<!--<link rel="stylesheet" href="assets/css/owl.theme.css">-->
 		<link href="assets/css/lightbox.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/animate.min.css">
 		<link rel="stylesheet" href="assets/css/rateit.css">
 		<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+
+		<!-- Demo Purpose Only. Should be removed in production -->
+		<link rel="stylesheet" href="assets/css/config.css">
+
+		<link href="assets/css/green.css" rel="alternate stylesheet" title="Green color">
+		<link href="assets/css/blue.css" rel="alternate stylesheet" title="Blue color">
+		<link href="assets/css/red.css" rel="alternate stylesheet" title="Red color">
+		<link href="assets/css/orange.css" rel="alternate stylesheet" title="Orange color">
+		<link href="assets/css/dark-green.css" rel="alternate stylesheet" title="Darkgreen color">
+		<!-- Demo Purpose Only. Should be removed in production : END -->
+
 		
 		<!-- Icons/Glyphs -->
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -43,22 +56,18 @@
 		<![endif]-->
 
 	</head>
-    <body class="cnt-home">
-	
-		
-	
+<body class="cnt-home">	
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
-
-	<!-- ============================================== TOP MENU ============================================== -->
+<!-- ============================================== TOP MENU ============================================== -->
 <div class="top-bar animate-dropdown">
 	<div class="container">
 		<div class="header-top-inner">
 			<div class="cnt-account">
-				<ul class="list-unstyled">  
+				<ul class="list-unstyled">
 					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
-					<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
+					<li><a href="login"><i class="icon fa fa-sign-in"></i>Login</a></li>
 				</ul>
 			</div><!-- /.cnt-account -->
 			<div class="clearfix"></div>
@@ -73,25 +82,29 @@
 					<!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
 	<a href="home.html">
-		
 		<img src="assets/images/logo.png" alt="">
-
 	</a>
 </div><!-- /.logo -->
-<!-- ============================================================= LOGO : END ============================================================= -->				</div><!-- /.logo-holder -->
+<!-- ============================================================= LOGO : END ============================================================= -->				    </div><!-- /.logo-holder -->
 
-                <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
+				<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
 <!-- ============================================================= SEARCH AREA ============================================================= -->
-                    <div class="search-area">
-                        <form>
-                            <div class="control-group">
-                                <input class="search-field" placeholder="Search here..." />
-                                <a class="search-button" href="#" ></a>    
-                            </div>
-                        </form>
-                    </div><!-- /.search-area -->
-<!-- ============================================================= SEARCH AREA : END ====================================================== -->
-                </div><!-- /.top-search-holder -->
+<div class="search-area">
+    <form>
+        <div class="control-group">
+            <input class="search-field" placeholder="Search here..." />
+
+            <a class="search-button" href="#" ></a>    
+
+        </div>
+    </form>
+</div><!-- /.search-area -->
+<!-- ============================================================= SEARCH AREA : END ============================================================= -->			
+</div><!-- /.top-search-holder -->
+					<!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+
+
+<!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->				</div><!-- /.top-cart-row -->
 			</div><!-- /.row -->
 
 		</div><!-- /.container -->
@@ -115,8 +128,15 @@
 	<div class="nav-outer">
 		<ul class="nav navbar-nav">
 			<li class="active dropdown yamm-fw">
-				<a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+				<a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>   
+<!--			</li>
+			<li class="dropdown yamm">
 			</li>
+
+			<li class="dropdown">
+			</li>
+			<li class="dropdown hidden-sm">
+			</li>-->
 			<li class="dropdown navbar-right">
 				<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Pages</a>
 				<ul class="dropdown-menu pages">
@@ -184,86 +204,24 @@
 </header>
 
 <!-- ============================================== HEADER : END ============================================== -->
-<div class="breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-inner">
-			<ul class="list-inline list-unstyled">
-				<li><a href="#">Home</a></li>
-				<li class='active'>Checkout</li>
-			</ul>
-		</div><!-- /.breadcrumb-inner -->
-	</div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+
 
 <div class="body-content outer-top-bd">
 	<div class="container">
-		<div class="checkout-box inner-bottom-sm">
+		<div class="sign-in-page inner-bottom-sm">
 			<div class="row">
-				<div class="col-md-8">
-					<div class="panel-group checkout-steps" id="accordion">
-						<!-- checkout-step-01  -->
-<div class="panel panel-default checkout-step-01">
+				<!-- Sign-in -->			
 
-	<!-- panel-heading -->
-		<div class="panel-heading">
-    	<h4 class="unicase-checkout-title">
-	        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
-	          <span>1</span>Order Information
-	        </a>
-	     </h4>
-    </div>
-    <!-- panel-heading -->
-
-	<div id="collapseOne" class="panel-collapse collapse in">
-
-		<!-- panel-body  -->
-	    <div class="panel-body">
-			<div class="row">
-                <div class="row">
-                    <p class="info-title" style="color: red">Incorrect Information!</p>
-                    <p class="text title-tag-lin">Please fill out all customer information</p>
-                    <form class="register-form" role="form" action="checkout" method="POST">
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail">Credit Card Number<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="cc_num">
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword">Expiration Date<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword" name="exp_date">
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword">First Name<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword" name="f_name">
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword">Last Name<span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="exampleInputPassword" name="l_name">
-                        </div>
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Checkout</button>
-                    </form>
-                </div>		
-			</div>			
-		</div>
-		<!-- panel-body  -->
-
-	</div><!-- row -->
-</div>
-<!-- checkout-step-01  -->
-	
-					</div><!-- /.checkout-steps -->
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.checkout-box -->
-	</div><!-- /.container -->
-</div><!-- /.body-content -->
+<!-- Sign-in -->
+<h1 class="">You've successfully Checked Out</h1>
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
-                   Copyright © 2014
-                    <a href="home.html">FabFlix</a>
+                   Copyright Â© 2014
+                    <a href="home.html">FabFlix. </a>
                     - All rights Reserved
                 </div>
             </div>
@@ -271,7 +229,6 @@
     </div>
 </footer>
 <!-- ============================================================= FOOTER : END============================================================= -->
-
 	<!-- JavaScripts placed at the end of the document so the pages load faster -->
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	
@@ -288,27 +245,5 @@
     <script src="assets/js/bootstrap-select.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
-
-	<!-- For demo purposes – can be removed on production -->
-	
-	<script src="switchstylesheet/switchstylesheet.js"></script>
-	
-	<script>
-		$(document).ready(function(){ 
-			$(".changecolor").switchstylesheet( { seperator:"color"} );
-			$('.show-theme-options').click(function(){
-				$(this).parent().toggleClass('open');
-				return false;
-			});
-		});
-
-		$(window).bind("load", function() {
-		   $('.show-theme-options').delay(2000).trigger('click');
-		});
-	</script>
-	<!-- For demo purposes – can be removed on production : End -->
-
-	
-
 </body>
 </html>
