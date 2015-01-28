@@ -33,18 +33,36 @@ public class Search extends HttpServlet {
 			String starsLastName = (String)request.getParameter("starLastName");
 			int page = Integer.parseInt(request.getParameter("page"));
 			int size = Integer.parseInt(request.getParameter("lmt"));
-			if (title != null && title.length() > 0) {
-				sql += "title like '%" + title + "%' ";
+			boolean isFirst = true;
+			if (!this.stringIsNullOrEmpty(title)) {
+				if (isFirst)
+					sql += "title like '%" + title + "%' ";
+				else 
+					sql += " and title like '%" + title + "%' ";
+				isFirst = false;
 			}
-			if (year != null && year.length() > 0) {
-				sql += "and year like '%" + year + "% ";
+			if (!this.stringIsNullOrEmpty(year)) {
+				if (isFirst)
+					sql += "year like '%" + year + "%' ";
+				else 
+					sql += "and year like '%" + year + "%' ";
+				isFirst = false;
 			}
-			if (director != null && director.length() > 0) {
-				sql += "and director like '%" + director + "%' ";
+			if (!this.stringIsNullOrEmpty(director)) {
+				if (isFirst)
+					sql += "director like '%" + director + "%' ";
+				else 
+					sql += "and director like '%" + director + "%' ";
+				isFirst = false;
 			}
 //			if ((starsFirstName != null || starsLastName != null) && (starsFirstName.length() > 0 || starsLastName.length() > 0)) {
 			if (this.stringIsNullOrEmpty(starsFirstName) != true || this.stringIsNullOrEmpty(starsLastName) != true) {
-				sql += "and id in (select sm.movie_id from stars_in_movies as sm where sm.star_id in (select s.id from stars as s where ";
+				if (isFirst) {
+					sql += "id in (select sm.movie_id from stars_in_movies as sm where sm.star_id in (select s.id from stars as s where ";
+				} else {
+					sql += "and id in (select sm.movie_id from stars_in_movies as sm where sm.star_id in (select s.id from stars as s where ";
+				}
+				isFirst = false;
 				if (this.stringIsNullOrEmpty(starsFirstName) != true && this.stringIsNullOrEmpty(starsLastName) != true) {
 					sql += "s.first_name like '%" + starsFirstName + "%' and s.last_name like '%" + starsLastName + "%'))";
 				} else if (this.stringIsNullOrEmpty(starsFirstName) != true && this.stringIsNullOrEmpty(starsLastName) == true) {
