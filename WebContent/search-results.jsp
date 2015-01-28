@@ -576,8 +576,9 @@
 			} else if (urlTag === "Year: Latest") {
 				urlString = urlString.replace(stringToReplace, "y_desc");
 			}
- 			tag.href = urlString;
- 		}
+			var pageNumber = getParameterFromURL(urlString, "page=");
+			urlString = urlString.replace(pageNumber, "1");
+			tag.href = urlString; 		}
 		
 		function resultsPerPageChange(tag) {
 			var urlTag = tag.innerHTML;
@@ -586,6 +587,8 @@
 			var urlString = url.slice(url.search("/Fab"), url.length);
 			var stringToReplace = getParameterFromURL(urlString, "lmt=");
 			urlString = urlString.replace(stringToReplace, urlTag);
+			var pageNumber = getParameterFromURL(urlString, "page=");
+			urlString = urlString.replace(pageNumber, "1");
 			tag.href = urlString;
 		}
 		
