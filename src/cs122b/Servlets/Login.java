@@ -32,9 +32,9 @@ public class Login extends HttpServlet {
 			MovieDB db = new MovieDB();
 			Customer c = db.Customers.getCustomerByEmail(email);
 			HttpSession session = request.getSession();
-			if (c == null) {
+			if (c == null || !c.getPassword().equals(password)) {
 				//out.println("Not a valid email!");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/404.html");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("login");
 				rd.forward(request, response);
 			}
 			else if(c.getPassword().equals(password)) {
@@ -42,11 +42,6 @@ public class Login extends HttpServlet {
 				c.setPassword(""); // set password to blank string so we dont store it.
 				session.setAttribute("user", c); // im going to store the full user object
 				response.sendRedirect("index.jsp");
-			}
-			else {
-				//out.println("Login Failed!");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("login");
-				rd.forward(request, response);
 			}
 		}
 	}
