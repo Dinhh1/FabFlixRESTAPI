@@ -19,6 +19,7 @@ public class Login extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("login_error", "");
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/sign-in.jsp");
 		rd.forward(request, response);
 	}
@@ -34,7 +35,8 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			if (c == null || !c.getPassword().equals(password)) {
 				//out.println("Not a valid email!");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("login");
+				request.getSession().setAttribute("login_error", "INVALID CREDENTIALS");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/sign-in.jsp");
 				rd.forward(request, response);
 			}
 			else if(c.getPassword().equals(password)) {

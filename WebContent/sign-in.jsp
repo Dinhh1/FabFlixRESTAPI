@@ -74,10 +74,17 @@
 				<div class="header-top-inner">
 					<div class="cnt-account">
 						<ul class="list-unstyled">
-							<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My
+							<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My
 									Cart</a></li>
-							<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
-							<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
+														<li><a id='login' href="#" onclick="checkLogin()"><i
+									class="icon fa fa-sign-in"></i> <%
+ 	if (session.getAttribute("user") == null) {
+ 				 out.print("Login");
+ 			 } else {
+ 				 out.print("Logout");
+ 			 }
+ %></a></li>
 						</ul>
 					</div>
 					<!-- /.cnt-account -->
@@ -262,6 +269,12 @@
  --%>
 						<form class="register-form outer-top-xs" role="form"
 							action="login" method="POST">
+							<p class="info-title" style="color: red">
+							<%
+							if ((String) session.getAttribute("login_error") != null)
+								out.print(session.getAttribute("login_error"));
+							%>
+							</p>
 							<div class="form-group">
 								<label class="info-title" for="exampleInputEmail1">Email
 									Address <span>*</span>

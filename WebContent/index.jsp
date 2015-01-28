@@ -370,7 +370,8 @@
 									<%
 										ArrayList<Movie> movies = (ArrayList<Movie>)session.getAttribute("latest_movies");
 										if (movies == null) {
-											response.sendRedirect("404.html");
+											System.out.println("Something went wrong and movies is null, so lets load movies again");
+											response.sendRedirect("/FabFlixRESTAPI/");
 										} else {
 											String htmlSkeleton = "<div class='item item-carousel'>";
 											htmlSkeleton += "<div class='products'>";
