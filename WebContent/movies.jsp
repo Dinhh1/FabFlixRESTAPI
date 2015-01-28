@@ -345,18 +345,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
 	    $(document).ready(function () {		
-	    	//initSearchButton();
 	    });
 	    
-	    function initSearchButton() {
-	    	$('#search_box').keypress(function(e){
-			      if(e.keyCode==13) {
-			    	  var query = $("#search_box").val();
-			    	  var query = query.replace(/\s/g, '%');
-			    	  urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
-			    	  }
-				});
-	    }
 	    
 		function checkLogin() {
 			if ($('#login').text().trim() == "Login") {
@@ -373,7 +363,6 @@
 			urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
 			tag.href = urlString;
 		}
-		
 	</script>
 
 	

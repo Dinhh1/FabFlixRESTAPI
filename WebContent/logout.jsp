@@ -90,12 +90,14 @@
 				<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
 <!-- ============================================================= SEARCH AREA ============================================================= -->
 <div class="search-area">
-    <form>
+    <form action="browse" method="GET">
         <div class="control-group">
-            <input class="search-field" placeholder="Search here..." />
-
-            <a class="search-button" href="#" ></a>    
-
+            <input type="hidden" name="by" value="search" />
+            <input id="search_box" type="text" class="search-field" placeholder="Search here..." name="arg"/>
+    		<input type="hidden" name="order" value="t_asc" />
+    		<input type="hidden" name="page" value="1" />
+    		<input type="hidden" name="lmt" value="6" />
+            <a class="search-button" href="#" onclick="searchMovies(this)"></a>    
         </div>
     </form>
 </div><!-- /.search-area -->
