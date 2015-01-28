@@ -210,9 +210,13 @@ public class MoviesTable extends Table {
      * @param sizeLmt - this limit the query to a certain size,
      * @return a list of movies that matches the name
      */
-    public ArrayList<Movie> getMoviesByName(String movieName, int pageNum, int sizeLmt, final String sortAttribute) {
+    public ArrayList<Movie> getMoviesStartingWith(String movieName, int pageNum, int sizeLmt, final String sortAttribute) {
         movieName += "%";
-        int offset = Table.calculateOffset(pageNum, sizeLmt);
+        return getMoviesNameHelper(movieName, pageNum, sizeLmt, sortAttribute);
+    }
+    
+    private ArrayList<Movie> getMoviesNameHelper(String movieName, int pageNum, int sizeLmt, final String sortAttribute) {
+    	int offset = Table.calculateOffset(pageNum, sizeLmt);
         ArrayList<Movie> query = new ArrayList<Movie>();
         ResultSet rs = null;
         Connection con = null;
@@ -247,6 +251,11 @@ public class MoviesTable extends Table {
             }
         }
         return query;
+    }
+    
+    public ArrayList<Movie> getMoviesByName(String movieName, int pageNum, int sizeLmt, final String sortAttribute) {
+        movieName = "%" + movieName + "%";
+        return getMoviesNameHelper(movieName, pageNum, sizeLmt, sortAttribute);
     }
     
     /**

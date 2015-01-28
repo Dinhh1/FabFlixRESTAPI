@@ -31,11 +31,13 @@ public class Browse extends HttpServlet {
 			String page = request.getParameter("page");
 			String lmt = request.getParameter("lmt");
 			if (browseParm.equalsIgnoreCase("title")) {
-				query = db.Movies.getMoviesByName(arg, Integer.parseInt(page), 
+				query = db.Movies.getMoviesStartingWith(arg, Integer.parseInt(page), 
 						Integer.parseInt(lmt), this.determineSort(order));
 			} else if (browseParm.equalsIgnoreCase("genre")) {
 				query = db.Movies.getMovieByGenre(arg, Integer.parseInt(page),
 						Integer.parseInt(lmt), this.determineSort(order));
+			} else if (browseParm.equalsIgnoreCase("search")) {
+				query = db.Movies.getMoviesByName(arg, Integer.parseInt(page), Integer.parseInt(lmt), this.determineSort(order));
 			}
 			if (query != null && query.size() > 0) {
 				HttpSession session = request.getSession();

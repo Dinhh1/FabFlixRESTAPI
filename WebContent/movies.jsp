@@ -99,18 +99,16 @@
 </div><!-- /.logo -->
 <!-- ============================================================= LOGO : END ============================================================= -->				</div><!-- /.logo-holder -->
 				<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
+				
 					<div class="contact-row">
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
 <div class="search-area">
-    <form>
+    <form role="form" action="browse" method="GET">
         <div class="control-group">
-
-
-            <input class="search-field" placeholder="Search here..." />
-
-            <a class="search-button" href="#" ></a>    
-
+            <input id="search_box" class="search-field" placeholder="Search here..." name="arg"/>
+            <input name="by" value="search" hidden/>
+            <a class="search-button" href="#" onclick="searchMovies(this)"></a>    
         </div>
     </form>
 </div><!-- /.search-area -->
@@ -344,6 +342,20 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
+	    $(document).ready(function () {		
+	    	initSearchButton();
+	    });
+	    
+	    function initSearchButton() {
+	    	$('#search_box').keypress(function(e){
+			      if(e.keyCode==13) {
+			    	  var query = $("#search_box").val();
+			    	  var query = query.replace(/\s/g, '%');
+			    	  urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
+			    	  }
+				});
+	    }
+	    
 		function checkLogin() {
 			if ($('#login').text().trim() == "Login") {
 				$('#login').attr('href','login');
@@ -352,6 +364,14 @@
 				$('#login').attr('href','logout');
 			}
 		}
+		
+		function searchMovies(tag) {
+			var query = $("#search_box").val();
+			var query = query.replace(/\s/g, '%');
+			urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
+			tag.href = urlString;
+		}
+		
 	</script>
 
 	
