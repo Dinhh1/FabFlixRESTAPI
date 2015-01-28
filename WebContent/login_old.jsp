@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*"
- %>
-    
+	pageEncoding="UTF-8" import="cs122b.DB.*, cs122b.Models.*, java.util.*"%>
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -15,10 +14,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+	type="text/javascript"></script>
 <!--webfonts-->
-<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700'
+	rel='stylesheet' type='text/css'>
 <!--//webfonts-->
 </head>
 <%
@@ -30,11 +35,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 } */
 
-%> 
+%>
 <body>
- 
-     <div class="container">  
-		<div class="jumbotron" style="background-color:#CEECF5">
+
+	<div class="container">
+		<div class="jumbotron" style="background-color: #CEECF5">
 			<h1>FabFlix Rest Client Test</h1>
 			<p>CS 122b</p>
 		</div>
@@ -47,26 +52,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="inset">
 				<!-----start-main---->
 				<form action="index.jsp" method="POST">
-			         <div>	
-						<span><label>Username</label></span>
-						<span><input type="text" class="textbox" id="username" name="user_name"></span>
-					 </div>
-					 <div>
-						<span><label>Password</label></span>
-					    <span><input type="password" class="password" id="pswd" name="password"></span>
-					 </div>
+					<div>
+						<span><label>Username</label></span> <span><input
+							type="text" class="textbox" id="username" name="user_name"></span>
+					</div>
+					<div>
+						<span><label>Password</label></span> <span><input
+							type="password" class="password" id="pswd" name="password"></span>
+					</div>
 					<div class="sign">
 						<div class="submit">
-						  <input type="submit" onclick="login()" value="LOGIN" >
+							<input type="submit" onclick="login()" value="LOGIN">
 						</div>
-						<span class="forget-pass">
-							<a href="#">Forgot Password?</a>
-						</spa	n>
+						<span class="forget-pass"> <a href="#">Forgot Password?</a>
+							<spa></spa	n>
+						</span>
 					</div>
-					</form>
-				</div>
+				</form>
 			</div>
-		<!-----//end-main---->
 		</div>
+		<!-----//end-main---->
+	</div>
 </body>
 </html>
