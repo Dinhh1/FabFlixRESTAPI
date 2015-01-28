@@ -47,7 +47,7 @@ public class Browse extends HttpServlet {
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/search-results.jsp");
 				rd.forward(request, response);
 			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/nosearch.html");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/nosearch.jsp");
 				rd.forward(request, response);
 			}
 		} catch (Exception e) {

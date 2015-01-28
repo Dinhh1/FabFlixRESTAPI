@@ -11,7 +11,7 @@
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
 
-<title>Unicase</title>
+<title>FabFlix</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -48,8 +48,6 @@
 	href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
 <!--[if lt IE 9]>
@@ -70,11 +68,17 @@
 				<div class="header-top-inner">
 					<div class="cnt-account">
 						<ul class="list-unstyled">
-							<li><a href="cart.jsp"><i
+							<li><a href="cart"><i
 									class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-							<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
-							<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
-						</ul>
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
+							<li><a id='login' href="#" onclick="checkLogin()"><i
+									class="icon fa fa-sign-in"></i> <%
+ 	if (session.getAttribute("user") == null) {
+ 				 out.print("Login");
+ 			 } else {
+ 				 out.print("Logout");
+ 			 }
+ %></a></li>						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<!-- /.header-top-inner -->
@@ -183,10 +187,6 @@
 					<div class="col-md-12 x-text text-center">
 						<h1>Sorry</h1>
 						<p>No result found for your search query</p>
-						<form role="form" class="outer-top-vs outer-bottom-xs" action="">
-							<input placeholder="Search" autocomplete="off">
-							<button class="  btn-default le-button">Go</button>
-						</form>
 						<a href="index.jsp"><i class="fa fa-home"></i> Go To Homepage</a>
 					</div>
 				</div>
@@ -232,27 +232,24 @@
 	<script src="assets/js/wow.min.js" type="text/javascript"></script>
 	<script src="assets/js/scripts.js" type="text/javascript"></script>
 
-	<!-- For demo purposes – can be removed on production -->
 
 	<script src="switchstylesheet/switchstylesheet.js"
 		type="text/javascript"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".changecolor").switchstylesheet({
-				seperator : "color"
-			});
-			$('.show-theme-options').click(function() {
-				$(this).parent().toggleClass('open');
-				return false;
-			});
-		});
+	$(document).ready(function() {
+		checkLogin();
+	});
 
-		$(window).bind("load", function() {
-			$('.show-theme-options').delay(2000).trigger('click');
-		});
+	function checkLogin() {
+		if ($('#login').text().trim() == "Login") {
+			$('#login').attr('href', 'login');
+		} else {
+			// bring them to a logout a page 
+			$('#login').attr('href', 'logout');
+		}
+	}
 	</script>
-	<!-- For demo purposes – can be removed on production : End -->
 
 
 

@@ -280,7 +280,7 @@
 			<div class="container">
 				<div class="col-xs-12 col-sm-6 no-padding">
 					<div class="copyright">
-						Copyright © 2014 <a href="index.jsp">FabFlix. </a> - All rights
+						Copyright © 2014 <a href="index.jsp	">FabFlix. </a> - All rights
 						Reserved
 					</div>
 				</div>
