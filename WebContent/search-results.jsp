@@ -398,16 +398,7 @@
 											<li class="prev"><a href="#" onclick="prevPressed(this)"><i
 													class="fa fa-angle-left"></i></a></li>
 											<li class="next"><a href="#"
-												onclick='<%String limit = request.getParameter("lmt");
-							int limInt = 0;
-							if (limit != null) {
-								limInt = Integer.parseInt(limit);
-							}
-							if (movies.size() < limInt) {
-								out.print("'return false;'");
-							} else {
-								out.print("'nextPressed(this)'");
-							}%>'><i
+												onclick='nextPressed(this)'><i
 													class="fa fa-angle-right"></i></a></li>
 										</ul>
 										<!-- /.list-inline -->
