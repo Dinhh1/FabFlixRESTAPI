@@ -78,9 +78,9 @@
 				<div class="header-top-inner">
 					<div class="cnt-account">
 						<ul class="list-unstyled">
-							<li><a href="cart.jsp"><i
+							<li><a href="cart"><i
 									class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-							<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
 							<li><a id='login' href="#" onclick="checkLogin()"><i
 									class="icon fa fa-sign-in"></i> <%
  	if (session.getAttribute("user") == null) {
@@ -344,7 +344,7 @@
 				<div class="container">
 					<div class="col-xs-12 col-sm-6 no-padding">
 						<div class="copyright">
-							Copyright © 2014 <a href="home.html">FabFlix</a> - All rights
+							Copyright © 2014 <a href="index.jsp">FabFlix</a> - All rights
 							Reserved
 						</div>
 					</div>

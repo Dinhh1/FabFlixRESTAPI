@@ -110,15 +110,19 @@
 
 					<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
 						<!-- ============================================================= SEARCH AREA ============================================================= -->
-						<div class="search-area">
-							<form action="">
-								<div class="control-group">
-									<input class="search-field" placeholder="Search here..." /> <a
-										class="search-button" href="#"></a>
-
-								</div>
-							</form>
-						</div>
+							<div class="search-area">
+								<form action="browse" method="GET">
+									<div class="control-group">
+										<input type="hidden" name="by" value="search" /> <input
+											id="search_box" type="text" class="search-field"
+											placeholder="Search here..." name="arg" /> <input
+											type="hidden" name="order" value="t_asc" /> <input
+											type="hidden" name="page" value="1" /> <input type="hidden"
+											name="lmt" value="6" /> <a class="search-button" href="#"
+											onclick="searchMovies(this)"></a>
+									</div>
+								</form>
+							</div>
 						<!-- /.search-area -->
 						<!-- ============================================================= SEARCH AREA : END ============================================================= -->
 					</div>
@@ -180,19 +184,6 @@
 	</header>
 
 	<!-- ============================================== HEADER : END ============================================== -->
-	<div class="breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-inner">
-				<ul class="list-inline list-unstyled">
-					<li><a href="index.jsp">Home</a></li>
-					<li class='active'>Advanced Search</li>
-				</ul>
-			</div>
-			<!-- /.breadcrumb-inner -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.breadcrumb -->
 
 	<div class="body-content outer-top-bd">
 		<div class="container">
@@ -296,18 +287,26 @@
 			src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
 			type="text/javascript"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				checkLogin();
-			});
+		$(document).ready(function() {
+			checkLogin();
+		});
 
-			function checkLogin() {
-				if ($('#login').text().trim() == "Login") {
-					$('#login').attr('href', 'login');
-				} else {
-					// bring them to a logout a page 
-					$('#login').attr('href', 'logout');
-				}
+		function checkLogin() {
+			if ($('#login').text().trim() == "Login") {
+				$('#login').attr('href', 'login');
+			} else {
+				// bring them to a logout a page 
+				$('#login').attr('href', 'logout');
 			}
+		}
+
+		function searchMovies(tag) {
+			var query = $("#search_box").val();
+			var query = query.replace(/\s/g, '%');
+			urlString = "browse?by=search&arg=" + query
+					+ "&order=t_asc&page=1&lmt=6";
+			tag.href = urlString;
+		}
 
 		</script>
 </body>

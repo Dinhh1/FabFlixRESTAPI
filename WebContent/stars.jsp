@@ -60,8 +60,7 @@
 	href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="assets/images/favicon.ico">
+
 
 <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
 <!--[if lt IE 9]>
@@ -84,7 +83,7 @@
 						<ul class="list-unstyled">
 							<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My
 									Cart</a></li>
-							<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
 							<li><a id='login' href="#" onclick="checkLogin()"><i
 									class="icon fa fa-sign-in"></i> <%
  	if (session.getAttribute("user") == null) {
@@ -304,7 +303,7 @@
 			<div class="container">
 				<div class="col-xs-12 col-sm-6 no-padding">
 					<div class="copyright">
-						Copyright © 2014 <a href="home.html">Unicase Shop.</a> - All
+						Copyright © 2015 <a href="index.jsp">FabFlix</a> - All
 						rights Reserved
 					</div>
 				</div>
