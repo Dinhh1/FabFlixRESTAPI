@@ -186,19 +186,6 @@
 	</header>
 
 	<!-- ============================================== HEADER : END ============================================== -->
-	<div class="breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-inner">
-				<ul class="list-inline list-unstyled">
-					<li><a href="home.html">Home</a></li>
-					<li class='active'>Authentication</li>
-				</ul>
-			</div>
-			<!-- /.breadcrumb-inner -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.breadcrumb -->
 
 	<div class="body-content outer-top-bd">
 		<div class="container">
@@ -293,7 +280,7 @@
 			<div class="container">
 				<div class="col-xs-12 col-sm-6 no-padding">
 					<div class="copyright">
-						Copyright Â© 2014 <a href="home.html">FabFlix. </a> - All rights
+						Copyright © 2014 <a href="index.jsp">FabFlix. </a> - All rights
 						Reserved
 					</div>
 				</div>

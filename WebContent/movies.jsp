@@ -60,8 +60,6 @@
 	href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
 <!--[if lt IE 9]>
@@ -172,7 +170,7 @@
 										href="/FabFlixRESTAPI/" data-hover="dropdown"
 										class="dropdown-toggle" data-toggle="dropdown">Home</a></li>
 
-									<li class="dropdown"><a href="advance-search.jsp">Advanced
+									<li class="dropdown"><a href="advanced-search.jsp">Advanced
 											Search</a></li>
 								</ul>
 								<!-- /.navbar-nav -->

@@ -16,7 +16,7 @@
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
 
-<title>Unicase</title>
+<title>FabFlix</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -66,8 +66,14 @@
 							<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My
 									Cart</a></li>
 							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
-							<li><a href="login"><i class="icon fa fa-sign-in"></i>Login</a></li>
-						</ul>
+							<li><a id='login' href="#" onclick="checkLogin()"><i
+									class="icon fa fa-sign-in"></i> <%
+						 	if (session.getAttribute("user") == null) {
+						 				 out.print("Login");
+						 			 } else {
+						 				 out.print("Logout");
+						 			 }
+ 							%></a></li></ul>
 					</div>
 					<!-- /.cnt-account -->
 					<div class="clearfix"></div>

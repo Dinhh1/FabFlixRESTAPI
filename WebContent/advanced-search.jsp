@@ -55,8 +55,7 @@
 	href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="assets/images/favicon.ico">
+
 
 <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
 <!--[if lt IE 9]>
@@ -74,11 +73,17 @@
 				<div class="header-top-inner">
 					<div class="cnt-account">
 						<ul class="list-unstyled">
-							<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My
+							<li><a href="cart"><i class="icon fa fa-shopping-cart"></i>My
 									Cart</a></li>
-							<li><a href="#"><i class="icon fa fa-key"></i>Checkout</a></li>
-							<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
-						</ul>
+							<li><a href="checkout"><i class="icon fa fa-key"></i>Checkout</a></li>
+							<li><a id='login' href="#" onclick="checkLogin()"><i
+									class="icon fa fa-sign-in"></i> <%
+ 	if (session.getAttribute("user") == null) {
+ 				 out.print("Login");
+ 			 } else {
+ 				 out.print("Logout");
+ 			 }
+ %></a></li>						</ul>
 					</div>
 					<!-- /.cnt-account -->
 					<div class="clearfix"></div>
@@ -287,6 +292,23 @@
 	<script src="assets/js/bootstrap-select.min.js" type="text/javascript"></script>
 	<script src="assets/js/wow.min.js" type="text/javascript"></script>
 	<script src="assets/js/scripts.js" type="text/javascript"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+			type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				checkLogin();
+			});
 
+			function checkLogin() {
+				if ($('#login').text().trim() == "Login") {
+					$('#login').attr('href', 'login');
+				} else {
+					// bring them to a logout a page 
+					$('#login').attr('href', 'logout');
+				}
+			}
+
+		</script>
 </body>
 </html>
