@@ -82,7 +82,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 					<!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
-	<a href="home.html">
+	<a href="index.jsp">
 		
 		<img src="assets/images/logo.png" alt="">
 
@@ -128,12 +128,11 @@
 	<div class="nav-outer">
 		<ul class="nav navbar-nav">
 			<li class="active dropdown yamm-fw">
-				<a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+				<a href="index.jsp" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
 			</li>
 
 			<li class="dropdown">
-				
-				<a href="category.html">Advanced Search</a>
+				<a href="advanced-search.jsp">Advanced Search</a>
 			</li>
 
 			
@@ -376,7 +375,7 @@
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
                    Copyright © 2014
-                    <a href="home.html">FabFlix.</a>
+                    <a href="index.jsp">FabFlix.</a>
                     - All rights Reserved
                 </div>
             </div>
