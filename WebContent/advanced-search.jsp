@@ -240,6 +240,9 @@
 										*will match portions of a larger string </span>
 								</label>
 							</div>
+							<input type="hidden" name="order" value="t_asc" />
+    						<input type="hidden" name="page" value="1" />
+    						<input type="hidden" name="lmt" value="6" />
 							<button type="submit"
 								class="btn-upper btn btn-primary checkout-page-button">Search</button>
 						</form>
