@@ -199,43 +199,43 @@
 												<div class="row">
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">Action</a></li>
-															<li><a href="category.html">Adventure</a></li>
-															<li><a href="category.html">Animation</a></li>
-															<li><a href="category.html">Biography</a></li>
-															<li><a href="category.html">Comedy</a></li>
-															<li><a href="category.html">Crime</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Action</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Adventure</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Animation</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Biography</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Comedy</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Crime</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">Documentary</a></li>
-															<li><a href="category.html">Drama</a></li>
-															<li><a href="category.html">Family</a></li>
-															<li><a href="category.html">Fantasy</a></li>
-															<li><a href="category.html">Film-Noir</a></li>
-															<li><a href="category.html">History</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Documentary</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Drama</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Family</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Fantasy</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Film-Noir</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>History</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">Horror</a></li>
-															<li><a href="category.html">Music</a></li>
-															<li><a href="category.html">Musical</a></li>
-															<li><a href="category.html">Mystery</a></li>
-															<li><a href="category.html">Romance</a></li>
-															<li><a href="category.html">Sci-Fi</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Horror</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Music</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Musical</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Mystery</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Romance</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Sci-Fi</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">Sport</a></li>
-															<li><a href="category.html">Thriller</a></li>
-															<li><a href="category.html">War</a></li>
-															<li><a href="category.html">Western</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Sport</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Thriller</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>War</a></li>
+															<li><a href="#" onclick='categoryFunction(this)'>Western</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
@@ -254,57 +254,57 @@
 												<div class="row">
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">0</a></li>
-															<li><a href="category.html">1</a></li>
-															<li><a href="category.html">2</a></li>
-															<li><a href="category.html">3</a></li>
-															<li><a href="category.html">4</a></li>
-															<li><a href="category.html">5</a></li>
-															<li><a href="category.html">6</a></li>
-															<li><a href="category.html">7</a></li>
-															<li><a href="category.html">8</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>0</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>1</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>2</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>3</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>4</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>5</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>6</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>7</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>8</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">9</a></li>
-															<li><a href="category.html">A</a></li>
-															<li><a href="category.html">B</a></li>
-															<li><a href="category.html">C</a></li>
-															<li><a href="category.html">D</a></li>
-															<li><a href="category.html">E</a></li>
-															<li><a href="category.html">F</a></li>
-															<li><a href="category.html">G</a></li>
-															<li><a href="category.html">H</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>9</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>A</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>B</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>C</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>D</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>E</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>F</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>G</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>H</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">I</a></li>
-															<li><a href="category.html">J</a></li>
-															<li><a href="category.html">K</a></li>
-															<li><a href="category.html">L</a></li>
-															<li><a href="category.html">M</a></li>
-															<li><a href="category.html">N</a></li>
-															<li><a href="category.html">O</a></li>
-															<li><a href="category.html">P</a></li>
-															<li><a href="category.html">Q</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>I</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>J</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>K</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>L</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>M</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>N</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>O</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>P</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>Q</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
 													<div class="col-sm-12 col-md-3">
 														<ul class="links list-unstyled">
-															<li><a href="category.html">R</a></li>
-															<li><a href="category.html">S</a></li>
-															<li><a href="category.html">T</a></li>
-															<li><a href="category.html">U</a></li>
-															<li><a href="category.html">V</a></li>
-															<li><a href="category.html">W</a></li>
-															<li><a href="category.html">X</a></li>
-															<li><a href="category.html">Y</a></li>
-															<li><a href="category.html">Z</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>R</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>S</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>T</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>U</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>V</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>W</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>X</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>Y</a></li>
+															<li><a href="#" onclick='titleQuery(this)'>Z</a></li>
 														</ul>
 													</div>
 													<!-- /.col -->
@@ -663,6 +663,16 @@
 			var query = query.replace(/\s/g, '%');
 			urlString = "browse?by=search&arg=" + query + "&order=t_asc&page=1&lmt=6";
 			tag.href = urlString;
+		}
+		
+		function categoryFunction(cat) {
+			cat.href = "browse?by=genre&arg=" + cat.innerHTML
+					+ "&order=t_asc&page=1&lmt=6";
+		}
+
+		function titleQuery(title) {
+			title.href = "browse?by=title&arg=" + title.innerHTML
+					+ "&order=t_asc&page=1&lmt=6";
 		}
 	</script>
 				<!-- For demo purposes â can be removed on production : End -->
