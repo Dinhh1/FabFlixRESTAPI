@@ -26,4 +26,17 @@ public abstract class Table {
         public static final String Y_DESC = "ORDER BY YEAR DESC";
         public static final String Y_ASC = "ORDER BY YEAR";
     }
+    
+    public static String ConvertOrderParameterToSQL(String order) {
+    	String sort = Table.SortAttributes.T_ASC;
+		if (order.equalsIgnoreCase("t_asc")) 
+			sort = Table.SortAttributes.T_ASC;
+		 else if (order.equalsIgnoreCase("t_desc")) 
+			sort = Table.SortAttributes.T_DESC;
+		 else if (order.equalsIgnoreCase("y_asc"))
+			 sort = Table.SortAttributes.Y_ASC;
+		 else if (order.equalsIgnoreCase("y_desc"))
+			 sort = Table.SortAttributes.Y_DESC;
+		return sort;
+    }
 }

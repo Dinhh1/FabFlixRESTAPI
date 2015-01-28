@@ -228,7 +228,7 @@
 									class="form-control unicase-form-control text-input"
 									id="starLastName" name="starLastName">
 							</div>
-							<div class="radio outer-xs">
+							<!-- <div class="radio outer-xs">
 								<label> <input type="radio" name="fuzzySearch"
 									id="fuzzySearch" value="selected">Fuzzy Search <span>
 										*will match spelling errors to some extent </span>
@@ -239,7 +239,7 @@
 									id="matchSubstring" value="selected">Match Substring <span>
 										*will match portions of a larger string </span>
 								</label>
-							</div>
+							</div> -->
 							<input type="hidden" name="order" value="t_asc" />
     						<input type="hidden" name="page" value="1" />
     						<input type="hidden" name="lmt" value="6" />

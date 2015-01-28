@@ -147,11 +147,10 @@
 							id="mc-horizontal-menu-collapse">
 							<div class="nav-outer">
 								<ul class="nav navbar-nav">
-									<li class="active dropdown yamm-fw"><a href="home.html"
+									<li class="active dropdown yamm-fw"><a href="/FabFlixRestAPI/"
 										data-hover="dropdown" class="dropdown-toggle"
 										data-toggle="dropdown">Home</a></li>
-
-									<li class="dropdown"><a href="category.html">Advanced
+									<li class="dropdown"><a href="advanced-search.jsp">Advanced
 											Search</a></li>
 
 								</ul>

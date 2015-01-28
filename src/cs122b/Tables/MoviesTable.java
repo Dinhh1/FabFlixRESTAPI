@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by dinhho on 1/14/15.
@@ -57,6 +60,105 @@ public class MoviesTable extends Table {
         return MovieDB.DBConstant.TBL_MOVIES;
     }
 
+    public ArrayList<Movie> getMoviesWithQueryString(String sql, int page, int size, final String sortAttribute) {
+    	int offset = Table.calculateOffset(page, size);
+    	 ArrayList<Movie> query = new ArrayList<Movie>();
+         PreparedStatement pS = null;
+         ResultSet rs = null;
+         Connection con = null;
+         sql = sql + sortAttribute + " limit ?, ?";
+         System.out.println(sql);
+         try {
+ 			con = ConnectionManager.getConnection();
+         	pS = con.prepareStatement(sql);
+             pS.setInt(1, offset);
+             pS.setInt(2, size);
+             rs = pS.executeQuery();
+             // test code
+             // testing to get all genre belong to movies, and stars in that movie
+             // end test code
+             while (rs.next()) {
+                 Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+                         rs.getString(6));
+                 query.add(m);
+             }
+         } catch (SQLException e) {
+             System.out.println(e.getMessage());
+         } finally {
+             try {
+                 pS.close();
+                 rs.close();
+                 con.close();
+             } catch (SQLException e) {
+                 System.out.println(e.getMessage());
+             }
+         }
+         return query;
+    }
+    
+    public ArrayList<Movie> getMoviesWithParms(HashMap<String, String> params) {
+//    	String sql = "select * from movies as m where m.title like '%__title__' and m.year like '%__year__%' and m.director like '%__director__%' and m.id in ";
+//        sql += "(select sm.movie_id from stars_in_movies as sm where sm.star_id in ";
+//        sql += "(select s.id from stars as s where s.last_name like '%__lstarname__%' and s.first_name like '%__fstarname__%')) ";
+//        sql += "__sort_order__ limit __page__, __size__";
+        String sql = "select * from movies as m where m.title like '%__title__%' and m.year like '%__year__%' and m.director like '%__director__%'";
+        sql += " and m.id in (select sm.movie_id from stars_in_movies as sm where sm.star_id in (select s.id from stars as s where s.last_name like '%__lstarname__%' and s.first_name like '%__fstarname__%'))";
+        sql += " __sort_order__ limit __page__,__size__";
+        System.out.println("we are here");
+        ArrayList<Movie> query = new ArrayList<Movie>();
+        // checking params for error
+        if (params.get("title") == null)
+        	params.put("title", "");
+        if (params.get("year") == null)
+        	params.put("year", "");
+        if (params.get("director") == null)
+        	params.put("director", "");
+        if (params.get("starFirstName") == null)
+        	params.put("starFirstName", "");
+        if (params.get("starLastName") == null)
+        	params.put("starLastName", "");
+        if (params.get("page") == null)
+        	params.put("page", "1");
+        if (params.get("lmt") == null)
+        	params.put("lmt", "6");
+        if (params.get("order") == null)
+        	params.put("order", "t_asc");
+        // now we can make the query
+        sql = sql.replace("__title__", params.get("title"));
+        sql = sql.replace("__year__", params.get("year"));
+        sql = sql.replace("__director__", params.get("director"));
+        sql = sql.replace("__lstarname__", params.get("starLastName"));
+        sql = sql.replace("__fstarname__", params.get("starFirstName"));
+        sql = sql.replace("__sort_order__", Table.ConvertOrderParameterToSQL(params.get("order")));
+        sql = sql.replace("__page__", params.get("page"));
+        sql = sql.replace("__size__", params.get("lmt"));
+        System.out.println(sql);
+        Connection con = null;
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+        	con = ConnectionManager.getConnection();
+			statement = con.createStatement();
+			rs = statement.executeQuery(sql);
+          while (rs.next()) {
+              Movie m = new Movie(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+                      rs.getString(6));
+              query.add(m);
+          }
+      } catch (SQLException e) {
+          System.out.println(e.getMessage());
+      } finally {
+          try {
+              statement.close();
+              rs.close();
+              con.close();
+          } catch (SQLException e) {
+              System.out.println(e.getMessage());
+          }
+      }
+      return query;
+    }
+    
     /**
      * Get a list of movies staring a given star id
      *
