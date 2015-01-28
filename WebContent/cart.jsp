@@ -74,8 +74,14 @@
 				<ul class="list-unstyled">
 					<li><a href="cart.jsp"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="checkout.jsp"><i class="icon fa fa-key"></i>Checkout</a></li>
-					<li><a href="#"><i class="icon fa fa-sign-in"></i>Login</a></li>
-				</ul>
+					<li><a id='login' href="#" onclick="checkLogin()"><i class="icon fa fa-sign-in" ></i>
+					 <%
+					 if (session.getAttribute("user") == null) {
+						 out.print("Login");
+					 } else {
+						 out.print("Logout");
+					 }
+					%></a></li>				</ul>
 			</div><!-- /.cnt-account -->
 			<div class="clearfix"></div>
 		</div><!-- /.header-top-inner -->
@@ -286,7 +292,7 @@
 <!-- 						<form action="checkout" method="POST"> -->
 <!-- 							<input type="submit" id='checkout' type="button" class="btn btn-primary" value="PROCCED TO CHEKOUT"> -->
 <!-- 						</form> -->
-							<a href="checkout" class="btn btn-primary">Proceed to Checkout!</a>
+							<a id="checkout_button" href="#" class="btn btn-primary" onclick="checkout(this)">Proceed to Checkout!</a>
 						</div>
 					</td>
 				</tr>
@@ -312,9 +318,15 @@
     </div>
 </footer>
 <!-- ============================================================= FOOTER : END============================================================= -->
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
-	
+	function checkout(tag) {
+		if ($('#login').text().trim() == "Login") {
+			tag.href = "login";
+		} else {
+			tag.href = "checkout";
+		}
+	}
 	</script>
 
 	
