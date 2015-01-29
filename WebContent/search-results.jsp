@@ -471,9 +471,10 @@
 								<div class="text-right">
 									<div class="pagination-container">
 										<ul class="list-inline list-unstyled">
-											<li class="prev"><a href="#"><i
+											<li class="prev"><a href="#" onclick="prevPressed(this)"><i
 													class="fa fa-angle-left"></i></a></li>
-											<li class="next"><a href="#"><i
+											<li class="next"><a href="#"
+												onclick='nextPressed(this)'><i
 													class="fa fa-angle-right"></i></a></li>
 										</ul>
 										<!-- /.list-inline -->
