@@ -4,14 +4,18 @@ import cs122b.Models.*;
 import cs122b.DB.*;
 import cs122b.Utilities.*;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+
 
 /**
  * Created by dinhho on 1/14/15.
@@ -583,6 +587,40 @@ public class MoviesTable extends Table {
         }
         rs.close();
         return result;
+    }
+    
+    public String addMovieWithSP(String title, int year, String director, 
+    							 String burl, String turl, String sfname, String slname, String genre) {
+    	Connection con = null;
+    	CallableStatement cStatement = null;
+    	String output = "";
+    	String sql = "{(call AddMovie(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+    	try {
+    		
+    		con = ConnectionManager.getConnection();
+    		cStatement = con.prepareCall(sql);
+    		cStatement.setString(1, title);
+    		cStatement.setInt(2, year);
+    		cStatement.setString(3, director);
+    		cStatement.setString(4, burl);
+    		cStatement.setString(5, turl);
+    		cStatement.setString(6, sfname);
+    		cStatement.setString(7, slname);
+    		cStatement.setString(8, genre);
+    		cStatement.registerOutParameter(9, Types.VARCHAR);
+    		cStatement.executeQuery();
+    		output = cStatement.getString("output");
+    	} catch (SQLException e) {
+			System.out.print(e.getMessage());
+    	} finally {
+    		try {
+    			cStatement.close();
+    			con.close();
+    		} catch (SQLException e) {
+    			System.out.print(e.getMessage());
+    		}
+    	}
+    	return output;
     }
 
 
