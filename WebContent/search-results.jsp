@@ -425,8 +425,12 @@
 													htmlSkeleton += "</div><!-- /.image -->";
 													htmlSkeleton += "</div><!-- /.product-image -->";
 													htmlSkeleton += "<div class='product-info text-left'>";
+													htmlSkeleton += "<div class='popup'>";
+													htmlSkeleton += "<a href='__URL__'><img src='__IMG__' alt='' onerror=\"this.src='assets/images/no_image.png'\"></a>";
+													htmlSkeleton += "<h6 class='name'>Stars: __STARS__</h6>";
+													htmlSkeleton += "<h6 class='name'>Year: __RELEASE_YEAR__</h6>";
+													htmlSkeleton += "</div><!-- /.popup -->";
 													htmlSkeleton += "<h3 class='name'><a href='__URL__'>__TITLE__</a></h3>";
-													htmlSkeleton += "<div class='description'></div>";
 													htmlSkeleton += "<div class='product-price'>";	
 													htmlSkeleton += "<span class='price'>$1.49</span>";	
 													htmlSkeleton += "</div><!-- /.product-price -->";
@@ -449,6 +453,21 @@
 												String htmlRow = htmlSkeleton;
 												htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
 												htmlRow = htmlRow.replaceFirst("__IMG__", m.getBannerURL());
+												htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
+												htmlRow = htmlRow.replaceFirst("__IMG__", m.getBannerURL());
+												
+												String starsString = "";
+												ArrayList<Star> stars = m.getStarsOfMovie();
+												
+												for (Star star : stars)
+												{
+													starsString += star.getFirstName() + " " + star.getLastName() + ", ";
+												}
+												
+												starsString = starsString.substring(0, starsString.length() - 2);
+												
+												htmlRow = htmlRow.replaceFirst("__STARS__", starsString);
+												htmlRow = htmlRow.replaceFirst("__RELEASE_YEAR__", String.valueOf(m.getYear()));
 												htmlRow = htmlRow.replaceFirst("__URL__", "movies?id=" + m.getId());
 												htmlRow = htmlRow.replaceFirst("__TITLE__", m.getTitle());
 												htmlRow = htmlRow.replaceFirst("__ADD_URL__", "cart?mid=" + m.getId() + "&action=add");
@@ -667,6 +686,12 @@
 			title.href = "browse?by=title&arg=" + title.innerHTML
 					+ "&order=t_asc&page=1&lmt=6";
 		}
+		
+		$(".product-info.text-left").mouseover(function() {
+		    $(this).children(".popup").show();
+		}).mouseout(function() {
+		    $(this).children(".popup").hide();
+		});
 	</script>
 				<!-- For demo purposes â can be removed on production : End -->
 

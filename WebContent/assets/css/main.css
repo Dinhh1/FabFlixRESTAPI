@@ -5170,3 +5170,26 @@ a {
 .body-content .sign-in-page .register-form .form-group {
   margin-bottom: 25px;
 }
+
+.product-info.text-left .popup {
+  display:none;
+  position:absolute;
+  border:1px solid #000;
+  width:100%;
+  height:70%;
+  z-index: 1000;
+  top:10px;
+  background-color:#abd07e;
+}
+
+.popup a img {
+  display:block;
+    margin:auto;
+    width:143px;
+    height:193px;
+    padding-top:10px;
+}
+
+.popup h6 {
+  padding-left:10px;
+}
