@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FABFLIX API TEST</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="ui-widget">
+        <label for="city">Your city: </label>
+        <input id="city">
+            Powered by <a href="http://geonames.org">geonames.org</a>
+    </div>
+  </body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC25m4lR2HvmId6TaQfUZ3xwwuyO7BlHrQ">
+        </script>
+    <script>
+     $(function() {
+        function log( message ) {
+          $( "<div>" ).text( message ).prependTo( "#log" );
+          $( "#log" ).scrollTop( 0 );
+        }
+     
+        $( "#city" ).autocomplete({
+          source: function( request, response ) {
+            $.ajax({
+              url: "http://gd.geobytes.com/AutoCompleteCity",
+              dataType: "jsonp",
+              data: {
+                q: request.term
+              },
+              success: function( data ) {
+                response( data );
+              }
+            });
+          },
+          minLength: 3,
+          select: function( event, ui ) {
+            log( ui.item ?
+              "Selected: " + ui.item.label :
+              "Nothing selected, input was " + this.value);
+          },
+          open: function() {
+            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+          },
+          close: function() {
+            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+          }
+        });
+      });
+        // $(document).ready(function () {
+        //     alert("ready");
+        // });
+        // var PROXY_URL = "https://students.ics.uci.edu/~dinhh1/myProxy.php?";
+
+
+        // function moviedb() {
+        //     var urlString = "http://localhost:8080/FabFlixRESTAPI/api/search_complete/jsonp/query?query=Batman&callback=callBack";
+        //     $.ajax({
+        //         url: urlString,
+        //         dataType: "jsonp",
+        //         jsonpCallback: "callBack",
+        //         error: errorLoading
+        //     });
+        // }
+        
+
+        // function callBack(data) {
+        //     alert(JSON.stringify(data));
+        //     movies = $.isArray(data.movie) ? data.movie : [data.movie];
+        //     for (var i = 0; i < movies.length; i++) {
+        //         var movie = movies[i];
+        //         alert(JSON.stringify(movie));
+
+        //     }
+        // }
+
+
+
+        
+        // function errorLoading(xmlErr, errMsg, errThrwn) {
+        //     alert("Load failed: " + errMsg + ": " + errThrwn);
+        // }
+
+    </script>
+</html>
