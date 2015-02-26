@@ -64,6 +64,7 @@ public class MoviesTable extends Table {
         return MovieDB.DBConstant.TBL_MOVIES;
     }
     
+    //TODO:: NICK, DERRICK PLEASE REVIEW THIS QUERY TO SEE IF this meets class requirements
     public ArrayList<String> getMovieTitlesForQuery(ArrayList<String> params) {
     	ArrayList<String> query = new ArrayList<String>();
     	Statement s = null;
