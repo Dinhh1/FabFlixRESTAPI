@@ -39,6 +39,9 @@
 	href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 
+<!-- need to add this for autocomplete -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+
 </head>
 <body class="cnt-home">
 
@@ -475,9 +478,34 @@
 				<script
 					src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
 					type="text/javascript"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 				<script type="text/javascript">
-					$(document).ready(function() {
-					});
+				$(function() {
+					checkLogin();
+			        $( "#search_box" ).autocomplete({
+			          source: function( request, response ) {
+			            $.ajax({
+			              url: "http://localhost:8080/FabFlixRESTAPI/api/search_complete/jsonp/query",
+			              dataType: "jsonp",
+			              data: {
+			                query: request.term
+			              },
+			              success: function( data ) {
+			                response( data );
+			              }
+			            });
+			          },
+			          minLength: 1,
+			          select: function( event, ui ) {
+			          },
+			          open: function() {
+			            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+			          },
+			          close: function() {
+			            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+			          }
+			        });
+			      });
 
 					function checkLogin() {
 						if ($('#login').text().trim() == "Login") {
@@ -520,6 +548,7 @@
 					}).mouseout(function() {
 					    $(this).children(".popup").hide();
 					});
+					
 				</script>
 
 

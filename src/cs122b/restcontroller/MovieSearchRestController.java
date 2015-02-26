@@ -56,7 +56,6 @@ public class MovieSearchRestController {
 	@Path("/jsonp/query")
 	@Produces({"application/javascript"})
 	public JSONWithPadding getMoviesJSONP(@Context UriInfo uriInfos) {
-//		ResponseTitle response = getMovies(uriInfos);
 		JSONArray response = getMovies(uriInfos);
 		MultivaluedMap<String, String> params = uriInfo.getQueryParameters();
 		String callback = params.getFirst("callback");
