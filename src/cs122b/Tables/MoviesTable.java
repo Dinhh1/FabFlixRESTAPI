@@ -73,12 +73,16 @@ public class MoviesTable extends Table {
     	//NICK:: can you review my full text search query here.
     	// im using the AND SEMANTICS by adding the + sign in front of every token
     	String sql = "select title from movies where match(title) against ('";
+    	String space = "";
     	for (String param: params) {
+    		// if query contains a "'", it will throw an error, be safe just to remove it
+    		if (param.contains("'")) {
+    			param = param.replace("'", "");
+    		}
     		param = "+" + param;
-    		sql += param + " ";
+    		sql += space + param;
+    		space = " ";
     	}
-    	// little hacky but i'm just removing the extra space from the loop
-    	sql = sql.substring(0, sql.length()-1);
     	// close the query parenthesis
     	sql += "')";
         System.out.println(sql);
