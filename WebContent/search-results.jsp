@@ -688,7 +688,7 @@
 		}
 		
 		$(".product-info.text-left").mouseover(function() {
-		    $(this).children(".popup").show();
+			$(this).children(".popup").show();
 		}).mouseout(function() {
 		    $(this).children(".popup").hide();
 		});
