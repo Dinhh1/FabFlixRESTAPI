@@ -60,6 +60,9 @@
 	href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 
+<!-- need to add this for autocomplete -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+
 
 <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
 <!--[if lt IE 9]>
@@ -354,14 +357,38 @@
 		<!-- ============================================================= FOOTER : END============================================================= -->
 
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
-			type="text/javascript"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				checkLogin();
-			});
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        
+        <script>
+		$(function() {
+			checkLogin();
+	        $( "#search_box" ).autocomplete({
+	          source: function( request, response ) {
+	            $.ajax({
+	              url: "http://localhost:8080/FabFlixRESTAPI/api/search_complete/jsonp/query",
+	              dataType: "jsonp",
+	              data: {
+	                query: request.term
+	              },
+	              success: function( data ) {
+	                response( data );
+	              }
+	            });
+	          },
+	          minLength: 3,
+	          select: function( event, ui ) {
+	          },
+	          open: function() {
+	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+	          },
+	          close: function() {
+	            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+	          }
+	        });
+	      });
 
 			function checkLogin() {
 				if ($('#login').text().trim() == "Login") {
@@ -374,7 +401,7 @@
 
 			function searchMovies(tag) {
 				var query = $("#search_box").val();
-				var query = query.replace(/\s/g, '%');
+				var query = query.replace(/\s/g, '+');
 				urlString = "browse?by=search&arg=" + query
 						+ "&order=t_asc&page=1&lmt=6";
 				tag.href = urlString;

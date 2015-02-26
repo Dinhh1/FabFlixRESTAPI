@@ -63,6 +63,44 @@ public class MoviesTable extends Table {
     public String getTableName() {
         return MovieDB.DBConstant.TBL_MOVIES;
     }
+    
+    public ArrayList<String> getMovieTitlesForQuery(ArrayList<String> params) {
+    	ArrayList<String> query = new ArrayList<String>();
+    	Statement s = null;
+    	Connection con = null;
+    	ResultSet rs = null;
+    	//NICK:: can you review my full text search query here.
+    	// im using the AND SEMANTICS by adding the + sign in front of every token
+    	String sql = "select title from movies where match(title) against ('";
+    	for (String param: params) {
+    		param = "+" + param;
+    		sql += param + " ";
+    	}
+    	// little hacky but i'm just removing the extra space from the loop
+    	sql = sql.substring(0, sql.length()-1);
+    	// close the query parenthesis
+    	sql += "')";
+        System.out.println(sql);
+        try {
+        	con = ConnectionManager.getConnection();
+        	s = con.createStatement();
+        	rs = s.executeQuery(sql);
+        	while (rs.next()) {
+        		query.add(rs.getString("title"));
+        	}
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                s.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return query;
+    }
 
     public ArrayList<Movie> getMoviesWithQueryString(String sql, int page, int size, final String sortAttribute) {
     	int offset = Table.calculateOffset(page, size);
