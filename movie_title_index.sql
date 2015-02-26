@@ -1,0 +1,1 @@
+ALTER TABLE moviedb.movies  ADD FULLTEXT INDEX full_text (title ASC);
