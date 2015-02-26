@@ -74,12 +74,19 @@ public class MoviesTable extends Table {
     	// im using the AND SEMANTICS by adding the + sign in front of every token
     	String sql = "select title from movies where match(title) against ('";
     	String space = "";
-    	for (String param: params) {
+    	for (int i = 0; i < params.size(); i++) {
+    		String param = params.get(i);
     		// if query contains a "'", it will throw an error, be safe just to remove it
     		if (param.contains("'")) {
     			param = param.replace("'", "");
     		}
     		param = "+" + param;
+    		// if we're at the last word
+    		if (i == params.size() - 1) {
+    			// direction:  The last keyword should be treated as a prefix condition.
+    			// last one we will make it a wild card search for prefix match on the last word
+    			param += "*";
+    		}
     		sql += space + param;
     		space = " ";
     	}
